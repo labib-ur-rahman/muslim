@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zad_al_muslim/core/services/app_update/app_update_model.dart';
-import 'package:zad_al_muslim/core/services/app_update/app_update_providers.dart';
-import 'package:zad_al_muslim/core/services/app_update/update_dialog.dart';
-import 'package:zad_al_muslim/core/services/app_update/update_required_page.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/utils/notifications/notification_inbox_service.dart';
+import 'package:shirahsoft_muslim/core/services/app_update/app_update_model.dart';
+import 'package:shirahsoft_muslim/core/services/app_update/app_update_providers.dart';
+import 'package:shirahsoft_muslim/core/services/app_update/update_dialog.dart';
+import 'package:shirahsoft_muslim/core/services/app_update/update_required_page.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/utils/notifications/notification_inbox_service.dart';
 
 class AppUpdateGate extends ConsumerStatefulWidget {
   const AppUpdateGate({super.key, required this.child});

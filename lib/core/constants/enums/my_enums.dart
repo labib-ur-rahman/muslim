@@ -1,5 +1,5 @@
 // App Locale
-enum AppLocale { ar, en, de }
+enum AppLocale { ar, en, de, bn }
 
 // Hadith Grade
 // enum HadithGrade { sahih, hasan, daif }

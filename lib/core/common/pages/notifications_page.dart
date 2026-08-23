@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/common/widgets/page_header.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/utils/notifications/notification_inbox_service.dart';
+import 'package:shirahsoft_muslim/core/common/widgets/page_header.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/utils/notifications/notification_inbox_service.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
@@ -23,15 +24,17 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            const PageHeader(
-              tooltip: 'العودة',
+            PageHeader(
+              tooltip: l10n.go_back,
               icon: Icons.notifications_outlined,
-              title: 'الإشعارات',
-              subTitle: 'تابع آخر التنبيهات',
+              title: l10n.notifcations,
+              subTitle: l10n.notifications_page_subtitle,
             ),
             Expanded(
               child: ValueListenableBuilder<List<AppNotification>>(
@@ -83,7 +86,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
                             // Title
                             Text(
-                              'لا توجد إشعارات',
+                              l10n.notifications_empty_title,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 21.sp,
@@ -97,7 +100,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
                             // Description
                             Text(
-                              'سنخبرك عندما يصل إليك إشعار جديد',
+                              l10n.notifications_empty_subtitle,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 14.sp,
@@ -223,7 +226,9 @@ class _NotificationCard extends StatelessWidget {
               ),
             ),
             IconButton(
-              tooltip: 'حذف الإشعار',
+              tooltip: AppLocalizations.of(
+                context,
+              )!.notifications_delete_tooltip,
               onPressed: onDelete,
               icon: Icon(Icons.delete_outline_rounded, size: 21.sp),
               color: scheme.error,

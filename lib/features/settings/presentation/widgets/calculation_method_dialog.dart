@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/settings/presentation/providers/app_settings_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/settings/presentation/providers/app_settings_provider.dart';
 
 class CalculationMethodDialog extends ConsumerWidget {
   const CalculationMethodDialog({super.key});
@@ -10,21 +11,22 @@ class CalculationMethodDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentMethod = ref.watch(appSettingsProvider).calculationMethodIndex;
+    final l10n = AppLocalizations.of(context)!;
 
     final List<String> methods = [
-      "تلقائي (بناءً على الموقع)",
-      "رابطة العالم الإسلامي",
-      "جامعة أم القرى (مكة)",
-      "الهيئة المصرية العامة للمساحة",
-      "جامعة العلوم الإسلامية (كراتشي)",
-      "رئاسة الشؤون الدينية (تركيا)",
-      "دائرة الشؤون الإسلامية (دبي)",
-      "لجنة رؤية الهلال (Moon Sighting)",
-      "الجمعية الإسلامية لأمريكا الشمالية (ISNA)",
-      "الكويت",
-      "قطر",
-      "سنغافورة",
-      "معهد الجيوفيزياء (جامعة طهران)",
+      l10n.settings_calc_auto,
+      l10n.settings_calc_mwl,
+      l10n.settings_calc_umm_al_qura,
+      l10n.settings_calc_egypt,
+      l10n.settings_calc_karachi,
+      l10n.settings_calc_turkey,
+      l10n.settings_calc_dubai,
+      l10n.settings_calc_moon_sighting,
+      l10n.settings_calc_isna,
+      l10n.settings_calc_kuwait,
+      l10n.settings_calc_qatar,
+      l10n.settings_calc_singapore,
+      l10n.settings_calc_tehran,
     ];
 
     return Dialog(
@@ -46,7 +48,7 @@ class CalculationMethodDialog extends ConsumerWidget {
                 ),
                 SizedBox(width: 8.w),
                 Text(
-                  "طريقة حساب المواقيت",
+                  l10n.settings_calculation_method,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 18.sp,
@@ -79,9 +81,9 @@ class CalculationMethodDialog extends ConsumerWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                "إلغاء",
-                style: TextStyle(
+              child: Text(
+                l10n.settings_cancel,
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: "Cairo",
                 ),
@@ -142,9 +144,11 @@ class CalculationMethodDialog extends ConsumerWidget {
               if (!context.mounted) return;
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
+                SnackBar(
                   content: Text(
-                    "تم تحديث طريقة الحساب، يرجى إعادة تشغيل التطبيق لضمان دقة المواعيد.",
+                    AppLocalizations.of(
+                      context,
+                    )!.settings_calculation_method_updated,
                   ),
                 ),
               );

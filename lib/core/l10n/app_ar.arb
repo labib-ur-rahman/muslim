@@ -159,5 +159,888 @@
   "updateApp": "تحديث التطبيق",
   "openGooglePlay": "فتح Google Play",
   "updateFailed": "تعذر بدء التحديث الداخلي. يمكنك المحاولة مجددًا أو فتح المتجر.",
-  "storeOpenFailed": "تعذر فتح صفحة التطبيق في Google Play."
+  "storeOpenFailed": "تعذر فتح صفحة التطبيق في Google Play.",
+  "settings_header_title": "الإعدادات",
+  "settings_header_subtitle": "خصص تجربتك بما يناسب احتياجاتك",
+  "settings_appearance_title": "المظهر والقراءة",
+  "settings_appearance_subtitle": "خصص شكل التطبيق وتجربة القراءة",
+  "settings_dark_mode_enabled": "الوضع الداكن مفعّل",
+  "settings_light_mode_enabled": "الوضع الفاتح مفعّل",
+  "settings_app_color_subtitle": "لون الأزرار والعناصر البارزة",
+  "settings_adkar_font_size": "حجم خط الأذكار",
+  "settings_adkar_font_size_subtitle": "حجم النص داخل صفحات الأذكار",
+  "settings_prayer_times_title": "مواقيت الصلاة",
+  "settings_prayer_times_subtitle": "الحساب والمذهب وطريقة عرض الوقت",
+  "settings_calculation_method": "طريقة حساب المواقيت",
+  "settings_madhab_asr": "المذهب (صلاة العصر)",
+  "settings_madhab_standard": "الجمهور",
+  "settings_madhab_hanafi": "حنفي",
+  "settings_madhab_standard_subtitle": "شافعي، مالكي، حنبلي",
+  "settings_24_hour_format": "تنسيق 24 ساعة",
+  "settings_24_hour_example_enabled": "مثال: 18:30",
+  "settings_24_hour_example_disabled": "مثال: 6:30 م",
+  "settings_notifications_title": "الإشعارات والتنبيهات",
+  "settings_notifications_subtitle": "تنبيهات الصلاة وأذكار الصباح والمساء",
+  "settings_prayer_notifications": "إشعارات الصلاة",
+  "settings_notifications_enabled": "التنبيهات مفعّلة",
+  "settings_notifications_disabled": "التنبيهات متوقفة",
+  "settings_customize_prayers": "تخصيص الصلوات",
+  "settings_customize_prayers_subtitle": "اختر الصلوات التي تريد تنبيهاتها",
+  "settings_prayer_sounds": "أصوات الصلاة",
+  "settings_prayer_sounds_subtitle": "الأذان أو صوت إشعار أو اهتزاز صامت",
+  "settings_notification_sounds": "أصوات الإشعارات",
+  "settings_notification_sounds_subtitle": "اختر الصوت من إعدادات Android لكل نوع",
+  "settings_morning_adkar": "أذكار الصباح",
+  "settings_evening_adkar": "أذكار المساء",
+  "settings_tap_to_edit_reminder": "اضغط على الصف لتعديل وقت التنبيه",
+  "settings_reminder_disabled": "التنبيه متوقف",
+  "settings_fajr_time": "وقت الفجر",
+  "settings_maghrib_time": "وقت المغرب",
+  "settings_pick_reminder_time_help": "اختر وقت التنبيه (أو إلغاء للرجوع للمقترح)",
+  "settings_location_privacy_title": "الموقع والخصوصية",
+  "settings_location_privacy_subtitle": "البيانات المستخدمة للصلاة واتجاه القبلة",
+  "settings_update_location": "تحديث بيانات الموقع",
+  "settings_update_location_subtitle": "إعادة تحديد موقعك وحساب المواقيت",
+  "settings_about_title": "حول التطبيق",
+  "settings_about_subtitle": "معلومات زاد المسلم ومشاركته",
+  "settings_app_information_subtitle": "الإصدار والتراخيص وسياسة الاستخدام",
+  "settings_share_app": "مشاركة التطبيق",
+  "settings_share_app_subtitle": "شارك زاد المسلم مع من تحب",
+  "settings_sensitive_title": "إجراءات حساسة",
+  "settings_sensitive_subtitle": "هذه الإجراءات تحتاج إلى تأكيد",
+  "settings_delete_location": "حذف بيانات الموقع",
+  "settings_delete_location_subtitle": "سيؤثر في الصلاة والقبلة حتى تحديث الموقع",
+  "settings_reset_settings": "إعادة ضبط الإعدادات",
+  "settings_reset_settings_subtitle": "استعادة جميع الإعدادات الافتراضية",
+  "settings_cancel": "إلغاء",
+  "settings_delete": "حذف",
+  "settings_confirm": "موافق",
+  "settings_delete_location_dialog_title": "حذف بيانات الموقع",
+  "settings_delete_location_dialog_message": "إذا تابعت في حذف بيانات الموقع الخاصة بك، قد لا تعمل أوقات الصلاة واتجاه القبلة بشكل صحيح.\nهل أنت متأكد من الحذف؟",
+  "settings_delete_location_success": "تم حذف بيانات الموقع بنجاح",
+  "settings_delete_location_error": "حدث خطأ أثناء حذف البيانات",
+  "settings_update_location_dialog_title": "تحديث بيانات الموقع",
+  "settings_update_location_dialog_message": "سيتم جلب إحداثيات الموقع الخاصة بك لاستخدامها في ميزات أوقات الصلاة واتجاه القبلة، وسيتم حفظها محلياً ولن يكون لأي أحد إمكانية الوصول إلى هذه المعلومات كما هو مذكور في سياسة الخصوصية.\nهل توافق على التحديث؟",
+  "settings_update_location_success": "تم تحديث بيانات الموقع بنجاح",
+  "settings_update_location_error": "حدث خطأ أثناء تحديث الموقع",
+  "settings_reset_settings_dialog_title": "إعادة ضبط الإعدادات",
+  "settings_reset_settings_dialog_message": "ستعود إعدادات القراءة والصلاة والتنبيهات إلى قيمها الافتراضية. هل تريد المتابعة؟",
+  "settings_reset_settings_confirm": "إعادة ضبط",
+  "settings_calc_auto": "تلقائي (بناءً على الموقع)",
+  "settings_calc_mwl": "رابطة العالم الإسلامي",
+  "settings_calc_umm_al_qura": "جامعة أم القرى (مكة)",
+  "settings_calc_egypt": "الهيئة المصرية العامة للمساحة",
+  "settings_calc_karachi": "جامعة العلوم الإسلامية (كراتشي)",
+  "settings_calc_turkey": "رئاسة الشؤون الدينية (تركيا)",
+  "settings_calc_dubai": "دائرة الشؤون الإسلامية (دبي)",
+  "settings_calc_moon_sighting": "لجنة رؤية الهلال (Moon Sighting)",
+  "settings_calc_isna": "الجمعية الإسلامية لأمريكا الشمالية (ISNA)",
+  "settings_calc_kuwait": "الكويت",
+  "settings_calc_qatar": "قطر",
+  "settings_calc_singapore": "سنغافورة",
+  "settings_calc_tehran": "معهد الجيوفيزياء (جامعة طهران)",
+  "settings_color_turquoise": "فيروزي",
+  "settings_color_olive": "زيتوني",
+  "settings_color_night_blue": "أزرق ليلي",
+  "settings_color_purple": "بنفسجي",
+  "settings_color_maroon": "عنابي",
+  "settings_color_sand": "رملي",
+  "settings_color_custom": "مخصص",
+  "settings_calculation_method_updated": "تم تحديث طريقة الحساب، يرجى إعادة تشغيل التطبيق لضمان دقة المواعيد.",
+  "settings_madhab_auto_standard": "تلقائي (شافعي، مالكي، حنبلي)",
+  "settings_madhab_updated": "تم تحديث المذهب، يرجى إعادة تشغيل التطبيق لضمان دقة المواعيد.",
+  "settings_adkar_font_size_dialog_subtitle": "تعديل حجم الخط المعروض في صفحة الأذكار",
+  "settings_done": "تم",
+  "settings_prayer_notification_selection_title": "تخصيص إشعارات الصلوات",
+  "settings_prayer_fajr": "صلاة الفجر",
+  "settings_prayer_sunrise": "شروق الشمس",
+  "settings_prayer_dhuhr": "صلاة الظهر",
+  "settings_prayer_asr": "صلاة العصر",
+  "settings_prayer_maghrib": "صلاة المغرب",
+  "settings_prayer_isha": "صلاة العشاء",
+  "settings_adhan_sound": "صوت الأذان",
+  "settings_in_progress": "(قيد العمل)",
+  "settings_adhan_makkah": "أذان الحرم المكي (الشيخ علي ملا)",
+  "settings_adhan_madinah": "أذان المسجد النبوي (الشيخ عصام بخاري)",
+  "settings_adhan_aqsa": "أذان المسجد الأقصى (القدس)",
+  "settings_adhan_egypt_refaat": "أذان مصري (الشيخ محمد رفعت)",
+  "settings_adhan_egypt_abdul_basit": "أذان مصري (الشيخ عبد الباسط عبد الصمد)",
+  "settings_adhan_umayyad": "الأذان الجماعي (الجامع الأموي بدمشق)",
+  "settings_adhan_hijaz": "أذان على مقام الحجاز (النمط المدني)",
+  "settings_adhan_rast": "أذان على مقام الرست (النمط التركي)",
+  "settings_adhan_saba": "أذان على مقام الصبا (أذان حزين)",
+  "settings_adhan_maghribi": "أذان المغرب العربي (النمط القيرواني)",
+  "settings_alert_method": "طريقة التنبيه",
+  "settings_muezzin": "المؤذن",
+  "settings_save": "حفظ",
+  "settings_audio_mode_adhan": "صوت الأذان",
+  "settings_audio_mode_notification": "صوت إشعار",
+  "settings_audio_mode_silent_vibration": "اهتزاز صامت",
+  "settings_adhan_reciter_abdulbaset": "عبد الباسط عبد الصمد",
+  "settings_adhan_reciter_alimulla": "علي أحمد ملا",
+  "settings_adhan_reciter_alqatami": "ناصر القطامي",
+  "settings_adhan_reciter_aserehy": "عصام السرهِي",
+  "settings_adhan_reciter_joshar": "أحمد جوهر",
+  "settings_adhan_reciter_kefah": "كفاح العزاوي",
+  "settings_adhan_reciter_riad": "رياض النقشبندي",
+  "home_notifications_tooltip": "الإشعارات",
+  "home_about_semantics": "عن تطبيق زاد المسلم ومشاركته",
+  "home_about_tooltip": "عن التطبيق",
+  "home_hijri_date_title": "التاريخ الهجري",
+  "home_hijri_date_subtitle": "تاريخ اليوم حسب التقويم الهجري",
+  "home_hijri_label": "الهجري",
+  "home_gregorian_date_title": "التاريخ الميلادي",
+  "home_gregorian_date_subtitle": "تاريخ اليوم حسب التقويم الميلادي",
+  "home_gregorian_label": "الميلادي",
+  "home_daily_message_morning": "ابدأ يومك بذكر الله وتلاوة كتابه",
+  "home_daily_message_midday": "رفيقك اليومي للقرآن والأذكار",
+  "home_daily_message_evening": "اختم يومك بما يقربك إلى الله",
+  "home_daily_message_night": "اجعل ذكر الله آخر ما تختم به يومك",
+  "home_about_dialog_title": "خلف كواليس التطبيق",
+  "home_about_dialog_body": "خلف هذه الشاشة البسيطة والسطور البرمجية المرتبة، تكمن رحلة طويلة من الشغف والسهر والتعلم المستمر. أردت من خلال هذا المشروع أن أقدم لك رفيقًا إيمانيًا يوميًا، يجمع بين سهولة الاستخدام وجمال التصميم والأداء السلس، دون إعلانات تشوش عليك خلوتك مع ذكر الله.",
+  "home_share_text": "أرشح لك تطبيق \"زاد المسلم\"، رفيقك اليومي للأذكار والأدعية بدون إعلانات وبأداء سلس ومميز.\n\nhttps://play.google.com/store/apps/details?id=com.shirahsoft_muslim.adnan",
+  "home_share_reward": "شارك الأجر",
+  "hijri_muharram": "محرم",
+  "hijri_safar": "صفر",
+  "hijri_rabi_al_awwal": "ربيع الأول",
+  "hijri_rabi_al_thani": "ربيع الآخر",
+  "hijri_jumada_al_awwal": "جمادى الأولى",
+  "hijri_jumada_al_thani": "جمادى الآخرة",
+  "hijri_rajab": "رجب",
+  "hijri_shaban": "شعبان",
+  "hijri_ramadan": "رمضان",
+  "hijri_shawwal": "شوال",
+  "hijri_dhu_al_qadah": "ذو القعدة",
+  "hijri_dhu_al_hijjah": "ذو الحجة",
+  "home_prayer_location_not_allowed": "لم يتم الموافقة على مشاركة الموقع",
+  "home_prayer_load_error": "تعذر تحميل مواقيت الصلاة",
+  "home_next_prayer": "الصلاة القادمة",
+  "home_prayer_time_close": "اقترب الموعد",
+  "home_today_prayer_times": "مواقيت اليوم",
+  "home_prayer_time_label": "وقت الصلاة",
+  "home_prayer_due_now_label": "موعد الصلاة",
+  "home_prayer_remaining_label": "متبقي على الصلاة",
+  "home_show_all_prayer_times": "عرض جميع مواقيت الصلاة",
+  "home_prayer_calculating": "جارٍ حساب أوقات الصلاة",
+  "home_prayer_card_subtitle": "تابع أوقات الصلاة لحظة بلحظة",
+  "home_go_to_prayer_times": "الإنتقال الى أوقات الصلاة",
+  "home_prayer_status_due": "حان موعد الصلاة",
+  "home_prayer_status_close": "اقترب موعد الصلاة",
+  "home_prayer_status_soon": "لم يتبقَّ الكثير",
+  "home_prayer_status_prepare": "استعد للصلاة القادمة",
+  "home_remaining_less_than_minute": "بعد أقل من دقيقة",
+  "home_remaining_hours_minutes": "بعد {hours} س و{minutes} د",
+  "home_remaining_one_hour": "بعد ساعة",
+  "home_remaining_hours": "بعد {hours} ساعات",
+  "home_remaining_minutes": "بعد {minutes} دقيقة",
+  "home_reading_empty_body": "ابدأ رحلتك مع القرآن الكريم، واحفظ موضعك لتتابع من حيث توقفت.",
+  "home_reading_start_title": "ابدأ تلاوة القرآن",
+  "home_reading_continue_title": "متابعة القراءة",
+  "home_reading_start_subtitle": "رحلتك مع كتاب الله تبدأ من هنا",
+  "home_reading_progress_semantics": "نسبة تقدم القراءة {percent} بالمئة",
+  "home_reading_position_page": "موضعك: الصفحة {page}",
+  "home_reading_position_ayah_page": "موضعك: الآية {ayah} • الصفحة {page}",
+  "home_reading_remaining_pages": "المتبقي: {pages} صفحة",
+  "home_reading_continue_action": "تابع القراءة",
+  "home_reading_start_action": "ابدأ القراءة",
+  "home_reading_surah_page": "سورة {surah} • الصفحة {page}",
+  "home_reading_surah_ayah_page": "سورة {surah} • الآية {ayah} • الصفحة {page}",
+  "home_moratal_title": "القرآن المُرتل",
+  "home_moratal_subtitle": "استماع وتحميل",
+  "home_moratal_action": "استمع الآن",
+  "home_adkar_action": "طمأن قلبك بذكر الله",
+  "home_qibla_subtitle": "تحديد الاتجاه",
+  "home_qibla_action": "البوصلة جاهزة",
+  "home_sunnah_subtitle": "أحاديث وهدي نبوي",
+  "home_sunnah_action": "تصفح الأحاديث",
+  "home_daily_adkar": "الأذكار اليومية",
+  "home_daily_services_title": "خدماتك اليومية",
+  "home_daily_services_subtitle": "القرآن والأذكار والسنة بين يديك",
+  "notifications_page_subtitle": "تابع آخر التنبيهات",
+  "notifications_empty_title": "لا توجد إشعارات",
+  "notifications_empty_subtitle": "سنخبرك عندما يصل إليك إشعار جديد",
+  "notifications_delete_tooltip": "حذف الإشعار",
+  "retry": "إعادة المحاولة",
+  "duaa_shared_from_app": "من تطبيق زاد المسلم",
+  "duaa_daily_subtitle": "دعاء مختار يتجدد كل يوم",
+  "duaa_show_less": "عرض أقل",
+  "duaa_show_full": "عرض الدعاء كاملًا",
+  "duaa_copy_action": "نسخ الدعاء",
+  "duaa_share_action": "مشاركة",
+  "duaa_copied_message": "تم نسخ الدعاء",
+  "duaa_load_error": "تعذر تحميل دعاء اليوم",
+  "quick_adkar_title": "اختصارات الأذكار",
+  "quick_adkar_subtitle": "وصول سريع إلى أذكارك اليومية",
+  "quick_adkar_morning_evening": "الصباح والمساء",
+  "quick_adkar_sleep": "أذكار النوم",
+  "quick_adkar_after_prayer": "بعد الصلاة",
+  "quick_adkar_wake_up": "الاستيقاظ",
+  "quick_adkar_worry_sadness": "الهم والحزن",
+  "quick_adkar_forgiveness": "الاستغفار",
+  "quick_adkar_recommended_now": "مقترح الآن",
+  "quick_adkar_open": "فتح الذكر",
+  "quick_adkar_unavailable": "غير متوفر",
+  "quick_adkar_load_error": "تعذر تحميل اختصارات الأذكار",
+  "adkar_details_count": "{count} من الأذكار والأدعية",
+  "adkar_details_item_number": "ذكر رقم {index}",
+  "adkar_details_completed_semantics": "اكتمل الذكر",
+  "adkar_details_remaining_semantics": "متبقي {count} تكرار",
+  "adkar_details_completed_short": "اكتمل",
+  "adkar_details_dialog_title": "تفاصيل الذكر",
+  "adkar_details_footnote_title": "تخريج الحديث / ملاحظة",
+  "adkar_no_data": "لا توجد بيانات للأذكار.",
+  "adkar_search_hint": "بحث في الأذكار...",
+  "adkar_virtues_title": "فضائل الذكر",
+  "adkar_show_more_virtues": "عرض المزيد من الفضائل",
+  "adkar_header_subtitle": "حصنك اليومي من الذكر والدعاء",
+  "adkar_empty_search": "لا توجد نتائج لـ «{query}»",
+  "adkar_load_error": "تعذر تحميل الأذكار",
+  "qibla_magnetic_warning": "لأعلى دقة، ابتعد عن الأجهزة الكهربائية والأجسام المعدنية.",
+  "qibla_angle_label": "زاوية القبلة",
+  "qibla_distance_label": "المسافة إلى الكعبة",
+  "qibla_distance_km": "{distance} كم",
+  "qibla_calibration_tip": "حرّك الهاتف على شكل الرقم 8 إذا لاحظت أن اتجاه البوصلة غير مستقر.",
+  "qibla_compass_loading": "جارٍ تحميل البوصلة…",
+  "qibla_no_sensor_title": "المستشعر غير متوفر",
+  "qibla_no_sensor_subtitle": "جهازك لا يحتوي على مستشعر مغناطيسي\n(Magnetometer) مطلوب لتحديد اتجاه البوصلة.",
+  "qibla_no_location_title": "الموقع غير محدد",
+  "qibla_no_location_subtitle": "لم توافق على مشاركة موقعك، لذلك لا يمكن حساب اتجاه القبلة. يمكنك منح إذن الموقع الآن لاستخدام هذه الميزة.",
+  "qibla_find_my_location": "تحديد موقعي",
+  "qibla_header_subtitle": "اعثر على اتجاه الكعبة بدقة",
+  "qibla_aligned": "أنت باتجاه القبلة",
+  "qibla_heading_north": "شمال - {degrees}°",
+  "qibla_heading_north_east": "شمال شرق - {degrees}°",
+  "qibla_heading_east": "شرق - {degrees}°",
+  "qibla_heading_south_east": "جنوب شرق - {degrees}°",
+  "qibla_heading_south": "جنوب - {degrees}°",
+  "qibla_heading_south_west": "جنوب غرب - {degrees}°",
+  "qibla_heading_west": "غرب - {degrees}°",
+  "qibla_heading_north_west": "شمال غرب - {degrees}°",
+  "hadith_tab_all": "الأحاديث",
+  "hadith_tab_favorites": "المفضلة",
+  "hadith_header_title": "السنة والحديث",
+  "hadith_header_subtitle": "من هدي النبي ﷺ وصحيح سنته",
+  "hadith_filter_book": "الكتاب",
+  "hadith_load_error": "خطأ في تحميل الأحاديث: {error}",
+  "hadith_clear_filters": "حذف الفلاتر",
+  "hadith_empty_title": "لا توجد نتائج مطابقة",
+  "hadith_empty_subtitle": "جرّب تغيير عبارة البحث أو إزالة بعض الفلاتر.",
+  "hadith_error": "حدث خطأ: {error}",
+  "hadith_favorites_empty_title": "مفضلتك بانتظارك",
+  "hadith_favorites_empty_subtitle": "اضغط على النجمة بجانب أي حديث لحفظه والعودة إليه بسهولة.",
+  "hadith_search_hint": "ابحث في الأحاديث...",
+  "hadith_book_label": "كتاب {bookName}",
+  "hadith_remove_favorite": "إزالة من المفضلة",
+  "hadith_add_favorite": "إضافة إلى المفضلة",
+  "hadith_tap_to_read": "اضغط لقراءة الحديث كاملاً",
+  "hadith_text_title": "نص الحديث",
+  "hadith_source_bukhari": "صحيح البخاري",
+  "hadith_share_reference": "صحيح البخاري | كتاب {bookName} - حديث رقم {hadithNumber}",
+  "hadith_number_label": "رقم الحديث",
+  "hadith_source_label": "المصدر",
+  "hadith_book_belief": "الإيمان",
+  "hadith_book_salat": "الصلاة",
+  "hadith_book_knowledge": "العلم",
+  "hadith_book_sales": "البيوع",
+  "hadith_book_adab": "الأدب",
+  "hadith_book_riqaq": "الرقاق",
+  "hadith_book_invocations": "الدعوات",
+  "hadith_book_tawhid": "التوحيد",
+  "quran_select_qari_title": "اختيار القارئ",
+  "quran_index_title": "فهرس المصحف",
+  "quran_index_subtitle": "اختر سورة أو جزءاً لبدء القراءة",
+  "quran_surahs_tab": "السور",
+  "quran_juz_tab": "الأجزاء",
+  "quran_ayah_count": "{count} آية",
+  "quran_juz_number": "الجزء {number}",
+  "quran_surah_label": "سورة {surahName}",
+  "quran_page_number": "صفحة رقم {pageNumber}",
+  "quran_ayah_number": "الآية {ayahNumber}",
+  "quran_check_internet": "يرجى التحقق من إتصالك بالإنترنت.",
+  "quran_size_mb": "{size} م.ب",
+  "moratal_download_quran_title": "تحميل القرآن الكريم",
+  "moratal_download_quran_subtitle": "حمّل سور القرآن كاملة للاستماع إليها بدون اتصال بالإنترنت في أي وقت.",
+  "moratal_header_subtitle": "اختر قارئك المفضل واستمع بخشوع",
+  "moratal_manage_downloads": "إدارة التنزيلات",
+  "moratal_narration_warsh": "رواية ورش عن نافع",
+  "moratal_narration_dorai": "رواية الدوري عن الكسائي",
+  "moratal_narration_hafs": "رواية حفص عن عاصم",
+  "moratal_downloading_surah_progress": "تحميل سورة {current} من 114",
+  "moratal_show_surahs": "عرض السور",
+  "moratal_all_surahs_downloaded": "تم تحميل جميع السور. يمكنك الاستماع بدون إنترنت!",
+  "moratal_download_stopped_for_qari": "تم إيقاف تحميل السور للقارئ {qariName}",
+  "moratal_resuming_download_for_qari": "جاري إستكمال تحميل السور للقارئ {qariName}",
+  "moratal_started_download_for_qari": "بدأت عميلة تحميل السور للقارئ {qariName}",
+  "moratal_default_qari": "القارئ",
+  "moratal_resume_download_title": "استكمال التحميل",
+  "moratal_download_all_title": "تحميل سور القرآن",
+  "moratal_resume_download_message": "سيتم استكمال تحميل سور القرآن الكريم بصوت {qariName} من حيث توقف.",
+  "moratal_download_all_message": "سيتم تحميل جميع سور القرآن الكريم (١١٤ سورة) بصوت {qariName} على جهازك.",
+  "moratal_download_data_warning": "هذه العملية قد تستهلك ما بين ٥٠٠ ميجابايت إلى ٢ جيجابايت من بيانات الإنترنت.",
+  "moratal_download_keep_open_warning": "يرجى ترك التطبيق مفتوحاً حتى اكتمال التحميل. يمكنك الاستكمال في أي وقت إذا أُغلق التطبيق.",
+  "moratal_resume": "استكمال",
+  "moratal_download_now": "تحميل الآن",
+  "moratal_stop_download_title": "إيقاف التحميل",
+  "moratal_stop_download_message": "هل تريد إيقاف التحميل؟\nسيتم حفظ السور التي تم تحميلها بالفعل، ويمكنك الاستكمال لاحقاً.",
+  "moratal_continue_download": "متابعة التحميل",
+  "moratal_stop": "إيقاف",
+  "moratal_deleted_all_for_qari": "تم حذف جميع سور {qariName} من الجهاز.",
+  "moratal_delete_downloaded_title": "حذف السور المُحمَّلة",
+  "moratal_delete_downloaded_message": "سيتم حذف {count} سورة مُحمَّلة بصوت {qariName} من جهازك.\nلا يمكن التراجع عن هذا الإجراء.",
+  "moratal_surahs_title": "سور القرآن الكريم",
+  "moratal_download_surah": "تحميل السورة",
+  "moratal_delete_surah": "حذف السورة",
+  "moratal_cancel_download": "إلغاء التحميل",
+  "moratal_surah_downloaded_success": "تم تحميل سورة {surahName} بنجاح",
+  "moratal_surah_deleted_success": "تم حذف سورة {surahName} من الجهاز",
+  "moratal_cancelled_temp_deleted": "تم إلغاء التحميل وحذف الملف المؤقت.",
+  "moratal_delete_surah_message": "هل تريد حذف هذه السورة من الجهاز؟\nلا يمكن التراجع عن هذا الإجراء.",
+  "moratal_enable_repeat": "تفعيل التكرار",
+  "moratal_repeat_all": "تكرار الكل",
+  "moratal_disable_repeat": "إيقاف التكرار",
+  "moratal_playback_speed": "سرعة التشغيل",
+  "moratal_speed_normal": "1.0x (طبيعي)",
+  "moratal_previous_surah": "السورة السابقة",
+  "moratal_rewind_10": "تأخير 10 ثوانٍ",
+  "moratal_forward_10": "تقديم 10 ثوانٍ",
+  "moratal_next_surah": "السورة التالية",
+  "@quran_ayah_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_juz_number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_surah_label": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      }
+    }
+  },
+  "@quran_page_number": {
+    "placeholders": {
+      "pageNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_ayah_number": {
+    "placeholders": {
+      "ayahNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_size_mb": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_downloading_surah_progress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      }
+    }
+  },
+  "@moratal_download_stopped_for_qari": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_resuming_download_for_qari": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_started_download_for_qari": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_resume_download_message": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_download_all_message": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_deleted_all_for_qari": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_delete_downloaded_message": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_surah_downloaded_success": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_surah_deleted_success": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      }
+    }
+  },
+  "@adkar_empty_search": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_distance_km": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_north": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_north_east": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_east": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_south_east": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_south": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_south_west": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_west": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_north_west": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@hadith_load_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hadith_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hadith_book_label": {
+    "placeholders": {
+      "bookName": {
+        "type": "String"
+      }
+    }
+  },
+  "@hadith_share_reference": {
+    "placeholders": {
+      "bookName": {
+        "type": "String"
+      },
+      "hadithNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@adkar_details_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@adkar_details_item_number": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "@adkar_details_remaining_semantics": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pray_time_location_disabled_message": "الـ GPS معطل، يرجى تفعيله",
+  "pray_time_fetch_error": "تعذر الحصول على مواقيت الصلاة",
+  "pray_time_location_loading": "جاري تحميل الموقع...",
+  "pray_time_today": "اليوم",
+  "pray_time_tomorrow": "الغد",
+  "pray_time_yesterday": "أمس",
+  "pray_time_times_section_title": "مواقيت الصلاة",
+  "pray_time_previous_day": "السابق",
+  "pray_time_next_day": "القادم",
+  "pray_time_remaining_to_adhan": "متبقي على الأذان",
+  "pray_time_adjust_prayer_time": "ضبط وقت {prayerName}",
+  "pray_time_adjustment_limit": "الحد الأقصى ± 60 دقيقة",
+  "pray_time_no_adjustment": "لا يوجد تعديل",
+  "pray_time_original_time": "أصلي",
+  "pray_time_minutes_offset_positive": "+{minutes} دقيقة",
+  "pray_time_minutes_offset": "{minutes} دقيقة",
+  "pray_time_save_adjustment": "حفظ التعديل",
+  "pray_time_reset_adjustments_title": "إعادة تعيين التعديلات",
+  "pray_time_reset_adjustments_message": "هل تريد إعادة جميع أوقات الصلاة إلى أوقاتها الأصلية المحسوبة؟",
+  "pray_time_no_internet_title": "لا يوجد اتصال بالإنترنت",
+  "pray_time_no_internet_subtitle": "سيتم التحديث تلقائياً عند عودة الاتصال",
+  "pray_time_location_service_disabled": "خدمة الموقع معطلة",
+  "pray_time_location_permission_required": "أذونات الموقع مطلوبة",
+  "pray_time_location_permission_denied_forever": "أذونات الموقع مرفوضة بشكل دائم",
+  "pray_time_loading": "جاري التحميل",
+  "pray_time_error_title": "حدث خطأ",
+  "pray_time_unknown_error_title": "عذراً هناك خطأ ما",
+  "pray_time_unknown_error_message": "خطأ غير معروف",
+  "pray_time_grant_location_permission": "منح إذن الموقع",
+  "pray_time_enable_location_service": "تشغيل خدمة الموقع",
+  "pray_time_gps_auto_refresh_message": "سيتم التحديث تلقائياً عند تفعيل الـ GPS",
+  "pray_time_manual_permission_message": "يجب منح أذن الوصول الى الموقع بشكل يدوي",
+  "pray_time_detecting_location": "جاري تحديد موقعك الحالي...",
+  "pray_time_alert_title": "تنبيه",
+  "pray_time_location_deleted_message": "تم حذف بيانات الموقع مسبقاً من التطبيق بناءً على طلبك. قد تكون أوقات الصلاة المعروضة حالياً غير دقيقة لأنها تعتمد على آخر موقع معروف قبل الحذف.\nهل ترغب في تحديث بيانات الموقع الآن لتصحيح الأوقات؟",
+  "pray_time_ignore": "تجاهل",
+  "pray_time_soon": "قريباً",
+  "@pray_time_adjust_prayer_time": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "@pray_time_minutes_offset_positive": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "@pray_time_minutes_offset": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_remaining_hours_minutes": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_remaining_hours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_remaining_minutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_progress_semantics": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_position_page": {
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_position_ayah_page": {
+    "placeholders": {
+      "ayah": {
+        "type": "int"
+      },
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_remaining_pages": {
+    "placeholders": {
+      "pages": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_surah_page": {
+    "placeholders": {
+      "surah": {
+        "type": "String"
+      },
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_surah_ayah_page": {
+    "placeholders": {
+      "surah": {
+        "type": "String"
+      },
+      "ayah": {
+        "type": "int"
+      },
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "generic_error": "حدث خطأ",
+  "moratal_play": "تشغيل",
+  "moratal_pause": "إيقاف",
+  "quran_nav_index": "الفهرس",
+  "quran_nav_search": "بحث",
+  "quran_nav_bookmarks": "العلامات",
+  "quran_settings_title": "إعدادات القرآن",
+  "quran_settings_subtitle": "خصص تجربة القراءة والاستماع",
+  "quran_settings_reading_appearance": "تخصيص القراءة والشكل",
+  "quran_settings_reading_bg_color": "لون خلفية القراءة",
+  "quran_settings_page_view_type": "شكل صفحات القرآن الكريم",
+  "quran_settings_keep_screen_awake": "بقاء الشاشة مضيئة أثناء القراءة",
+  "quran_settings_listening_memorization": "الاستماع والتحفيظ",
+  "quran_settings_select_qari_voice": "اختيار صوت القارئ",
+  "quran_settings_ayah_delay": "الفاصل الزمني بين الآيات",
+  "quran_settings_auto_scroll_audio": "التمرير التلقائي مع صوت القارئ",
+  "quran_settings_general": "الإعدادات العامة",
+  "quran_settings_download_tafsir": "تحميل التفاسير",
+  "quran_settings_daily_reminders": "تنبيهات ورد القراءة اليومي",
+  "quran_delay_no_pause": "بدون توقف",
+  "quran_delay_one_second": "ثانية واحدة",
+  "quran_delay_two_seconds": "ثانيتين",
+  "quran_delay_seconds": "{seconds} ثوانٍ",
+  "quran_reminder_time": "الوقت: {time}",
+  "quran_reminder_after_fajr": "الوقت: بعد الفجر",
+  "quran_reminder_pick_hint": "اضغط هنا لتحديد وقت التذكير",
+  "quran_reminder_picker_help": "اختر وقت التنبيه (أو إلغاء للرجوع للمقترح)",
+  "quran_view_fixed": "الشكل الثابت",
+  "quran_view_fixed_description": "عرض الصفحة بحجم ثابت لا يتغيّر",
+  "quran_view_zoomable": "الشكل القابل للتكبير والتصغير",
+  "quran_view_zoomable_description": "قابل للتكبير والتصغير بإصبعين",
+  "quran_view_page_display": "طريقة عرض الصفحة",
+  "quran_juz_starts_at": "سورة {surahName} - صفحة {pageNumber}",
+  "quran_search_hint": "ابحث عن سورة أو آية...",
+  "quran_search_empty_title": "ابحث في آيات القرآن",
+  "quran_search_empty_subtitle": "اكتب كلمة أو جزءاً من آية للوصول إليها بسرعة.",
+  "quran_search_no_results_title": "لا توجد نتائج",
+  "quran_search_no_results_subtitle": "تحقق من الكتابة أو جرّب عبارة أقصر.",
+  "quran_search_recent": "عمليات البحث الأخيرة",
+  "quran_search_suggested_results": "نتائج مقترحة",
+  "quran_search_results_count": "نتائج البحث ({count})",
+  "quran_surah_ayah_label": "سورة {surahName} - آية {ayahNumber}",
+  "quran_saved_bookmarks": "العلامات المحفوظة",
+  "quran_pages_tab": "الصفحات",
+  "quran_ayahs_tab": "الآيات",
+  "quran_no_saved_bookmarks": "لا توجد علامات محفوظة",
+  "quran_ayah_page_label": "الآية {ayahNumber} - صفحة {pageNumber}",
+  "quran_saved_date": "تاريخ الحفظ: {date}",
+  "quran_delete_bookmark": "حذف العلامة",
+  "quran_color_dark_default": "داكن أساسي",
+  "quran_color_night_black": "أسود ليلي",
+  "quran_color_dark_sepia": "سيبيا داكن",
+  "quran_color_dark_blue": "أزرق داكن",
+  "quran_color_light_sepia": "فاتح أساسي (سيبيا)",
+  "quran_color_bright_white": "أبيض ناصع",
+  "quran_color_soft_gray": "رمادي مريح",
+  "quran_color_light_cream": "كريمي فاتح",
+  "quran_reading_mark_added": "تم إضافة علامة القراءة",
+  "quran_bookmark_removed": "تم إزالة العلامة",
+  "quran_action_copy": "نسخ",
+  "quran_action_read": "قراءة",
+  "quran_action_listen": "استماع",
+  "quran_action_bookmark": "علامة",
+  "quran_action_tafsir": "تفسير",
+  "quran_action_share": "مشاركة",
+  "quran_ayah_copied_success": "تم نسخ الآية بنجاح",
+  "quran_ayah_copied": "تم نسخ الآية",
+  "quran_audio_connection_error": "تعذر تشغيل الصوت. تحقق من اتصالك بالإنترنت.",
+  "quran_audio_connection_error_short": "تعذّر تشغيل الآية. تحقق من الاتصال.",
+  "quran_ayah_saved_home": "تم حفظ الآية. يمكنك الوصول إليها سريعاً من خلال الصفحة الرئيسية.",
+  "quran_currently_listening": "جاري الاستماع",
+  "quran_remove_reading_position": "إزالة موضع القراءة",
+  "quran_save_reading_position": "حفظ موضع القراءة",
+  "quran_reading_position_removed": "تمت إزالة موضع القراءة",
+  "quran_reading_position_saved": "تم حفظ موضع القراءة وسيظهر تقدمك في الصفحة الرئيسية",
+  "quran_remove_bookmark": "إزالة العلامة",
+  "quran_add_bookmark": "إضافة علامة",
+  "quran_play_ayah": "تشغيل الآية",
+  "quran_ayah_tafsir": "تفسير الآية",
+  "quran_ayah_qari_label": "الآية {ayahNumber} - {qariName}",
+  "quran_disable_auto_scroll": "الغاء التمرير التلقائي",
+  "quran_enable_auto_scroll": "تفعيل التمرير التلقائي",
+  "quran_auto_scroll_disabled": "تم إلغاء تفعيل التمرير التلقائي للآيات",
+  "quran_auto_scroll_enabled": "تم تفعيل التمرير التلقائي للآيات",
+  "quran_failed_get_ayah_url": "فشل الحصول على رابط الآية",
+  "quran_playback_no_connection": "تعذر التشغيل. لا يوجد اتصال.",
+  "quran_not_selected": "غير محدد",
+  "quran_ayah_by_qari": "الآية {ayahNumber} - بصوت {qariName}",
+  "@quran_delay_seconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_reminder_time": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@quran_juz_starts_at": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "pageNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_search_results_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_surah_ayah_label": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "ayahNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_ayah_page_label": {
+    "placeholders": {
+      "ayahNumber": {
+        "type": "int"
+      },
+      "pageNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_saved_date": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@quran_ayah_qari_label": {
+    "placeholders": {
+      "ayahNumber": {
+        "type": "int"
+      },
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@quran_ayah_by_qari": {
+    "placeholders": {
+      "ayahNumber": {
+        "type": "int"
+      },
+      "qariName": {
+        "type": "String"
+      }
+    }
+  }
 }

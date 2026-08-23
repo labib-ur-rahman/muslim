@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:zad_al_muslim/core/constants/juz.dart';
-import 'package:zad_al_muslim/core/errors/failures.dart';
-import 'package:zad_al_muslim/features/quran/data/models/juzz_model.dart';
+import 'package:shirahsoft_muslim/core/constants/juz.dart';
+import 'package:shirahsoft_muslim/core/errors/failures.dart';
+import 'package:shirahsoft_muslim/features/quran/data/models/juzz_model.dart';
 
 abstract class JuzzLocal {
   Either<Failure, List<JuzzModel>> getAllJuzz();

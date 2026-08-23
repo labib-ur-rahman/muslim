@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:zad_al_muslim/features/tafsser/presentation/providers/tafsser_book.dart';
+import 'package:shirahsoft_muslim/features/tafsser/presentation/providers/tafsser_book.dart';
 
 class TafseerDownloadState {
   final double progress;

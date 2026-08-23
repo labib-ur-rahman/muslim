@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/features/settings/presentation/providers/app_settings_provider.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/settings/presentation/providers/app_settings_provider.dart';
 
 class FontSizeDialog extends ConsumerWidget {
   const FontSizeDialog({super.key});
@@ -9,17 +10,21 @@ class FontSizeDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final fontSize = ref.watch(appSettingsProvider).adkarFontSize;
+    final l10n = AppLocalizations.of(context)!;
 
     return SimpleDialog(
-      title: const Text(
-        "حجم خط الأذكار",
+      title: Text(
+        l10n.settings_adkar_font_size,
         textAlign: TextAlign.center,
-        style: TextStyle(fontFamily: "Cairo", fontWeight: FontWeight.bold),
+        style: const TextStyle(
+          fontFamily: "Cairo",
+          fontWeight: FontWeight.bold,
+        ),
       ),
       contentPadding: EdgeInsets.all(20.r),
       children: [
         Text(
-          "تعديل حجم الخط المعروض في صفحة الأذكار",
+          l10n.settings_adkar_font_size_dialog_subtitle,
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 14.sp, fontFamily: "Cairo"),
         ),
@@ -48,16 +53,19 @@ class FontSizeDialog extends ConsumerWidget {
               onPressed: () {
                 ref.read(appSettingsProvider.notifier).setAdkarFontSize(24);
               },
-              child: const Text(
-                "إعادة ضبط",
-                style: TextStyle(fontFamily: "Cairo"),
+              child: Text(
+                l10n.settings_reset_settings_confirm,
+                style: const TextStyle(fontFamily: "Cairo"),
               ),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text("تم", style: TextStyle(fontFamily: "Cairo")),
+              child: Text(
+                l10n.settings_done,
+                style: const TextStyle(fontFamily: "Cairo"),
+              ),
             ),
           ],
         ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/hadith/domain/entities/hadith_entity.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/widgets/highlighted_text.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/hadith/domain/entities/hadith_entity.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/widgets/highlighted_text.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/providers/hadith_provider.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/providers/hadith_provider.dart';
 
 class HadithCard extends ConsumerWidget {
   final HadithEntity hadith;
@@ -24,6 +25,7 @@ class HadithCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       margin: EdgeInsets.only(bottom: 12.h),
       decoration: BoxDecoration(
@@ -58,7 +60,7 @@ class HadithCard extends ConsumerWidget {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 12.w),
                         child: Text(
-                          'كتاب ${hadith.bookName}',
+                          l10n.hadith_book_label(hadith.bookName),
                           style: TextStyle(
                             fontFamily: "Cairo",
                             fontSize: 12.sp,
@@ -72,8 +74,8 @@ class HadithCard extends ConsumerWidget {
                     ),
                     IconButton.filledTonal(
                       tooltip: hadith.isFavorite
-                          ? 'إزالة من المفضلة'
-                          : 'إضافة إلى المفضلة',
+                          ? l10n.hadith_remove_favorite
+                          : l10n.hadith_add_favorite,
                       onPressed: onToggleFavorite,
                       icon: Icon(
                         hadith.isFavorite
@@ -118,7 +120,7 @@ class HadithCard extends ConsumerWidget {
                     ),
                     SizedBox(width: 5.w),
                     Text(
-                      'اضغط لقراءة الحديث كاملاً',
+                      l10n.hadith_tap_to_read,
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         fontSize: 10.5.sp,

@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:zad_al_muslim/core/services/app_update/app_update_model.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/services/app_update/app_update_model.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
 
 class AppUpdateService {
   AppUpdateService(this._remoteConfig);
@@ -82,16 +82,17 @@ class AppUpdateService {
       remoteConfig.getString('play_store_url'),
       defaultStoreUrl,
     );
-    final trusted = enabledValue.source == ValueSource.valueRemote &&
+    final trusted =
+        enabledValue.source == ValueSource.valueRemote &&
         minimumValue.source == ValueSource.valueRemote;
 
     final type = !enabled
         ? AppUpdateType.none
         : currentBuild < minimum
-            ? AppUpdateType.required
-            : currentBuild < latest
-                ? AppUpdateType.optional
-                : AppUpdateType.none;
+        ? AppUpdateType.required
+        : currentBuild < latest
+        ? AppUpdateType.optional
+        : AppUpdateType.none;
 
     return AppUpdateModel(
       type: type,
@@ -123,12 +124,12 @@ class AppUpdateService {
   }
 
   AppUpdateModel _none(int currentBuild, String storeUrl) => AppUpdateModel(
-        type: AppUpdateType.none,
-        currentBuild: currentBuild,
-        latestBuild: currentBuild,
-        minimumBuild: currentBuild,
-        title: _defaultTitle,
-        message: _defaultMessage,
-        storeUrl: storeUrl,
-      );
+    type: AppUpdateType.none,
+    currentBuild: currentBuild,
+    latestBuild: currentBuild,
+    minimumBuild: currentBuild,
+    title: _defaultTitle,
+    message: _defaultMessage,
+    storeUrl: storeUrl,
+  );
 }

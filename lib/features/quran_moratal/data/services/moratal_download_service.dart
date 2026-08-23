@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
 
 /// معلومات تقدم التحميل
 class DownloadProgressInfo {

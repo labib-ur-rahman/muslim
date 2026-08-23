@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:zad_al_muslim/app_root.dart';
-import 'package:zad_al_muslim/app_bootstrap.dart';
-import 'package:zad_al_muslim/features/splash/presentation/pages/onboarding/onboarding_init.dart';
+import 'package:shirahsoft_muslim/app_root.dart';
+import 'package:shirahsoft_muslim/app_bootstrap.dart';
+import 'package:shirahsoft_muslim/features/splash/presentation/pages/onboarding/onboarding_init.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
 import 'firebase_options.dart';
 
 final GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();

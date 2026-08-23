@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/providers/hadith_provider.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/widgets/featured_hadith_tab.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/widgets/hadith_tab.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/providers/hadith_provider.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/widgets/featured_hadith_tab.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/widgets/hadith_tab.dart';
 
 class HadithPage extends ConsumerWidget {
   const HadithPage({super.key});
@@ -11,6 +12,7 @@ class HadithPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return DefaultTabController(
       length: 2,
@@ -61,17 +63,17 @@ class HadithPage extends ConsumerWidget {
                     fontWeight: FontWeight.w600,
                     fontFamily: 'Cairo',
                   ),
-                  tabs: const [
+                  tabs: [
                     Tab(
                       child: _TabLabel(
                         icon: Icons.menu_book_rounded,
-                        label: 'الأحاديث',
+                        label: l10n.hadith_tab_all,
                       ),
                     ),
                     Tab(
                       child: _TabLabel(
                         icon: Icons.star_rounded,
-                        label: 'المفضلة',
+                        label: l10n.hadith_tab_favorites,
                       ),
                     ),
                   ],
@@ -110,12 +112,13 @@ class _HadithHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.fromLTRB(14.w, 12.h, 14.w, 8.h),
       child: Row(
         children: [
           IconButton.filledTonal(
-            tooltip: 'العودة',
+            tooltip: l10n.go_back,
             onPressed: onBack,
             icon: const Icon(Icons.arrow_back_ios_rounded),
           ),
@@ -139,7 +142,7 @@ class _HadithHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'السنة والحديث',
+                  l10n.hadith_header_title,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 20.sp,
@@ -148,7 +151,7 @@ class _HadithHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'من هدي النبي ﷺ وصحيح سنته',
+                  l10n.hadith_header_subtitle,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 10.5.sp,

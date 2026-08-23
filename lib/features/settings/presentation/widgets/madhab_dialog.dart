@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/common/providers/theme_provider.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/settings/presentation/providers/app_settings_provider.dart';
+import 'package:shirahsoft_muslim/core/common/providers/theme_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/settings/presentation/providers/app_settings_provider.dart';
 
 class MadhabDialog extends ConsumerWidget {
   const MadhabDialog({super.key});
@@ -11,8 +12,12 @@ class MadhabDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentMadhab = ref.watch(appSettingsProvider).madhabIndex;
+    final l10n = AppLocalizations.of(context)!;
 
-    final List<String> madhabs = ["تلقائي (شافعي، مالكي، حنبلي)", "حنفي"];
+    final List<String> madhabs = [
+      l10n.settings_madhab_auto_standard,
+      l10n.settings_madhab_hanafi,
+    ];
     final ThemeMode themeMode = ref.watch(themeProvider);
     final bool isDark = themeMode == ThemeMode.dark;
 
@@ -36,10 +41,10 @@ class MadhabDialog extends ConsumerWidget {
                   ),
                 ),
                 SizedBox(width: 8.w),
-                const Text(
-                  "المذهب (صلاة العصر)",
+                Text(
+                  l10n.settings_madhab_asr,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "Cairo",
                     fontWeight: FontWeight.bold,
                   ),
@@ -103,11 +108,7 @@ class MadhabDialog extends ConsumerWidget {
                         ref.read(appSettingsProvider.notifier).setMadhab(index);
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              "تم تحديث المذهب، يرجى إعادة تشغيل التطبيق لضمان دقة المواعيد.",
-                            ),
-                          ),
+                          SnackBar(content: Text(l10n.settings_madhab_updated)),
                         );
                       },
                     ),
@@ -125,9 +126,9 @@ class MadhabDialog extends ConsumerWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                "إلغاء",
-                style: TextStyle(
+              child: Text(
+                l10n.settings_cancel,
+                style: const TextStyle(
                   fontFamily: "Cairo",
                   fontWeight: FontWeight.bold,
                 ),

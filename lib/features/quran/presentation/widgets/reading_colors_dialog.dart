@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/common/providers/theme_provider.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/extensions/sizes_ext.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
+import 'package:shirahsoft_muslim/core/common/providers/theme_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/extensions/sizes_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
 
 class ReadingColorModel {
   final String name;
@@ -21,6 +22,7 @@ class ReadingColorsDialog extends ConsumerWidget {
     final theme = Theme.of(context);
     final themeMode = ref.watch(themeProvider);
     final settings = ref.watch(quranSettingsProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     final isDark =
         themeMode == ThemeMode.dark || theme.brightness == Brightness.dark;
@@ -29,40 +31,40 @@ class ReadingColorsDialog extends ConsumerWidget {
     final List<ReadingColorModel> colors = isDark
         ? [
             ReadingColorModel(
-              name: 'داكن أساسي',
+              name: l10n.quran_color_dark_default,
               color: const Color(0xFF1E1E1E),
             ), // الاساسي القديم
             ReadingColorModel(
-              name: 'أسود ليلي',
+              name: l10n.quran_color_night_black,
               color: const Color(0xFF000000),
             ), // أسود مطفي كامل
             ReadingColorModel(
-              name: 'سيبيا داكن',
+              name: l10n.quran_color_dark_sepia,
               color: const Color(0xFF2C241B),
             ), // سيبيا مهيأة للوضع الداكن
             ReadingColorModel(
-              name: 'أزرق داكن',
+              name: l10n.quran_color_dark_blue,
               color: const Color(0xFF111A22),
             ), // لون أزرق ليلي مريح للعين
           ]
         : [
             ReadingColorModel(
-              name: 'فاتح أساسي (سيبيا)',
+              name: l10n.quran_color_light_sepia,
               // تم تعميق لون السيبيا قليلاً ليكون دافئاً وواضحاً كخيار ليلي مريح
               color: const Color(0xFFEBDABF),
             ),
             ReadingColorModel(
-              name: 'أبيض ناصع',
+              name: l10n.quran_color_bright_white,
               // يبقى كما هو لأنه المرجع الأساسي للسطوع
               color: const Color(0xFFFFFFFF),
             ),
             ReadingColorModel(
-              name: 'رمادي مريح',
+              name: l10n.quran_color_soft_gray,
               // تم تقليل السطوع قليلاً ليميزه المستخدم فوراً عن الأبيض
               color: const Color(0xFFE0E0E0),
             ),
             ReadingColorModel(
-              name: 'كريمي فاتح',
+              name: l10n.quran_color_light_cream,
               // جعلناه يميل أكثر للصفرة الهادئة ليميزه المستخدم عن الرمادي والسيبيا
               color: const Color(0xFFFFF9E3),
             ),
@@ -81,7 +83,7 @@ class ReadingColorsDialog extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "لون خلفية القراءة",
+            l10n.quran_settings_reading_bg_color,
             style: TextStyle(
               fontFamily: "Cairo",
               fontSize: 18.sp,

@@ -3,12 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hijri/hijri_calendar.dart';
+import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:zad_al_muslim/core/common/providers/home_clock_provider.dart';
-import 'package:zad_al_muslim/core/common/providers/theme_provider.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/utils/notifications/notification_inbox_service.dart';
+import 'package:shirahsoft_muslim/core/common/providers/home_clock_provider.dart';
+import 'package:shirahsoft_muslim/core/common/providers/theme_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/utils/notifications/notification_inbox_service.dart';
 
 class HomeHeader extends ConsumerWidget {
   const HomeHeader({super.key});
@@ -18,6 +20,7 @@ class HomeHeader extends ConsumerWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final now = ref.watch(homeClockProvider).value ?? DateTime.now();
+    final l10n = AppLocalizations.of(context)!;
     ref.listen(homeClockProvider, (_, _) {
       sl<NotificationInboxService>().reconcile();
     });
@@ -70,7 +73,7 @@ class HomeHeader extends ConsumerWidget {
                             fontSize: 11,
                           ),
                           child: IconButton(
-                            tooltip: 'الإشعارات',
+                            tooltip: l10n.home_notifications_tooltip,
                             onPressed: () {
                               HapticFeedback.vibrate();
                               Navigator.of(
@@ -127,8 +130,9 @@ class _HeaderContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
-    final themeMode = ref.watch(themeProvider);
-    final isDark = themeMode.isDark;
+    final l10n = AppLocalizations.of(context)!;
+    // final themeMode = ref.watch(themeProvider);
+    // final isDark = themeMode.isDark;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -143,7 +147,7 @@ class _HeaderContent extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'زاد المسلم',
+                  l10n.app_name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -156,7 +160,7 @@ class _HeaderContent extends ConsumerWidget {
                 ),
                 SizedBox(height: 6.h),
                 Text(
-                  _getDailyMessage(now),
+                  _getDailyMessage(l10n, now),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -191,9 +195,9 @@ class _AppLogoButton extends StatelessWidget {
 
     return Semantics(
       button: true,
-      label: 'عن تطبيق زاد المسلم ومشاركته',
+      label: AppLocalizations.of(context)!.home_about_semantics,
       child: Tooltip(
-        message: 'عن التطبيق',
+        message: AppLocalizations.of(context)!.home_about_tooltip,
         child: Material(
           color: colorScheme.primaryContainer.withValues(alpha: 0.40),
           borderRadius: BorderRadius.circular(16.r),
@@ -246,6 +250,7 @@ class _DatesRow extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeProvider);
     final isDark = themeMode.isDark;
+    final l10n = AppLocalizations.of(context)!;
     return Row(
       children: [
         Expanded(
@@ -288,7 +293,7 @@ class _DatesRow extends ConsumerWidget {
 
                         // العنوان
                         Text(
-                          'التاريخ الهجري',
+                          l10n.home_hijri_date_title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 18.sp,
@@ -301,7 +306,7 @@ class _DatesRow extends ConsumerWidget {
                         const SizedBox(height: 6),
 
                         Text(
-                          'تاريخ اليوم حسب التقويم الهجري',
+                          l10n.home_hijri_date_subtitle,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 12.5.sp,
@@ -331,7 +336,7 @@ class _DatesRow extends ConsumerWidget {
                             ),
                           ),
                           child: Text(
-                            _getFormattedHijriDate(now),
+                            _getFormattedHijriDate(l10n, now),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 17.sp,
@@ -359,7 +364,7 @@ class _DatesRow extends ConsumerWidget {
                               ),
                             ),
                             child: Text(
-                              'حسنًا',
+                              l10n.settings_confirm,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontFamily: 'Cairo',
@@ -377,8 +382,8 @@ class _DatesRow extends ConsumerWidget {
             },
             child: _DateItem(
               icon: Icons.dark_mode_outlined,
-              label: 'الهجري',
-              text: _getFormattedHijriDate(now),
+              label: l10n.home_hijri_label,
+              text: _getFormattedHijriDate(l10n, now),
               accent: _HeaderDateAccent.primary,
             ),
           ),
@@ -426,7 +431,7 @@ class _DatesRow extends ConsumerWidget {
 
                         // العنوان
                         Text(
-                          'التاريخ الميلادي',
+                          l10n.home_gregorian_date_title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 18.sp,
@@ -439,7 +444,7 @@ class _DatesRow extends ConsumerWidget {
                         const SizedBox(height: 6),
 
                         Text(
-                          'تاريخ اليوم حسب التقويم الميلادي',
+                          l10n.home_gregorian_date_subtitle,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 12.5.sp,
@@ -469,7 +474,7 @@ class _DatesRow extends ConsumerWidget {
                             ),
                           ),
                           child: Text(
-                            _getFormattedGregorianDate(now),
+                            _getFormattedGregorianDate(l10n, now),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 17.sp,
@@ -497,7 +502,7 @@ class _DatesRow extends ConsumerWidget {
                               ),
                             ),
                             child: Text(
-                              'حسنًا',
+                              l10n.settings_confirm,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontFamily: 'Cairo',
@@ -515,8 +520,8 @@ class _DatesRow extends ConsumerWidget {
             },
             child: _DateItem(
               icon: Icons.calendar_today_rounded,
-              label: 'الميلادي',
-              text: _getFormattedGregorianDate(now),
+              label: l10n.home_gregorian_label,
+              text: _getFormattedGregorianDate(l10n, now),
               accent: _HeaderDateAccent.secondary,
             ),
           ),
@@ -631,70 +636,60 @@ enum _HeaderDateAccent { primary, secondary }
 //   return 'السلام عليكم ورحمة الله';
 // }
 
-String _getDailyMessage(DateTime now) {
+String _getDailyMessage(AppLocalizations l10n, DateTime now) {
   final hour = now.hour;
 
   if (hour >= 4 && hour < 10) {
-    return 'ابدأ يومك بذكر الله وتلاوة كتابه';
+    return l10n.home_daily_message_morning;
   }
 
   if (hour >= 10 && hour < 16) {
-    return 'رفيقك اليومي للقرآن والأذكار';
+    return l10n.home_daily_message_midday;
   }
 
   if (hour >= 16 && hour < 21) {
-    return 'اختم يومك بما يقربك إلى الله';
+    return l10n.home_daily_message_evening;
   }
 
-  return 'اجعل ذكر الله آخر ما تختم به يومك';
+  return l10n.home_daily_message_night;
 }
 
-String _getFormattedGregorianDate(DateTime now) {
-  // const dayNames = [
-  //   'الإثنين',
-  //   'الثلاثاء',
-  //   'الأربعاء',
-  //   'الخميس',
-  //   'الجمعة',
-  //   'السبت',
-  //   'الأحد',
-  // ];
-
-  const months = [
-    'يناير',
-    'فبراير',
-    'مارس',
-    'أبريل',
-    'مايو',
-    'يونيو',
-    'يوليو',
-    'أغسطس',
-    'سبتمبر',
-    'أكتوبر',
-    'نوفمبر',
-    'ديسمبر',
-  ];
-
-  // final dayName = dayNames[now.weekday - 1];
-  final month = months[now.month - 1];
-
-  return '${now.day} $month ${now.year}';
+String _getFormattedGregorianDate(AppLocalizations l10n, DateTime now) {
+  return DateFormat.yMMMMd(l10n.localeName).format(now);
 }
 
-String _getFormattedHijriDate(DateTime now) {
-  HijriCalendar.setLocal('ar');
-
+String _getFormattedHijriDate(AppLocalizations l10n, DateTime now) {
   final hijriDate = HijriCalendar.fromDate(now);
+  final month = _hijriMonthName(l10n, hijriDate.hMonth);
 
   return '${hijriDate.hDay} '
-      '${hijriDate.longMonthName} '
+      '$month '
       '${hijriDate.hYear}';
+}
+
+String _hijriMonthName(AppLocalizations l10n, int month) {
+  return switch (month) {
+    1 => l10n.hijri_muharram,
+    2 => l10n.hijri_safar,
+    3 => l10n.hijri_rabi_al_awwal,
+    4 => l10n.hijri_rabi_al_thani,
+    5 => l10n.hijri_jumada_al_awwal,
+    6 => l10n.hijri_jumada_al_thani,
+    7 => l10n.hijri_rajab,
+    8 => l10n.hijri_shaban,
+    9 => l10n.hijri_ramadan,
+    10 => l10n.hijri_shawwal,
+    11 => l10n.hijri_dhu_al_qadah,
+    12 => l10n.hijri_dhu_al_hijjah,
+    _ => '',
+  };
 }
 
 Future<void> _showBehindScenesDialog(BuildContext context) async {
   final theme = Theme.of(context);
   final colorScheme = theme.colorScheme;
   final isDark = theme.brightness == Brightness.dark;
+  final l10n = AppLocalizations.of(context)!;
 
   await showDialog<void>(
     context: context,
@@ -729,7 +724,7 @@ Future<void> _showBehindScenesDialog(BuildContext context) async {
               SizedBox(height: 16.h),
 
               Text(
-                'خلف كواليس التطبيق',
+                l10n.home_about_dialog_title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Cairo',
@@ -742,11 +737,7 @@ Future<void> _showBehindScenesDialog(BuildContext context) async {
               SizedBox(height: 12.h),
 
               Text(
-                'خلف هذه الشاشة البسيطة والسطور البرمجية المرتبة، '
-                'تكمن رحلة طويلة من الشغف والسهر والتعلم المستمر. '
-                'أردت من خلال هذا المشروع أن أقدم لك رفيقًا إيمانيًا '
-                'يوميًا، يجمع بين سهولة الاستخدام وجمال التصميم '
-                'والأداء السلس، دون إعلانات تشوش عليك خلوتك مع ذكر الله.',
+                l10n.home_about_dialog_body,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Tajawal',
@@ -768,20 +759,15 @@ Future<void> _showBehindScenesDialog(BuildContext context) async {
 
                         await share.share(
                           ShareParams(
-                            title: 'شارك التطبيق',
-                            text:
-                                'أرشح لك تطبيق "زاد المسلم"، '
-                                'رفيقك اليومي للأذكار والأدعية '
-                                'بدون إعلانات وبأداء سلس ومميز.\n\n'
-                                'https://play.google.com/store/apps/'
-                                'details?id=com.zad_al_muslim.adnan',
+                            title: l10n.settings_share_app,
+                            text: l10n.home_share_text,
                           ),
                         );
                       },
                       icon: const Icon(Icons.share_rounded, size: 18),
-                      label: const Text(
-                        'شارك الأجر',
-                        style: TextStyle(
+                      label: Text(
+                        l10n.home_share_reward,
+                        style: const TextStyle(
                           fontFamily: 'Tajawal',
                           fontWeight: FontWeight.bold,
                         ),
@@ -810,7 +796,7 @@ Future<void> _showBehindScenesDialog(BuildContext context) async {
                         ),
                       ),
                       child: Text(
-                        'إغلاق',
+                        l10n.close,
                         style: TextStyle(
                           fontFamily: 'Tajawal',
                           fontWeight: FontWeight.bold,

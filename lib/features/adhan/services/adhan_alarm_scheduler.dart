@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:zad_al_muslim/features/adhan/domain/reciter.dart';
+import 'package:shirahsoft_muslim/features/adhan/domain/reciter.dart';
 
 /// Schedules Android's native receiver. It is intentionally separate from
 /// notification channels: a long adhan is media playback, not a channel sound.
 class AdhanAlarmScheduler {
-  static const _channel = MethodChannel('com.zad_al_muslim.adnan/adhan_alarm');
+  static const _channel = MethodChannel(
+    'com.shirahsoft_muslim.adnan/adhan_alarm',
+  );
 
   Future<void> schedule({
     required int id,

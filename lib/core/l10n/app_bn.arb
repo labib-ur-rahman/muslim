@@ -1,0 +1,1054 @@
+{
+  "@@locale": "bn",
+  "app_name": "যাদ আল-মুসলিম",
+  "@app_name": {},
+  "pray_times": "নামাজের সময়",
+  "@pray_times": {},
+  "fajer": "ফজর",
+  "@fajer": {},
+  "duhur": "যোহর",
+  "@duhur": {},
+  "asr": "আসর",
+  "@asr": {},
+  "magrib": "মাগরিব",
+  "@magrib": {},
+  "esha": "ইশা",
+  "@esha": {},
+  "main_categories": "প্রধান বিভাগ",
+  "@main_categories": {},
+  "quran_kareem": "পবিত্র কুরআন",
+  "@quran_kareem": {},
+  "tafseer": "তাফসির",
+  "@tafseer": {},
+  "sunah": "সুন্নাহ",
+  "@sunah": {},
+  "qebla_direction": "কিবলার দিক",
+  "@qebla_direction": {},
+  "adkar_adia": "যিকির ও দোয়া",
+  "@adkar_adia": {},
+  "quran_reciters": "ক্বারীগণ",
+  "@quran_reciters": {},
+  "home": "হোম",
+  "@home": {},
+  "updates": "আপডেট",
+  "@updates": {},
+  "settings": "সেটিংস",
+  "@settings": {},
+  "reader_mishary_alafasy": "মিশারি আল-আফাসি",
+  "@reader_mishary_alafasy": {},
+  "reader_abdul_basit": "আব্দুল বাসিত আব্দুস সামাদ",
+  "@reader_abdul_basit": {},
+  "reader_mahmoud_alhusary": "মাহমুদ আল-হুসারি",
+  "@reader_mahmoud_alhusary": {},
+  "reader_mustafa_ismail": "মুস্তফা ইসমাইল",
+  "@reader_mustafa_ismail": {},
+  "reader_yasser_aldosari": "ইয়াসির আদ-দোসারি",
+  "@reader_yasser_aldosari": {},
+  "reader_alsudais": "আব্দুর রহমান আস-সুদাইস",
+  "@reader_alsudais": {},
+  "reader_minshawi": "মুহাম্মদ সিদ্দিক আল-মিনশাওয়ি",
+  "@reader_minshawi": {},
+  "accoutn_settings": "অ্যাকাউন্ট সেটিংস",
+  "@accoutn_settings": {},
+  "app_settings": "অ্যাপ সেটিংস",
+  "@app_settings": {},
+  "personal_information": "ব্যক্তিগত তথ্য",
+  "@personal_information": {},
+  "payment_information": "পেমেন্ট তথ্য",
+  "@payment_information": {},
+  "faviort": "প্রিয়",
+  "@faviort": {},
+  "notifcations": "নোটিফিকেশন",
+  "@notifcations": {},
+  "language": "ভাষা",
+  "@language": {},
+  "dark_mode": "ডার্ক মোড",
+  "@dark_mode": {},
+  "font_size": "ফন্ট সাইজ",
+  "@font_size": {},
+  "app_color": "অ্যাপের রং",
+  "@app_color": {},
+  "app_language": "অ্যাপের ভাষা",
+  "@app_language": {},
+  "brandBlue": "এলিগ্যান্ট",
+  "@brandBlue": {},
+  "blueWhale": "নীল",
+  "@blueWhale": {},
+  "sakura": "গোলাপি",
+  "@sakura": {},
+  "money": "সবুজ",
+  "@money": {},
+  "gold": "সোনালি",
+  "@gold": {},
+  "vesuviusBurn": "কমলা",
+  "@vesuviusBurn": {},
+  "barossa": "লাল",
+  "@barossa": {},
+  "shark": "ধূসর",
+  "@shark": {},
+  "controll_panel": "কন্ট্রোল প্যানেল",
+  "@controll_panel": {},
+  "last_reading": "শেষ পড়ার অবস্থান",
+  "@last_reading": {},
+  "search_in_quran": "কুরআনে অনুসন্ধান",
+  "@search_in_quran": {},
+  "share_app": "অ্যাপ শেয়ার করুন",
+  "@share_app": {},
+  "current_surah": "বর্তমান সূরা",
+  "@current_surah": {},
+  "next": "পরবর্তী",
+  "@next": {},
+  "previous": "পূর্ববর্তী",
+  "@previous": {},
+  "page_number": "পৃষ্ঠা নম্বর",
+  "@page_number": {},
+  "select_surah": "সূরা নির্বাচন করুন",
+  "@select_surah": {},
+  "search_placeholder": "পবিত্র কুরআনের আয়াতে অনুসন্ধান করুন...",
+  "@search_placeholder": {},
+  "start_searching": "আয়াত খুঁজতে লিখতে শুরু করুন",
+  "@start_searching": {},
+  "story": "গল্প",
+  "@story": {},
+  "faviorte": "প্রিয়",
+  "@faviorte": {},
+  "books": "বই",
+  "@books": {},
+  "saved_bookmarks": "সংরক্ষিত বুকমার্ক",
+  "@saved_bookmarks": {},
+  "save_reading_place": "পড়ার জায়গা সংরক্ষণ করুন",
+  "@save_reading_place": {},
+  "mark_removed": "বুকমার্ক সরানো হয়েছে",
+  "@mark_removed": {},
+  "mark_added": "বুকমার্ক যোগ করা হয়েছে",
+  "@mark_added": {},
+  "more_options": "আরও অপশন",
+  "@more_options": {},
+  "go_back": "ফিরে যান",
+  "@go_back": {},
+  "app_information": "অ্যাপের তথ্য",
+  "@app_information": {},
+  "privacy_policy": "গোপনীয়তা নীতি",
+  "@privacy_policy": {},
+  "terms_of_use": "ব্যবহারের শর্তাবলি",
+  "@terms_of_use": {},
+  "app_certificates": "অ্যাপ সার্টিফিকেট",
+  "@app_certificates": {},
+  "version": "ভার্সন",
+  "@version": {},
+  "last_reading_surah": "শেষ পড়া",
+  "@last_reading_surah": {},
+  "today_duaa": "আজকের দোয়া",
+  "@today_duaa": {},
+  "show_all": "সব দেখুন",
+  "@show_all": {},
+  "sunah_hadeth": "হাদিস ও সুন্নাহ",
+  "@sunah_hadeth": {},
+  "sahih_bukhari": "সহিহ আল-বুখারি",
+  "@sahih_bukhari": {},
+  "sahih_muslim": "সহিহ মুসলিম",
+  "@sahih_muslim": {},
+  "sunan_abi_dawud": "সুনানে আবু দাউদ",
+  "@sunan_abi_dawud": {},
+  "sunan_at_tirmidhi": "সুনানে তিরমিজি",
+  "@sunan_at_tirmidhi": {},
+  "sunan_an_nasai": "সুনানে নাসাই",
+  "@sunan_an_nasai": {},
+  "sunan_ibn_majah": "সুনানে ইবনে মাজাহ",
+  "@sunan_ibn_majah": {},
+  "time_format": "সময় ফরম্যাট",
+  "@time_format": {},
+  "active_24_format": "২৪ ঘণ্টা ফরম্যাট",
+  "@active_24_format": {},
+  "close": "বন্ধ করুন",
+  "@close": {},
+  "updateLater": "পরে",
+  "updateNow": "এখন আপডেট করুন",
+  "updateApp": "অ্যাপ আপডেট করুন",
+  "openGooglePlay": "Google Play খুলুন",
+  "updateFailed": "ইন-অ্যাপ আপডেট শুরু করা যায়নি। আবার চেষ্টা করুন অথবা স্টোর খুলুন।",
+  "storeOpenFailed": "Google Play-তে অ্যাপ পেজ খোলা যায়নি।",
+  "settings_header_title": "সেটিংস",
+  "settings_header_subtitle": "আপনার প্রয়োজন অনুযায়ী অভিজ্ঞতা সাজান",
+  "settings_appearance_title": "থিম ও পড়া",
+  "settings_appearance_subtitle": "অ্যাপের রূপ ও পড়ার অভিজ্ঞতা সাজান",
+  "settings_dark_mode_enabled": "ডার্ক মোড চালু আছে",
+  "settings_light_mode_enabled": "লাইট মোড চালু আছে",
+  "settings_app_color_subtitle": "বাটন ও হাইলাইটের রং",
+  "settings_adkar_font_size": "যিকিরের ফন্ট সাইজ",
+  "settings_adkar_font_size_subtitle": "যিকির পেজের লেখার সাইজ",
+  "settings_prayer_times_title": "নামাজের সময়",
+  "settings_prayer_times_subtitle": "হিসাব, মাজহাব ও সময় দেখানোর ধরন",
+  "settings_calculation_method": "সময় হিসাবের পদ্ধতি",
+  "settings_madhab_asr": "মাজহাব (আসর নামাজ)",
+  "settings_madhab_standard": "সাধারণ",
+  "settings_madhab_hanafi": "হানাফি",
+  "settings_madhab_standard_subtitle": "শাফেয়ি, মালিকি, হাম্বলি",
+  "settings_24_hour_format": "২৪ ঘণ্টা ফরম্যাট",
+  "settings_24_hour_example_enabled": "উদাহরণ: 18:30",
+  "settings_24_hour_example_disabled": "উদাহরণ: 6:30 PM",
+  "settings_notifications_title": "নোটিফিকেশন ও সতর্কতা",
+  "settings_notifications_subtitle": "নামাজ, সকাল ও সন্ধ্যার যিকিরের রিমাইন্ডার",
+  "settings_prayer_notifications": "নামাজের নোটিফিকেশন",
+  "settings_notifications_enabled": "নোটিফিকেশন চালু আছে",
+  "settings_notifications_disabled": "নোটিফিকেশন বন্ধ আছে",
+  "settings_customize_prayers": "নামাজ বেছে নিন",
+  "settings_customize_prayers_subtitle": "যে নামাজগুলোর রিমাইন্ডার চান তা বেছে নিন",
+  "settings_prayer_sounds": "নামাজের শব্দ",
+  "settings_prayer_sounds_subtitle": "আযান, নোটিফিকেশন সাউন্ড বা নীরব ভাইব্রেশন",
+  "settings_notification_sounds": "নোটিফিকেশন সাউন্ড",
+  "settings_notification_sounds_subtitle": "প্রতিটি ধরনের জন্য Android সেটিংস থেকে সাউন্ড বেছে নিন",
+  "settings_morning_adkar": "সকালের যিকির",
+  "settings_evening_adkar": "সন্ধ্যার যিকির",
+  "settings_tap_to_edit_reminder": "রিমাইন্ডারের সময় বদলাতে সারিতে চাপুন",
+  "settings_reminder_disabled": "রিমাইন্ডার বন্ধ",
+  "settings_fajr_time": "ফজরের সময়",
+  "settings_maghrib_time": "মাগরিবের সময়",
+  "settings_pick_reminder_time_help": "রিমাইন্ডারের সময় বেছে নিন, অথবা প্রস্তাবিত সময় রাখতে বাতিল করুন",
+  "settings_location_privacy_title": "লোকেশন ও গোপনীয়তা",
+  "settings_location_privacy_subtitle": "নামাজ ও কিবলার জন্য ব্যবহৃত ডেটা",
+  "settings_update_location": "লোকেশন ডেটা আপডেট করুন",
+  "settings_update_location_subtitle": "আবার লোকেশন নির্ণয় করে সময় হিসাব করুন",
+  "settings_about_title": "অ্যাপ সম্পর্কে",
+  "settings_about_subtitle": "যাদ আল-মুসলিম তথ্য ও শেয়ার",
+  "settings_app_information_subtitle": "ভার্সন, লাইসেন্স ও ব্যবহারের শর্তাবলি",
+  "settings_share_app": "অ্যাপ শেয়ার করুন",
+  "settings_share_app_subtitle": "প্রিয়জনের সাথে যাদ আল-মুসলিম শেয়ার করুন",
+  "settings_sensitive_title": "সংবেদনশীল কাজ",
+  "settings_sensitive_subtitle": "এই কাজগুলোতে নিশ্চিতকরণ প্রয়োজন",
+  "settings_delete_location": "লোকেশন ডেটা মুছুন",
+  "settings_delete_location_subtitle": "লোকেশন আপডেট না করা পর্যন্ত নামাজ ও কিবলা প্রভাবিত হতে পারে",
+  "settings_reset_settings": "সেটিংস রিসেট করুন",
+  "settings_reset_settings_subtitle": "সব ডিফল্ট সেটিংস ফিরিয়ে আনুন",
+  "settings_cancel": "বাতিল",
+  "settings_delete": "মুছুন",
+  "settings_confirm": "ঠিক আছে",
+  "settings_delete_location_dialog_title": "লোকেশন ডেটা মুছুন",
+  "settings_delete_location_dialog_message": "আপনি লোকেশন ডেটা মুছে ফেললে নামাজের সময় ও কিবলার দিক ঠিকভাবে কাজ নাও করতে পারে।\nআপনি কি নিশ্চিত?",
+  "settings_delete_location_success": "লোকেশন ডেটা সফলভাবে মুছে ফেলা হয়েছে",
+  "settings_delete_location_error": "ডেটা মুছতে সমস্যা হয়েছে",
+  "settings_update_location_dialog_title": "লোকেশন ডেটা আপডেট করুন",
+  "settings_update_location_dialog_message": "নামাজের সময় ও কিবলা ফিচারের জন্য আপনার লোকেশন কোঅর্ডিনেট নেওয়া হবে, লোকালভাবে সংরক্ষণ হবে, এবং গোপনীয়তা নীতিতে বলা মতো কেউ এতে অ্যাক্সেস পাবে না।\nআপনি কি আপডেট করতে সম্মত?",
+  "settings_update_location_success": "লোকেশন ডেটা সফলভাবে আপডেট হয়েছে",
+  "settings_update_location_error": "লোকেশন আপডেট করতে সমস্যা হয়েছে",
+  "settings_reset_settings_dialog_title": "সেটিংস রিসেট করুন",
+  "settings_reset_settings_dialog_message": "পড়া, নামাজ ও রিমাইন্ডার সেটিংস ডিফল্ট অবস্থায় ফিরে যাবে। চালিয়ে যেতে চান?",
+  "settings_reset_settings_confirm": "রিসেট",
+  "settings_calc_auto": "স্বয়ংক্রিয় (লোকেশন অনুযায়ী)",
+  "settings_calc_mwl": "মুসলিম ওয়ার্ল্ড লীগ",
+  "settings_calc_umm_al_qura": "উম্মুল কুরা বিশ্ববিদ্যালয় (মক্কা)",
+  "settings_calc_egypt": "মিশরীয় জরিপ কর্তৃপক্ষ",
+  "settings_calc_karachi": "ইসলামিক সায়েন্সেস বিশ্ববিদ্যালয় (করাচি)",
+  "settings_calc_turkey": "ধর্ম বিষয়ক প্রেসিডেন্সি (তুরস্ক)",
+  "settings_calc_dubai": "ইসলামিক অ্যাফেয়ার্স বিভাগ (দুবাই)",
+  "settings_calc_moon_sighting": "চাঁদ দেখা কমিটি",
+  "settings_calc_isna": "ইসলামিক সোসাইটি অফ নর্থ আমেরিকা (ISNA)",
+  "settings_calc_kuwait": "কুয়েত",
+  "settings_calc_qatar": "কাতার",
+  "settings_calc_singapore": "সিঙ্গাপুর",
+  "settings_calc_tehran": "জিওফিজিক্স ইনস্টিটিউট (তেহরান বিশ্ববিদ্যালয়)",
+  "settings_color_turquoise": "ফিরোজা",
+  "settings_color_olive": "জলপাই",
+  "settings_color_night_blue": "নাইট ব্লু",
+  "settings_color_purple": "বেগুনি",
+  "settings_color_maroon": "মেরুন",
+  "settings_color_sand": "বালুকাময়",
+  "settings_color_custom": "কাস্টম",
+  "settings_calculation_method_updated": "হিসাবের পদ্ধতি আপডেট হয়েছে। সময় আরও নির্ভুল রাখতে অ্যাপটি রিস্টার্ট করুন।",
+  "settings_madhab_auto_standard": "স্বয়ংক্রিয় (শাফেয়ি, মালিকি, হাম্বলি)",
+  "settings_madhab_updated": "মাজহাব আপডেট হয়েছে। সময় আরও নির্ভুল রাখতে অ্যাপটি রিস্টার্ট করুন।",
+  "settings_adkar_font_size_dialog_subtitle": "যিকির পেজে দেখানো ফন্ট সাইজ বদলান",
+  "settings_done": "সম্পন্ন",
+  "settings_prayer_notification_selection_title": "নামাজের নোটিফিকেশন কাস্টমাইজ করুন",
+  "settings_prayer_fajr": "ফজর নামাজ",
+  "settings_prayer_sunrise": "সূর্যোদয়",
+  "settings_prayer_dhuhr": "যোহর নামাজ",
+  "settings_prayer_asr": "আসর নামাজ",
+  "settings_prayer_maghrib": "মাগরিব নামাজ",
+  "settings_prayer_isha": "ইশা নামাজ",
+  "settings_adhan_sound": "আযানের শব্দ",
+  "settings_in_progress": "কাজ চলছে",
+  "settings_adhan_makkah": "মসজিদুল হারামের আযান (শাইখ আলী মোল্লা)",
+  "settings_adhan_madinah": "মসজিদে নববীর আযান (শাইখ ইসাম বুখারি)",
+  "settings_adhan_aqsa": "মসজিদুল আকসার আযান (জেরুজালেম)",
+  "settings_adhan_egypt_refaat": "মিশরীয় আযান (শাইখ মুহাম্মদ রিফাত)",
+  "settings_adhan_egypt_abdul_basit": "মিশরীয় আযান (শাইখ আব্দুল বাসিত আব্দুস সামাদ)",
+  "settings_adhan_umayyad": "সমবেত আযান (উমাইয়া মসজিদ, দামেস্ক)",
+  "settings_adhan_hijaz": "হিজাজ মাকামে আযান (মাদানি ধরন)",
+  "settings_adhan_rast": "রাস্ত মাকামে আযান (তুর্কি ধরন)",
+  "settings_adhan_saba": "সাবা মাকামে আযান (বিষণ্ণ ধরন)",
+  "settings_adhan_maghribi": "মাগরিবি আযান (কাইরুয়ান ধরন)",
+  "settings_alert_method": "সতর্কতার ধরন",
+  "settings_muezzin": "মুয়াজ্জিন",
+  "settings_save": "সেভ",
+  "settings_audio_mode_adhan": "আযানের শব্দ",
+  "settings_audio_mode_notification": "নোটিফিকেশন সাউন্ড",
+  "settings_audio_mode_silent_vibration": "নীরব ভাইব্রেশন",
+  "settings_adhan_reciter_abdulbaset": "আব্দুল বাসিত আব্দুস সামাদ",
+  "settings_adhan_reciter_alimulla": "আলী আহমেদ মোল্লা",
+  "settings_adhan_reciter_alqatami": "নাসের আল-কাতামি",
+  "settings_adhan_reciter_aserehy": "ইসাম আস-সুরাইহি",
+  "settings_adhan_reciter_joshar": "আহমেদ জাওহার",
+  "settings_adhan_reciter_kefah": "কিফাহ আল-আজ্জাভি",
+  "settings_adhan_reciter_riad": "রিয়াদ আন-নাকশবন্দি",
+  "home_notifications_tooltip": "নোটিফিকেশন",
+  "home_about_semantics": "যাদ আল-মুসলিম সম্পর্কে ও শেয়ার",
+  "home_about_tooltip": "অ্যাপ সম্পর্কে",
+  "home_hijri_date_title": "হিজরি তারিখ",
+  "home_hijri_date_subtitle": "হিজরি ক্যালেন্ডার অনুযায়ী আজকের তারিখ",
+  "home_hijri_label": "হিজরি",
+  "home_gregorian_date_title": "গ্রেগরিয়ান তারিখ",
+  "home_gregorian_date_subtitle": "গ্রেগরিয়ান ক্যালেন্ডার অনুযায়ী আজকের তারিখ",
+  "home_gregorian_label": "গ্রেগরিয়ান",
+  "home_daily_message_morning": "আল্লাহর যিকির ও তাঁর কিতাব তিলাওয়াত দিয়ে দিন শুরু করুন",
+  "home_daily_message_midday": "কুরআন ও যিকিরের দৈনন্দিন সঙ্গী",
+  "home_daily_message_evening": "যা আপনাকে আল্লাহর কাছে নেয়, তা দিয়ে দিন শেষ করুন",
+  "home_daily_message_night": "দিনের শেষ কাজ হোক আল্লাহর স্মরণ",
+  "home_about_dialog_title": "অ্যাপের পেছনের গল্প",
+  "home_about_dialog_body": "এই সরল স্ক্রিন আর গুছানো কোডের পেছনে আছে ভালোবাসা, রাতজাগা আর শেখার দীর্ঘ পথচলা। এই প্রজেক্টের মাধ্যমে আমি আপনাকে এমন এক দৈনন্দিন ঈমানি সঙ্গী দিতে চেয়েছি, যেখানে সহজ ব্যবহার, সুন্দর ডিজাইন ও মসৃণ পারফরম্যান্স আছে, আর আল্লাহর যিকিরের নির্জন মুহূর্তে বিরক্তিকর বিজ্ঞাপন নেই।",
+  "home_share_text": "আমি আপনাকে যাদ আল-মুসলিম অ্যাপটি ব্যবহার করার পরামর্শ দিচ্ছি; এটি যিকির ও দোয়ার দৈনন্দিন সঙ্গী, বিজ্ঞাপন ছাড়া মসৃণ ও সুন্দর অভিজ্ঞতা।\n\nhttps://play.google.com/store/apps/details?id=com.shirahsoft_muslim.adnan",
+  "home_share_reward": "সওয়াব শেয়ার করুন",
+  "hijri_muharram": "মুহাররম",
+  "hijri_safar": "সফর",
+  "hijri_rabi_al_awwal": "রবিউল আউয়াল",
+  "hijri_rabi_al_thani": "রবিউস সানি",
+  "hijri_jumada_al_awwal": "জুমাদাল উলা",
+  "hijri_jumada_al_thani": "জুমাদাস সানি",
+  "hijri_rajab": "রজব",
+  "hijri_shaban": "শাবান",
+  "hijri_ramadan": "রমজান",
+  "hijri_shawwal": "শাওয়াল",
+  "hijri_dhu_al_qadah": "জিলকদ",
+  "hijri_dhu_al_hijjah": "জিলহজ",
+  "home_prayer_location_not_allowed": "লোকেশন শেয়ার করার অনুমতি দেওয়া হয়নি",
+  "home_prayer_load_error": "নামাজের সময় লোড করা যায়নি",
+  "home_next_prayer": "পরবর্তী নামাজ",
+  "home_prayer_time_close": "সময় কাছাকাছি",
+  "home_today_prayer_times": "আজকের সময়",
+  "home_prayer_time_label": "নামাজের সময়",
+  "home_prayer_due_now_label": "নামাজের সময়",
+  "home_prayer_remaining_label": "বাকি সময়",
+  "home_show_all_prayer_times": "সব নামাজের সময় দেখুন",
+  "home_prayer_calculating": "নামাজের সময় হিসাব হচ্ছে",
+  "home_prayer_card_subtitle": "নামাজের সময় মুহূর্তে মুহূর্তে দেখুন",
+  "home_go_to_prayer_times": "নামাজের সময়ে যান",
+  "home_prayer_status_due": "নামাজের সময় হয়েছে",
+  "home_prayer_status_close": "নামাজের সময় কাছাকাছি",
+  "home_prayer_status_soon": "আর বেশি সময় নেই",
+  "home_prayer_status_prepare": "পরবর্তী নামাজের জন্য প্রস্তুত হন",
+  "home_remaining_less_than_minute": "এক মিনিটেরও কম পরে",
+  "home_remaining_hours_minutes": "{hours} ঘন্টা {minutes} মিনিট পরে",
+  "home_remaining_one_hour": "এক ঘন্টা পরে",
+  "home_remaining_hours": "{hours} ঘন্টা পরে",
+  "home_remaining_minutes": "{minutes} মিনিট পরে",
+  "home_reading_empty_body": "পবিত্র কুরআনের সাথে আপনার যাত্রা শুরু করুন, আর যেখানে থামলেন তা সংরক্ষণ করুন।",
+  "home_reading_start_title": "কুরআন তিলাওয়াত শুরু করুন",
+  "home_reading_continue_title": "পড়া চালিয়ে যান",
+  "home_reading_start_subtitle": "আল্লাহর কিতাবের সাথে আপনার যাত্রা এখান থেকেই শুরু",
+  "home_reading_progress_semantics": "পড়ার অগ্রগতি {percent} শতাংশ",
+  "home_reading_position_page": "আপনার অবস্থান: পৃষ্ঠা {page}",
+  "home_reading_position_ayah_page": "আপনার অবস্থান: আয়াত {ayah} • পৃষ্ঠা {page}",
+  "home_reading_remaining_pages": "বাকি: {pages} পৃষ্ঠা",
+  "home_reading_continue_action": "পড়া চালিয়ে যান",
+  "home_reading_start_action": "পড়া শুরু করুন",
+  "home_reading_surah_page": "সূরা {surah} • পৃষ্ঠা {page}",
+  "home_reading_surah_ayah_page": "সূরা {surah} • আয়াত {ayah} • পৃষ্ঠা {page}",
+  "home_moratal_title": "কুরআন তিলাওয়াত",
+  "home_moratal_subtitle": "শুনুন ও ডাউনলোড করুন",
+  "home_moratal_action": "এখন শুনুন",
+  "home_adkar_action": "আল্লাহর যিকিরে হৃদয় শান্ত করুন",
+  "home_qibla_subtitle": "দিক নির্ণয়",
+  "home_qibla_action": "কম্পাস প্রস্তুত",
+  "home_sunnah_subtitle": "হাদিস ও নববী আদর্শ",
+  "home_sunnah_action": "হাদিস দেখুন",
+  "home_daily_adkar": "দৈনন্দিন যিকির",
+  "home_daily_services_title": "আপনার দৈনন্দিন সেবা",
+  "home_daily_services_subtitle": "কুরআন, যিকির ও সুন্নাহ হাতের নাগালে",
+  "notifications_page_subtitle": "সর্বশেষ সতর্কতা দেখুন",
+  "notifications_empty_title": "কোনো নোটিফিকেশন নেই",
+  "notifications_empty_subtitle": "নতুন নোটিফিকেশন এলে আমরা জানাবো",
+  "notifications_delete_tooltip": "নোটিফিকেশন মুছুন",
+  "retry": "আবার চেষ্টা করুন",
+  "duaa_shared_from_app": "যাদ আল-মুসলিম অ্যাপ থেকে",
+  "duaa_daily_subtitle": "প্রতিদিন নতুন নির্বাচিত দোয়া",
+  "duaa_show_less": "কম দেখুন",
+  "duaa_show_full": "পুরো দোয়া দেখুন",
+  "duaa_copy_action": "দোয়া কপি করুন",
+  "duaa_share_action": "শেয়ার",
+  "duaa_copied_message": "দোয়া কপি হয়েছে",
+  "duaa_load_error": "আজকের দোয়া লোড করা যায়নি",
+  "quick_adkar_title": "যিকির শর্টকাট",
+  "quick_adkar_subtitle": "দৈনন্দিন যিকিরে দ্রুত প্রবেশ",
+  "quick_adkar_morning_evening": "সকাল ও সন্ধ্যা",
+  "quick_adkar_sleep": "ঘুমের যিকির",
+  "quick_adkar_after_prayer": "নামাজের পরে",
+  "quick_adkar_wake_up": "ঘুম থেকে ওঠা",
+  "quick_adkar_worry_sadness": "দুশ্চিন্তা ও দুঃখ",
+  "quick_adkar_forgiveness": "ইস্তিগফার",
+  "quick_adkar_recommended_now": "এখন প্রস্তাবিত",
+  "quick_adkar_open": "যিকির খুলুন",
+  "quick_adkar_unavailable": "উপলব্ধ নেই",
+  "quick_adkar_load_error": "যিকির শর্টকাট লোড করা যায়নি",
+  "adkar_details_count": "{count}টি যিকির ও দোয়া",
+  "adkar_details_item_number": "যিকির #{index}",
+  "adkar_details_completed_semantics": "যিকির সম্পন্ন হয়েছে",
+  "adkar_details_remaining_semantics": "আর {count} বার বাকি",
+  "adkar_details_completed_short": "সম্পন্ন",
+  "adkar_details_dialog_title": "যিকিরের বিস্তারিত",
+  "adkar_details_footnote_title": "হাদিসের সূত্র / নোট",
+  "adkar_no_data": "যিকিরের কোনো ডেটা নেই।",
+  "adkar_search_hint": "যিকিরে খুঁজুন...",
+  "adkar_virtues_title": "যিকিরের ফজিলত",
+  "adkar_show_more_virtues": "আরও ফজিলত দেখুন",
+  "adkar_header_subtitle": "যিকির ও দোয়ার দৈনন্দিন সুরক্ষা",
+  "adkar_empty_search": "“{query}” এর জন্য কোনো ফলাফল নেই",
+  "adkar_load_error": "যিকির লোড করা যায়নি",
+  "qibla_magnetic_warning": "সর্বোচ্চ নির্ভুলতার জন্য বৈদ্যুতিক ডিভাইস ও ধাতব বস্তু থেকে দূরে থাকুন।",
+  "qibla_angle_label": "কিবলার কোণ",
+  "qibla_distance_label": "কাবা পর্যন্ত দূরত্ব",
+  "qibla_distance_km": "{distance} কিমি",
+  "qibla_calibration_tip": "কম্পাসের দিক অস্থির মনে হলে ফোনটি ৮ সংখ্যার আকৃতিতে নড়ান।",
+  "qibla_compass_loading": "কম্পাস লোড হচ্ছে...",
+  "qibla_no_sensor_title": "সেন্সর নেই",
+  "qibla_no_sensor_subtitle": "আপনার ডিভাইসে কম্পাসের দিক নির্ণয়ের জন্য প্রয়োজনীয় ম্যাগনেটিক সেন্সর (ম্যাগনেটোমিটার) নেই।",
+  "qibla_no_location_title": "লোকেশন নির্ধারিত নয়",
+  "qibla_no_location_subtitle": "আপনি লোকেশন শেয়ার করার অনুমতি দেননি, তাই কিবলার দিক হিসাব করা যাচ্ছে না। এই ফিচার ব্যবহার করতে এখন লোকেশন অনুমতি দিতে পারেন।",
+  "qibla_find_my_location": "আমার লোকেশন নির্ণয় করুন",
+  "qibla_header_subtitle": "কাবার দিক নির্ভুলভাবে খুঁজুন",
+  "qibla_aligned": "আপনি কিবলার দিকে আছেন",
+  "qibla_heading_north": "উত্তর - {degrees}°",
+  "qibla_heading_north_east": "উত্তর-পূর্ব - {degrees}°",
+  "qibla_heading_east": "পূর্ব - {degrees}°",
+  "qibla_heading_south_east": "দক্ষিণ-পূর্ব - {degrees}°",
+  "qibla_heading_south": "দক্ষিণ - {degrees}°",
+  "qibla_heading_south_west": "দক্ষিণ-পশ্চিম - {degrees}°",
+  "qibla_heading_west": "পশ্চিম - {degrees}°",
+  "qibla_heading_north_west": "উত্তর-পশ্চিম - {degrees}°",
+  "hadith_tab_all": "হাদিস",
+  "hadith_tab_favorites": "প্রিয়",
+  "hadith_header_title": "সুন্নাহ ও হাদিস",
+  "hadith_header_subtitle": "নবী ﷺ-এর আদর্শ ও সহিহ সুন্নাহ থেকে",
+  "hadith_filter_book": "কিতাব",
+  "hadith_load_error": "হাদিস লোড করতে সমস্যা হয়েছে: {error}",
+  "hadith_clear_filters": "ফিল্টার মুছুন",
+  "hadith_empty_title": "মিল পাওয়া যায়নি",
+  "hadith_empty_subtitle": "সার্চ শব্দ পরিবর্তন করুন অথবা কিছু ফিল্টার সরান।",
+  "hadith_error": "একটি সমস্যা হয়েছে: {error}",
+  "hadith_favorites_empty_title": "আপনার প্রিয় তালিকা অপেক্ষায় আছে",
+  "hadith_favorites_empty_subtitle": "কোনো হাদিস সংরক্ষণ করতে তার পাশের তারকায় চাপ দিন।",
+  "hadith_search_hint": "হাদিসে খুঁজুন...",
+  "hadith_book_label": "কিতাব {bookName}",
+  "hadith_remove_favorite": "প্রিয় থেকে সরান",
+  "hadith_add_favorite": "প্রিয়ে যোগ করুন",
+  "hadith_tap_to_read": "পুরো হাদিস পড়তে চাপ দিন",
+  "hadith_text_title": "হাদিসের পাঠ",
+  "hadith_source_bukhari": "সহিহ বুখারি",
+  "hadith_share_reference": "সহিহ বুখারি | কিতাব {bookName} - হাদিস নং {hadithNumber}",
+  "hadith_number_label": "হাদিস নম্বর",
+  "hadith_source_label": "উৎস",
+  "hadith_book_belief": "ঈমান",
+  "hadith_book_salat": "নামাজ",
+  "hadith_book_knowledge": "জ্ঞান",
+  "hadith_book_sales": "বেচাকেনা",
+  "hadith_book_adab": "আদব",
+  "hadith_book_riqaq": "হৃদয় কোমলকারী বিষয়",
+  "hadith_book_invocations": "দোয়া",
+  "hadith_book_tawhid": "তাওহিদ",
+  "quran_select_qari_title": "কারি নির্বাচন",
+  "quran_index_title": "মুসহাফ সূচি",
+  "quran_index_subtitle": "পড়া শুরু করতে সূরা বা পারা নির্বাচন করুন",
+  "quran_surahs_tab": "সূরা",
+  "quran_juz_tab": "পারা",
+  "quran_ayah_count": "{count} আয়াত",
+  "quran_juz_number": "পারা {number}",
+  "quran_surah_label": "সূরা {surahName}",
+  "quran_page_number": "পৃষ্ঠা {pageNumber}",
+  "quran_ayah_number": "আয়াত {ayahNumber}",
+  "quran_check_internet": "অনুগ্রহ করে আপনার ইন্টারনেট সংযোগ পরীক্ষা করুন।",
+  "quran_size_mb": "{size} এমবি",
+  "moratal_download_quran_title": "পবিত্র কুরআন ডাউনলোড",
+  "moratal_download_quran_subtitle": "অফলাইনে যেকোনো সময় শুনতে সম্পূর্ণ কুরআনের সূরা ডাউনলোড করুন।",
+  "moratal_header_subtitle": "আপনার পছন্দের কারি নির্বাচন করে মনোযোগ দিয়ে শুনুন",
+  "moratal_manage_downloads": "ডাউনলোড পরিচালনা",
+  "moratal_narration_warsh": "নাফি থেকে ওয়ারশ রিওয়ায়াত",
+  "moratal_narration_dorai": "কিসাই থেকে আদ-দুরি রিওয়ায়াত",
+  "moratal_narration_hafs": "আসিম থেকে হাফস রিওয়ায়াত",
+  "moratal_downloading_surah_progress": "সূরা {current}/১১৪ ডাউনলোড হচ্ছে",
+  "moratal_show_surahs": "সূরা দেখুন",
+  "moratal_all_surahs_downloaded": "সব সূরা ডাউনলোড হয়েছে। এখন অফলাইনে শুনতে পারবেন!",
+  "moratal_download_stopped_for_qari": "{qariName}-এর সূরা ডাউনলোড বন্ধ করা হয়েছে",
+  "moratal_resuming_download_for_qari": "{qariName}-এর সূরা ডাউনলোড আবার শুরু হচ্ছে",
+  "moratal_started_download_for_qari": "{qariName}-এর সূরা ডাউনলোড শুরু হয়েছে",
+  "moratal_default_qari": "কারি",
+  "moratal_resume_download_title": "ডাউনলোড চালিয়ে যান",
+  "moratal_download_all_title": "কুরআনের সূরা ডাউনলোড",
+  "moratal_resume_download_message": "{qariName}-এর কণ্ঠে কুরআনের সূরা যেখানে থেমেছিল সেখান থেকে ডাউনলোড চলবে।",
+  "moratal_download_all_message": "{qariName}-এর কণ্ঠে পবিত্র কুরআনের সব সূরা (১১৪ সূরা) আপনার ডিভাইসে ডাউনলোড হবে।",
+  "moratal_download_data_warning": "এই প্রক্রিয়ায় ৫০০ এমবি থেকে ২ জিবি পর্যন্ত ইন্টারনেট ডেটা ব্যবহার হতে পারে।",
+  "moratal_download_keep_open_warning": "ডাউনলোড শেষ হওয়া পর্যন্ত অ্যাপ খোলা রাখুন। অ্যাপ বন্ধ হলে পরে আবার চালিয়ে যেতে পারবেন।",
+  "moratal_resume": "চালিয়ে যান",
+  "moratal_download_now": "এখন ডাউনলোড",
+  "moratal_stop_download_title": "ডাউনলোড বন্ধ করুন",
+  "moratal_stop_download_message": "ডাউনলোড বন্ধ করতে চান?\nইতিমধ্যে ডাউনলোড হওয়া সূরাগুলো সংরক্ষিত থাকবে, পরে চালিয়ে যেতে পারবেন।",
+  "moratal_continue_download": "ডাউনলোড চালিয়ে যান",
+  "moratal_stop": "বন্ধ করুন",
+  "moratal_deleted_all_for_qari": "{qariName}-এর সব সূরা ডিভাইস থেকে মুছে ফেলা হয়েছে।",
+  "moratal_delete_downloaded_title": "ডাউনলোড করা সূরা মুছুন",
+  "moratal_delete_downloaded_message": "{qariName}-এর কণ্ঠে ডাউনলোড করা {count}টি সূরা আপনার ডিভাইস থেকে মুছে যাবে।\nএই কাজটি ফিরিয়ে নেওয়া যাবে না।",
+  "moratal_surahs_title": "পবিত্র কুরআনের সূরা",
+  "moratal_download_surah": "সূরা ডাউনলোড",
+  "moratal_delete_surah": "সূরা মুছুন",
+  "moratal_cancel_download": "ডাউনলোড বাতিল",
+  "moratal_surah_downloaded_success": "সূরা {surahName} সফলভাবে ডাউনলোড হয়েছে",
+  "moratal_surah_deleted_success": "সূরা {surahName} ডিভাইস থেকে মুছে ফেলা হয়েছে",
+  "moratal_cancelled_temp_deleted": "ডাউনলোড বাতিল হয়েছে এবং অস্থায়ী ফাইল মুছে ফেলা হয়েছে।",
+  "moratal_delete_surah_message": "এই সূরাটি ডিভাইস থেকে মুছতে চান?\nএই কাজটি ফিরিয়ে নেওয়া যাবে না।",
+  "moratal_enable_repeat": "রিপিট চালু করুন",
+  "moratal_repeat_all": "সব রিপিট",
+  "moratal_disable_repeat": "রিপিট বন্ধ করুন",
+  "moratal_playback_speed": "প্লেব্যাক স্পিড",
+  "moratal_speed_normal": "1.0x (স্বাভাবিক)",
+  "moratal_previous_surah": "আগের সূরা",
+  "moratal_rewind_10": "১০ সেকেন্ড পেছান",
+  "moratal_forward_10": "১০ সেকেন্ড এগিয়ে যান",
+  "moratal_next_surah": "পরের সূরা",
+  "@quran_ayah_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_juz_number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_surah_label": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      }
+    }
+  },
+  "@quran_page_number": {
+    "placeholders": {
+      "pageNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_ayah_number": {
+    "placeholders": {
+      "ayahNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_size_mb": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_downloading_surah_progress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      }
+    }
+  },
+  "@moratal_download_stopped_for_qari": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_resuming_download_for_qari": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_started_download_for_qari": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_resume_download_message": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_download_all_message": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_deleted_all_for_qari": {
+    "placeholders": {
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_delete_downloaded_message": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_surah_downloaded_success": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      }
+    }
+  },
+  "@moratal_surah_deleted_success": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      }
+    }
+  },
+  "@adkar_empty_search": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_distance_km": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_north": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_north_east": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_east": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_south_east": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_south": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_south_west": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_west": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@qibla_heading_north_west": {
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@hadith_load_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hadith_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hadith_book_label": {
+    "placeholders": {
+      "bookName": {
+        "type": "String"
+      }
+    }
+  },
+  "@hadith_share_reference": {
+    "placeholders": {
+      "bookName": {
+        "type": "String"
+      },
+      "hadithNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@adkar_details_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@adkar_details_item_number": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "@adkar_details_remaining_semantics": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pray_time_location_disabled_message": "GPS বন্ধ আছে। অনুগ্রহ করে চালু করুন",
+  "pray_time_fetch_error": "নামাজের সময় পাওয়া যায়নি",
+  "pray_time_location_loading": "লোকেশন লোড হচ্ছে...",
+  "pray_time_today": "আজ",
+  "pray_time_tomorrow": "আগামীকাল",
+  "pray_time_yesterday": "গতকাল",
+  "pray_time_times_section_title": "নামাজের সময়",
+  "pray_time_previous_day": "আগের দিন",
+  "pray_time_next_day": "পরের দিন",
+  "pray_time_remaining_to_adhan": "আযান পর্যন্ত বাকি",
+  "pray_time_adjust_prayer_time": "{prayerName} সময় সমন্বয় করুন",
+  "pray_time_adjustment_limit": "সর্বোচ্চ ± ৬০ মিনিট",
+  "pray_time_no_adjustment": "কোনো সমন্বয় নেই",
+  "pray_time_original_time": "মূল সময়",
+  "pray_time_minutes_offset_positive": "+{minutes} মিনিট",
+  "pray_time_minutes_offset": "{minutes} মিনিট",
+  "pray_time_save_adjustment": "সমন্বয় সংরক্ষণ করুন",
+  "pray_time_reset_adjustments_title": "সমন্বয় রিসেট করুন",
+  "pray_time_reset_adjustments_message": "সব নামাজের সময় কি মূল হিসাব করা সময়ে ফিরিয়ে নিতে চান?",
+  "pray_time_no_internet_title": "ইন্টারনেট সংযোগ নেই",
+  "pray_time_no_internet_subtitle": "সংযোগ ফিরে এলে স্বয়ংক্রিয়ভাবে আপডেট হবে",
+  "pray_time_location_service_disabled": "লোকেশন সার্ভিস বন্ধ আছে",
+  "pray_time_location_permission_required": "লোকেশন অনুমতি প্রয়োজন",
+  "pray_time_location_permission_denied_forever": "লোকেশন অনুমতি স্থায়ীভাবে বন্ধ করা আছে",
+  "pray_time_loading": "লোড হচ্ছে",
+  "pray_time_error_title": "একটি সমস্যা হয়েছে",
+  "pray_time_unknown_error_title": "দুঃখিত, কিছু ভুল হয়েছে",
+  "pray_time_unknown_error_message": "অজানা সমস্যা",
+  "pray_time_grant_location_permission": "লোকেশন অনুমতি দিন",
+  "pray_time_enable_location_service": "লোকেশন সার্ভিস চালু করুন",
+  "pray_time_gps_auto_refresh_message": "GPS চালু হলে স্বয়ংক্রিয়ভাবে আপডেট হবে",
+  "pray_time_manual_permission_message": "লোকেশন অ্যাক্সেস ম্যানুয়ালি দিতে হবে",
+  "pray_time_detecting_location": "আপনার বর্তমান লোকেশন নির্ণয় হচ্ছে...",
+  "pray_time_alert_title": "সতর্কতা",
+  "pray_time_location_deleted_message": "আপনার অনুরোধে আগে অ্যাপ থেকে লোকেশন ডেটা মুছে ফেলা হয়েছে। বর্তমানে দেখানো নামাজের সময় ভুল হতে পারে, কারণ এগুলো মুছে ফেলার আগের সর্বশেষ জানা লোকেশনের উপর নির্ভর করছে।\nসময় ঠিক করতে এখন কি লোকেশন ডেটা আপডেট করতে চান?",
+  "pray_time_ignore": "উপেক্ষা করুন",
+  "pray_time_soon": "শীঘ্রই",
+  "@pray_time_adjust_prayer_time": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "@pray_time_minutes_offset_positive": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "@pray_time_minutes_offset": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_remaining_hours_minutes": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_remaining_hours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_remaining_minutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_progress_semantics": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_position_page": {
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_position_ayah_page": {
+    "placeholders": {
+      "ayah": {
+        "type": "int"
+      },
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_remaining_pages": {
+    "placeholders": {
+      "pages": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_surah_page": {
+    "placeholders": {
+      "surah": {
+        "type": "String"
+      },
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "@home_reading_surah_ayah_page": {
+    "placeholders": {
+      "surah": {
+        "type": "String"
+      },
+      "ayah": {
+        "type": "int"
+      },
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "generic_error": "একটি সমস্যা হয়েছে",
+  "moratal_play": "চালু করুন",
+  "moratal_pause": "বিরতি দিন",
+  "quran_nav_index": "সূচি",
+  "quran_nav_search": "সার্চ",
+  "quran_nav_bookmarks": "বুকমার্ক",
+  "quran_settings_title": "কুরআন সেটিংস",
+  "quran_settings_subtitle": "পড়া ও শোনার অভিজ্ঞতা সাজান",
+  "quran_settings_reading_appearance": "পড়া ও প্রদর্শন",
+  "quran_settings_reading_bg_color": "পড়ার ব্যাকগ্রাউন্ড রং",
+  "quran_settings_page_view_type": "কুরআন পেজের ধরন",
+  "quran_settings_keep_screen_awake": "পড়ার সময় স্ক্রিন জাগ্রত রাখুন",
+  "quran_settings_listening_memorization": "শোনা ও মুখস্থ",
+  "quran_settings_select_qari_voice": "কারির কণ্ঠ নির্বাচন",
+  "quran_settings_ayah_delay": "আয়াতের মাঝের বিরতি",
+  "quran_settings_auto_scroll_audio": "কারির অডিওর সাথে অটো স্ক্রল",
+  "quran_settings_general": "সাধারণ সেটিংস",
+  "quran_settings_download_tafsir": "তাফসির ডাউনলোড",
+  "quran_settings_daily_reminders": "দৈনিক তিলাওয়াত রিমাইন্ডার",
+  "quran_delay_no_pause": "বিরতি ছাড়া",
+  "quran_delay_one_second": "১ সেকেন্ড",
+  "quran_delay_two_seconds": "২ সেকেন্ড",
+  "quran_delay_seconds": "{seconds} সেকেন্ড",
+  "quran_reminder_time": "সময়: {time}",
+  "quran_reminder_after_fajr": "সময়: ফজরের পর",
+  "quran_reminder_pick_hint": "রিমাইন্ডারের সময় ঠিক করতে চাপুন",
+  "quran_reminder_picker_help": "রিমাইন্ডারের সময় নির্বাচন করুন, অথবা প্রস্তাবিত সময় রাখতে বাতিল করুন",
+  "quran_view_fixed": "স্থির ভিউ",
+  "quran_view_fixed_description": "প্রতিটি পেজ নির্দিষ্ট আকারে দেখান",
+  "quran_view_zoomable": "জুম করা যায় এমন ভিউ",
+  "quran_view_zoomable_description": "দুই আঙুল দিয়ে জুম ইন বা আউট করুন",
+  "quran_view_page_display": "পেজ দেখানোর ধরন",
+  "quran_juz_starts_at": "সূরা {surahName} - পৃষ্ঠা {pageNumber}",
+  "quran_search_hint": "সূরা বা আয়াত খুঁজুন...",
+  "quran_search_empty_title": "কুরআনের আয়াতে সার্চ করুন",
+  "quran_search_empty_subtitle": "দ্রুত খুঁজে পেতে কোনো শব্দ বা আয়াতের অংশ লিখুন।",
+  "quran_search_no_results_title": "কোনো ফল পাওয়া যায়নি",
+  "quran_search_no_results_subtitle": "বানান দেখুন অথবা ছোট বাক্য দিয়ে চেষ্টা করুন।",
+  "quran_search_recent": "সাম্প্রতিক সার্চ",
+  "quran_search_suggested_results": "প্রস্তাবিত ফলাফল",
+  "quran_search_results_count": "সার্চ ফলাফল ({count})",
+  "quran_surah_ayah_label": "সূরা {surahName} - আয়াত {ayahNumber}",
+  "quran_saved_bookmarks": "সংরক্ষিত বুকমার্ক",
+  "quran_pages_tab": "পৃষ্ঠা",
+  "quran_ayahs_tab": "আয়াত",
+  "quran_no_saved_bookmarks": "কোনো বুকমার্ক সংরক্ষিত নেই",
+  "quran_ayah_page_label": "আয়াত {ayahNumber} - পৃষ্ঠা {pageNumber}",
+  "quran_saved_date": "সংরক্ষণের তারিখ: {date}",
+  "quran_delete_bookmark": "বুকমার্ক মুছুন",
+  "quran_color_dark_default": "ডিফল্ট ডার্ক",
+  "quran_color_night_black": "নাইট ব্ল্যাক",
+  "quran_color_dark_sepia": "ডার্ক সেপিয়া",
+  "quran_color_dark_blue": "ডার্ক ব্লু",
+  "quran_color_light_sepia": "ডিফল্ট লাইট (সেপিয়া)",
+  "quran_color_bright_white": "উজ্জ্বল সাদা",
+  "quran_color_soft_gray": "আরামদায়ক ধূসর",
+  "quran_color_light_cream": "হালকা ক্রিম",
+  "quran_reading_mark_added": "পড়ার বুকমার্ক যোগ হয়েছে",
+  "quran_bookmark_removed": "বুকমার্ক সরানো হয়েছে",
+  "quran_action_copy": "কপি",
+  "quran_action_read": "পড়ুন",
+  "quran_action_listen": "শুনুন",
+  "quran_action_bookmark": "বুকমার্ক",
+  "quran_action_tafsir": "তাফসির",
+  "quran_action_share": "শেয়ার",
+  "quran_ayah_copied_success": "আয়াত সফলভাবে কপি হয়েছে",
+  "quran_ayah_copied": "আয়াত কপি হয়েছে",
+  "quran_audio_connection_error": "অডিও চালানো যায়নি। ইন্টারনেট সংযোগ পরীক্ষা করুন।",
+  "quran_audio_connection_error_short": "আয়াত চালানো যায়নি। সংযোগ পরীক্ষা করুন।",
+  "quran_ayah_saved_home": "আয়াত সংরক্ষিত হয়েছে। হোম পেজ থেকে দ্রুত দেখতে পারবেন।",
+  "quran_currently_listening": "এখন শুনছেন",
+  "quran_remove_reading_position": "পড়ার অবস্থান সরান",
+  "quran_save_reading_position": "পড়ার অবস্থান সংরক্ষণ",
+  "quran_reading_position_removed": "পড়ার অবস্থান সরানো হয়েছে",
+  "quran_reading_position_saved": "পড়ার অবস্থান সংরক্ষিত হয়েছে এবং আপনার অগ্রগতি হোম পেজে দেখা যাবে",
+  "quran_remove_bookmark": "বুকমার্ক সরান",
+  "quran_add_bookmark": "বুকমার্ক যোগ করুন",
+  "quran_play_ayah": "আয়াত চালান",
+  "quran_ayah_tafsir": "আয়াতের তাফসির",
+  "quran_ayah_qari_label": "আয়াত {ayahNumber} - {qariName}",
+  "quran_disable_auto_scroll": "অটো স্ক্রল বন্ধ করুন",
+  "quran_enable_auto_scroll": "অটো স্ক্রল চালু করুন",
+  "quran_auto_scroll_disabled": "আয়াতের অটো স্ক্রল বন্ধ হয়েছে",
+  "quran_auto_scroll_enabled": "আয়াতের অটো স্ক্রল চালু হয়েছে",
+  "quran_failed_get_ayah_url": "আয়াতের অডিও লিংক পাওয়া যায়নি",
+  "quran_playback_no_connection": "চালানো যাচ্ছে না। সংযোগ নেই।",
+  "quran_not_selected": "নির্বাচিত নয়",
+  "quran_ayah_by_qari": "আয়াত {ayahNumber} - {qariName}-এর কণ্ঠে",
+  "@quran_delay_seconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_reminder_time": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@quran_juz_starts_at": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "pageNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_search_results_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_surah_ayah_label": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "ayahNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_ayah_page_label": {
+    "placeholders": {
+      "ayahNumber": {
+        "type": "int"
+      },
+      "pageNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "@quran_saved_date": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@quran_ayah_qari_label": {
+    "placeholders": {
+      "ayahNumber": {
+        "type": "int"
+      },
+      "qariName": {
+        "type": "String"
+      }
+    }
+  },
+  "@quran_ayah_by_qari": {
+    "placeholders": {
+      "ayahNumber": {
+        "type": "int"
+      },
+      "qariName": {
+        "type": "String"
+      }
+    }
+  }
+}

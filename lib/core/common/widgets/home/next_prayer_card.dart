@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:zad_al_muslim/core/common/providers/theme_provider.dart';
-import 'package:zad_al_muslim/core/constants/routes.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/pray_time/presentation/providers/next_prayer_provider.dart';
-import 'package:zad_al_muslim/features/pray_time/presentation/providers/pray_times_provider.dart';
-import 'package:zad_al_muslim/features/settings/presentation/providers/app_settings_provider.dart';
+import 'package:shirahsoft_muslim/core/common/providers/theme_provider.dart';
+import 'package:shirahsoft_muslim/core/constants/routes.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/pray_time/presentation/providers/next_prayer_provider.dart';
+import 'package:shirahsoft_muslim/features/pray_time/presentation/providers/pray_times_provider.dart';
+import 'package:shirahsoft_muslim/features/settings/presentation/providers/app_settings_provider.dart';
 
 class NextPrayerCard extends ConsumerStatefulWidget {
   const NextPrayerCard({super.key});
@@ -22,6 +24,7 @@ class _NextPrayerCardState extends ConsumerState<NextPrayerCard> {
   @override
   Widget build(BuildContext context) {
     final nextPrayerAsync = ref.watch(nextPrayerProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     /// يقوم بعرض طلب موقع المستخدم ويقوم بإعادة حساب اوقات الصلاة
 
@@ -33,7 +36,7 @@ class _NextPrayerCardState extends ConsumerState<NextPrayerCard> {
       data: (nextPrayer) {
         if (nextPrayer == null) {
           return _PrayerCardError(
-            message: 'لم يتم الموافقة على مشاركة الموقع',
+            message: l10n.home_prayer_location_not_allowed,
             onTap: () {
               Navigator.of(context).pushNamed(Routes.prayTimePage);
             },
@@ -46,7 +49,7 @@ class _NextPrayerCardState extends ConsumerState<NextPrayerCard> {
       loading: () => const _PrayerCardLoadingView(),
       error: (_, _) {
         return _PrayerCardError(
-          message: 'تعذر تحميل مواقيت الصلاة',
+          message: l10n.home_prayer_load_error,
           onTap: () {
             Navigator.of(context).pushNamed(Routes.prayTimePage);
           },
@@ -75,6 +78,7 @@ class _PrayerCardContentState extends ConsumerState<_PrayerCardContent> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final nextPrayer = widget.nextPrayer;
     final settingsProvider = ref.watch(appSettingsProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     final accentColor = nextPrayer.isVeryClose
         ? colorScheme.tertiary
@@ -154,9 +158,11 @@ class _PrayerCardContentState extends ConsumerState<_PrayerCardContent> {
                       SizedBox(width: 10.w),
 
                       _PrayerTime(
-                        time: settingsProvider.use24HourFormat
-                            ? nextPrayer.formattedTime24
-                            : nextPrayer.formattedTime,
+                        time: _formatPrayerTime(
+                          l10n,
+                          nextPrayer,
+                          settingsProvider.use24HourFormat,
+                        ),
                       ),
                     ],
                   ),
@@ -208,7 +214,7 @@ class _PrayerCardHeader extends StatelessWidget {
               Icon(Icons.mosque_rounded, size: 14.sp, color: accentColor),
               SizedBox(width: 5.w),
               Text(
-                'الصلاة القادمة',
+                AppLocalizations.of(context)!.home_next_prayer,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 9.5.sp,
@@ -231,7 +237,7 @@ class _PrayerCardHeader extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
-              'اقترب الموعد',
+              AppLocalizations.of(context)!.home_prayer_time_close,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 8.5.sp,
@@ -242,7 +248,7 @@ class _PrayerCardHeader extends StatelessWidget {
           )
         else
           Text(
-            'مواقيت اليوم',
+            AppLocalizations.of(context)!.home_today_prayer_times,
             style: TextStyle(
               fontFamily: 'Cairo',
               fontSize: 9.5.sp,
@@ -287,12 +293,13 @@ class _PrayerMainInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          nextPrayer.name,
+          _localizedPrayerName(l10n, nextPrayer.name),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
@@ -307,7 +314,7 @@ class _PrayerMainInformation extends StatelessWidget {
         SizedBox(height: 3.h),
 
         Text(
-          nextPrayer.statusMessage,
+          _localizedPrayerStatus(l10n, nextPrayer),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
@@ -338,7 +345,7 @@ class _PrayerTime extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          'وقت الصلاة',
+          AppLocalizations.of(context)!.home_prayer_time_label,
           style: TextStyle(
             fontFamily: 'Cairo',
             fontSize: 8.5.sp,
@@ -376,6 +383,7 @@ class _CountdownSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
       width: double.infinity,
@@ -410,7 +418,9 @@ class _CountdownSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  nextPrayer.isImminent ? 'موعد الصلاة' : 'متبقي على الصلاة',
+                  nextPrayer.isImminent
+                      ? l10n.home_prayer_due_now_label
+                      : l10n.home_prayer_remaining_label,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 9.sp,
@@ -422,7 +432,7 @@ class _CountdownSection extends StatelessWidget {
                 SizedBox(height: 2.h),
 
                 Text(
-                  nextPrayer.compactRemaining,
+                  _localizedCompactRemaining(l10n, nextPrayer.safeRemaining),
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 11.sp,
@@ -471,7 +481,7 @@ class _OpenPrayerTimesAction extends StatelessWidget {
         SizedBox(width: 7.w),
 
         Text(
-          'عرض جميع مواقيت الصلاة',
+          AppLocalizations.of(context)!.home_show_all_prayer_times,
           style: TextStyle(
             fontFamily: 'Cairo',
             fontSize: 10.5.sp,
@@ -506,6 +516,7 @@ class _PrayerCardLoadingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Stack(
       alignment: Alignment.center,
@@ -513,7 +524,7 @@ class _PrayerCardLoadingView extends StatelessWidget {
         const _PrayerCardLoading(),
         Semantics(
           liveRegion: true,
-          label: 'جارٍ حساب أوقات الصلاة',
+          label: l10n.home_prayer_calculating,
           child: Card(
             elevation: 2,
             color: colorScheme.surface,
@@ -531,7 +542,7 @@ class _PrayerCardLoadingView extends StatelessWidget {
                   ),
                   SizedBox(width: 10.w),
                   Text(
-                    'جارٍ حساب أوقات الصلاة',
+                    l10n.home_prayer_calculating,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w600,
@@ -675,7 +686,7 @@ class _PrayerCardError extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "أوقات الصلاة",
+                  AppLocalizations.of(context)!.pray_times,
                   style: TextStyle(
                     fontSize: 17.sp,
                     fontWeight: FontWeight.w800,
@@ -684,7 +695,7 @@ class _PrayerCardError extends StatelessWidget {
                 ),
                 SizedBox(height: 2.h),
                 Text(
-                  "تابع أوقات الصلاة لحظة بلحظة",
+                  AppLocalizations.of(context)!.home_prayer_card_subtitle,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -744,10 +755,11 @@ class _ActivationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Row(
       children: [
         Text(
-          'الإنتقال الى أوقات الصلاة',
+          l10n.home_go_to_prayer_times,
           style: TextStyle(
             fontFamily: 'Cairo',
             fontSize: 12.sp,
@@ -760,4 +772,63 @@ class _ActivationButton extends StatelessWidget {
       ],
     );
   }
+}
+
+String _formatPrayerTime(
+  AppLocalizations l10n,
+  NextPrayerInfo nextPrayer,
+  bool use24HourFormat,
+) {
+  if (use24HourFormat) return nextPrayer.formattedTime24;
+  return intl.DateFormat.jm(l10n.localeName).format(nextPrayer.time);
+}
+
+String _localizedPrayerName(AppLocalizations l10n, String name) {
+  return switch (name) {
+    'الفجر' => l10n.fajer,
+    'الظهر' => l10n.duhur,
+    'العصر' => l10n.asr,
+    'المغرب' => l10n.magrib,
+    'العشاء' => l10n.esha,
+    _ => name,
+  };
+}
+
+String _localizedPrayerStatus(AppLocalizations l10n, NextPrayerInfo prayer) {
+  final duration = prayer.safeRemaining;
+
+  if (duration < const Duration(minutes: 1)) {
+    return l10n.home_prayer_status_due;
+  }
+
+  if (duration <= const Duration(minutes: 10)) {
+    return l10n.home_prayer_status_close;
+  }
+
+  if (duration <= const Duration(hours: 1)) {
+    return l10n.home_prayer_status_soon;
+  }
+
+  return l10n.home_prayer_status_prepare;
+}
+
+String _localizedCompactRemaining(AppLocalizations l10n, Duration duration) {
+  if (duration.inSeconds < 60) {
+    return l10n.home_remaining_less_than_minute;
+  }
+
+  final hours = duration.inHours;
+  final minutes = duration.inMinutes.remainder(60);
+
+  if (hours > 0 && minutes > 0) {
+    return l10n.home_remaining_hours_minutes(hours, minutes);
+  }
+
+  if (hours > 0) {
+    return hours == 1
+        ? l10n.home_remaining_one_hour
+        : l10n.home_remaining_hours(hours);
+  }
+
+  return l10n.home_remaining_minutes(minutes);
 }

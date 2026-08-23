@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/hadith/domain/entities/hadith_entity.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/hadith/domain/entities/hadith_entity.dart';
 import 'package:share_plus/share_plus.dart';
 
 class HadithModalBottom extends ConsumerWidget {
@@ -14,6 +15,7 @@ class HadithModalBottom extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
       padding: EdgeInsets.only(
@@ -57,7 +59,7 @@ class HadithModalBottom extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'نص الحديث',
+                      l10n.hadith_text_title,
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         fontSize: 17.sp,
@@ -66,7 +68,7 @@ class HadithModalBottom extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      'صحيح البخاري',
+                      l10n.hadith_source_bukhari,
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         fontSize: 11.sp,
@@ -86,7 +88,7 @@ class HadithModalBottom extends ConsumerWidget {
                       Clipboard.setData(
                         ClipboardData(
                           text:
-                              "${hadith.text}\n\nصحيح البخاري | كتاب ${hadith.bookName} - حديث رقم ${hadith.reference.hadith}\n\nمن تطبيق زاد المسلم",
+                              "${hadith.text}\n\n${l10n.hadith_share_reference(hadith.bookName, hadith.reference.hadith)}\n\n${l10n.duaa_shared_from_app}",
                         ),
                       );
                     },
@@ -98,7 +100,7 @@ class HadithModalBottom extends ConsumerWidget {
                       SharePlus.instance.share(
                         ShareParams(
                           text:
-                              "${hadith.text}\n\n📖 صحيح البخاري | كتاب ${hadith.bookName} - حديث رقم ${hadith.reference.hadith}\n\nمن تطبيق زاد المسلم",
+                              "${hadith.text}\n\n${l10n.hadith_share_reference(hadith.bookName, hadith.reference.hadith)}\n\n${l10n.duaa_shared_from_app}",
                         ),
                       );
                     },
@@ -146,18 +148,18 @@ class HadithModalBottom extends ConsumerWidget {
                   // Info Section
                   _InfoItem(
                     icon: Icons.book_outlined,
-                    title: "الكتاب",
+                    title: l10n.hadith_filter_book,
                     value: hadith.bookName,
                   ),
                   _InfoItem(
                     icon: Icons.numbers_rounded,
-                    title: "رقم الحديث",
+                    title: l10n.hadith_number_label,
                     value: hadith.reference.hadith.toString(),
                   ),
-                  const _InfoItem(
+                  _InfoItem(
                     icon: Icons.verified_rounded,
-                    title: 'المصدر',
-                    value: 'صحيح البخاري',
+                    title: l10n.hadith_source_label,
+                    value: l10n.hadith_source_bukhari,
                   ),
                 ],
               ),
@@ -202,6 +204,7 @@ class _ActionButtonState extends State<_ActionButton> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Stack(
       alignment: Alignment.centerRight,
@@ -220,7 +223,7 @@ class _ActionButtonState extends State<_ActionButton> {
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: Text(
-                "تم النسخ",
+                l10n.duaa_copied_message,
                 style: TextStyle(
                   color: colorScheme.onPrimary,
                   fontSize: 12.sp,

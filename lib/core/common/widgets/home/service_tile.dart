@@ -99,9 +99,21 @@ class ServiceTile extends StatelessWidget {
                   ),
                   SizedBox(height: 10.h),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(actionName, style: TextStyle(fontSize: 11.5.sp)),
+                      Expanded(
+                        child: Text(
+                          actionName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontFamily: 'Cairo',
+                            fontSize: 11.5.sp,
+                            fontWeight: FontWeight.w600,
+                            color: scheme.onSurface,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 4.w),
                       Icon(
                         Icons.arrow_forward_rounded,
                         size: 18.sp,

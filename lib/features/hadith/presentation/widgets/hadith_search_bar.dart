@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/providers/hadith_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/providers/hadith_provider.dart';
 
 class HadithSearchBar extends ConsumerStatefulWidget {
   const HadithSearchBar({super.key});
@@ -45,6 +46,7 @@ class HadithSearchBarState extends ConsumerState<HadithSearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     void onSearchChanged(String query) {
       if (_debounce?.isActive ?? false) _debounce!.cancel();
       _debounce = Timer(const Duration(milliseconds: 500), () {
@@ -70,7 +72,7 @@ class HadithSearchBarState extends ConsumerState<HadithSearchBar> {
           color: context.color.onSurface,
         ),
         decoration: InputDecoration(
-          hintText: "ابحث في الأحاديث...",
+          hintText: l10n.hadith_search_hint,
           hintStyle: TextStyle(
             color: context.color.onSurfaceVariant.withValues(alpha: 0.7),
             fontSize: 14.sp,

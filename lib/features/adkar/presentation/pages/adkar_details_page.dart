@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/adkar/domain/entities/adkar_entity.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/adkar/domain/entities/adkar_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zad_al_muslim/features/settings/presentation/providers/app_settings_provider.dart';
-import 'package:zad_al_muslim/features/adkar/presentation/providers/dhikr_state_provider.dart';
+import 'package:shirahsoft_muslim/features/settings/presentation/providers/app_settings_provider.dart';
+import 'package:shirahsoft_muslim/features/adkar/presentation/providers/dhikr_state_provider.dart';
 import 'package:flutter/services.dart';
 
 class AdkarDetailsPage extends ConsumerWidget {
@@ -14,13 +15,14 @@ class AdkarDetailsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: context.color.surfaceContainerLowest,
       body: SafeArea(
         child: Column(
           children: [
             _DetailsHeader(
-              title: adkarEntity.category,
+              title: _localizedAdkarCategory(l10n, adkarEntity.category),
               count: adkarEntity.text.length,
             ),
             Expanded(
@@ -59,12 +61,13 @@ class _DetailsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.fromLTRB(14.w, 12.h, 14.w, 8.h),
       child: Row(
         children: [
           IconButton.filledTonal(
-            tooltip: 'العودة',
+            tooltip: l10n.go_back,
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_rounded),
           ),
@@ -101,7 +104,7 @@ class _DetailsHeader extends StatelessWidget {
                 ),
                 SizedBox(height: 1.h),
                 Text(
-                  '$count من الأذكار والأدعية',
+                  l10n.adkar_details_count(count),
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 10.5.sp,
@@ -144,6 +147,7 @@ class DhikrCard extends ConsumerWidget {
     bool isFinished = remainingCount == 0;
 
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       elevation: 0,
       margin: EdgeInsets.zero,
@@ -180,7 +184,7 @@ class DhikrCard extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(15.r),
                     ),
                     child: Text(
-                      'ذكر رقم $index',
+                      l10n.adkar_details_item_number(index),
                       style: TextStyle(
                         color: scheme.onTertiaryContainer,
                         fontFamily: 'Cairo',
@@ -233,15 +237,17 @@ class DhikrCard extends ConsumerWidget {
                       Icons.refresh_rounded,
                       color: scheme.onSurfaceVariant,
                     ),
-                    tooltip: 'إعادة',
+                    tooltip: l10n.settings_reset_settings_confirm,
                   ),
 
                   // Tasbeeh Button
                   Semantics(
                     button: true,
                     label: isFinished
-                        ? 'اكتمل الذكر'
-                        : 'متبقي $remainingCount تكرار',
+                        ? l10n.adkar_details_completed_semantics
+                        : l10n.adkar_details_remaining_semantics(
+                            remainingCount,
+                          ),
                     child: GestureDetector(
                       onTap: () {
                         if (remainingCount > 0) {
@@ -280,7 +286,9 @@ class DhikrCard extends ConsumerWidget {
                             ),
                             SizedBox(width: 8.w),
                             Text(
-                              isFinished ? 'اكتمل' : '$remainingCount',
+                              isFinished
+                                  ? l10n.adkar_details_completed_short
+                                  : '$remainingCount',
                               style: TextStyle(
                                 color: isFinished
                                     ? scheme.onTertiary
@@ -307,6 +315,7 @@ class DhikrCard extends ConsumerWidget {
   }
 
   void _showDetailsDialog(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       showDragHandle: false,
@@ -343,7 +352,7 @@ class DhikrCard extends ConsumerWidget {
                       ),
                       SizedBox(height: 16.h),
                       Text(
-                        'تفاصيل الذكر',
+                        l10n.adkar_details_dialog_title,
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           fontWeight: FontWeight.bold,
@@ -400,7 +409,7 @@ class DhikrCard extends ConsumerWidget {
                                         ),
                                         SizedBox(width: 8.w),
                                         Text(
-                                          'تخريج الحديث / ملاحظة',
+                                          l10n.adkar_details_footnote_title,
                                           style: TextStyle(
                                             fontFamily: 'Cairo',
                                             fontWeight: FontWeight.bold,
@@ -442,4 +451,16 @@ class DhikrCard extends ConsumerWidget {
       },
     );
   }
+}
+
+String _localizedAdkarCategory(AppLocalizations l10n, String category) {
+  return switch (category.trim()) {
+    'أذكار الصباح والمساء' => l10n.quick_adkar_morning_evening,
+    'أذكار النوم' => l10n.quick_adkar_sleep,
+    'الأذكار بعد السلام من الصلاة' => l10n.quick_adkar_after_prayer,
+    'أذكار الاستيقاظ من النوم' => l10n.quick_adkar_wake_up,
+    'دعاء الهم والحزن' => l10n.quick_adkar_worry_sadness,
+    'الاستغفار والتوبة' => l10n.quick_adkar_forgiveness,
+    _ => category,
+  };
 }

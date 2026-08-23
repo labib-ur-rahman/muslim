@@ -1,16 +1,17 @@
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
 import "package:dartz/dartz.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
-import "package:zad_al_muslim/core/common/providers/theme_provider.dart";
-import "package:zad_al_muslim/core/errors/failures.dart";
-import "package:zad_al_muslim/core/extensions/color_ext.dart";
-import "package:zad_al_muslim/features/quran/data/models/juzz_model.dart";
-import "package:zad_al_muslim/features/quran/domain/entities/surah_meta_entity.dart";
-import "package:zad_al_muslim/features/quran/presentation/pages/quran_pages.dart";
-import "package:zad_al_muslim/features/quran/presentation/providers/all_juzz_provider.dart";
-import "package:zad_al_muslim/features/quran/presentation/providers/surahs_meta_provider.dart";
+import "package:shirahsoft_muslim/core/common/providers/theme_provider.dart";
+import "package:shirahsoft_muslim/core/errors/failures.dart";
+import "package:shirahsoft_muslim/core/extensions/color_ext.dart";
+import "package:shirahsoft_muslim/core/l10n/app_localizations.dart";
+import "package:shirahsoft_muslim/features/quran/data/models/juzz_model.dart";
+import "package:shirahsoft_muslim/features/quran/domain/entities/surah_meta_entity.dart";
+import "package:shirahsoft_muslim/features/quran/presentation/pages/quran_pages.dart";
+import "package:shirahsoft_muslim/features/quran/presentation/providers/all_juzz_provider.dart";
+import "package:shirahsoft_muslim/features/quran/presentation/providers/surahs_meta_provider.dart";
 import "package:qcf_quran/qcf_quran.dart";
 
 class IndexSurahMenu extends ConsumerStatefulWidget {
@@ -30,6 +31,7 @@ class _IndexSurahMenuState extends ConsumerState<IndexSurahMenu> {
 
     final ThemeMode themeMode = ref.watch(themeProvider);
     final bool isDark = themeMode == ThemeMode.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: context.color.surfaceContainerLowest,
@@ -56,7 +58,7 @@ class _IndexSurahMenuState extends ConsumerState<IndexSurahMenu> {
                     SizedBox(width: 10.w),
                     Expanded(
                       child: Text(
-                        'فهرس المصحف',
+                        l10n.quran_index_title,
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           fontSize: 18.sp,
@@ -66,7 +68,7 @@ class _IndexSurahMenuState extends ConsumerState<IndexSurahMenu> {
                       ),
                     ),
                     IconButton.filledTonal(
-                      tooltip: 'إغلاق',
+                      tooltip: l10n.close,
                       onPressed: () => Navigator.pop(context),
                       icon: const Icon(Icons.close_rounded),
                     ),
@@ -130,6 +132,7 @@ class _IndexMenuTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
@@ -167,9 +170,9 @@ class _IndexMenuTabBar extends StatelessWidget {
             color: context.color.onPrimary,
             fontSize: 16.sp,
           ),
-          tabs: const [
-            Tab(text: "السور"),
-            Tab(text: "الأجزاء"),
+          tabs: [
+            Tab(text: l10n.quran_surahs_tab),
+            Tab(text: l10n.quran_juz_tab),
           ],
         ),
       ),
@@ -240,50 +243,54 @@ class _JuzList extends StatelessWidget {
     return juzzData.fold((failure) => Center(child: Text(failure.message)), (
       data,
     ) {
-      return surahsMeta.fold((failure) => Center(child: Text(failure.message)), (
-        surahs,
-      ) {
-        return ListView.builder(
-          padding: const EdgeInsets.only(
-            left: 18,
-            right: 18,
-            top: 8,
-            bottom: 18,
-          ),
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            final currentJuz = data[index];
-            final surahNumber = currentJuz.versesEntity.verses.keys.first;
-            final verseNumber =
-                currentJuz.versesEntity.verses.values.first.first;
+      final l10n = AppLocalizations.of(context)!;
+      return surahsMeta.fold(
+        (failure) => Center(child: Text(failure.message)),
+        (surahs) {
+          return ListView.builder(
+            padding: const EdgeInsets.only(
+              left: 18,
+              right: 18,
+              top: 8,
+              bottom: 18,
+            ),
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final currentJuz = data[index];
+              final surahNumber = currentJuz.versesEntity.verses.keys.first;
+              final verseNumber =
+                  currentJuz.versesEntity.verses.values.first.first;
 
-            return _JuzCard(
-              isDark: isDark,
-              index: currentJuz.id,
-              partLabel: 'الجزء ${currentJuz.id}',
-              partDescription:
-                  'سورة ${SurahNames.getFormattedName(surahNumber)} - صفحة ${getPageNumber(surahNumber, verseNumber)}',
-              partVerse: getVerse(
-                surahNumber,
-                verseNumber,
-                verseEndSymbol: false,
-              ),
-              pageNumber: surahNumber,
-              primaryColor: primaryColor,
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => QuranPages(
-                      pageNumber: getPageNumber(surahNumber, verseNumber),
+              return _JuzCard(
+                isDark: isDark,
+                index: currentJuz.id,
+                partLabel: l10n.quran_juz_number(currentJuz.id),
+                partDescription: l10n.quran_juz_starts_at(
+                  SurahNames.getFormattedName(surahNumber),
+                  getPageNumber(surahNumber, verseNumber),
+                ),
+                partVerse: getVerse(
+                  surahNumber,
+                  verseNumber,
+                  verseEndSymbol: false,
+                ),
+                pageNumber: surahNumber,
+                primaryColor: primaryColor,
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => QuranPages(
+                        pageNumber: getPageNumber(surahNumber, verseNumber),
+                      ),
                     ),
-                  ),
-                );
-              },
-            );
-          },
-        );
-      });
+                  );
+                },
+              );
+            },
+          );
+        },
+      );
     });
   }
 }

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/adkar/domain/entities/adkar_entity.dart';
-import 'package:zad_al_muslim/features/adkar/presentation/providers/adkar_provider.dart';
-import 'package:zad_al_muslim/features/adkar/presentation/pages/adkar_details_page.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/adkar/domain/entities/adkar_entity.dart';
+import 'package:shirahsoft_muslim/features/adkar/presentation/providers/adkar_provider.dart';
+import 'package:shirahsoft_muslim/features/adkar/presentation/pages/adkar_details_page.dart';
 
 class AdkarPage extends ConsumerStatefulWidget {
   const AdkarPage({super.key});
@@ -31,6 +32,7 @@ class _AdkarPageState extends ConsumerState<AdkarPage> {
   @override
   Widget build(BuildContext context) {
     final adkarData = ref.watch(allAdkarProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: context.color.surfaceContainerLowest,
@@ -48,7 +50,7 @@ class _AdkarPageState extends ConsumerState<AdkarPage> {
           }).toList();
 
           if (adkarList.isEmpty) {
-            return const Center(child: Text('لا توجد بيانات للأذكار.'));
+            return Center(child: Text(l10n.adkar_no_data));
           }
 
           return SafeArea(
@@ -62,7 +64,7 @@ class _AdkarPageState extends ConsumerState<AdkarPage> {
                     onChanged: (value) => setState(() => _searchQuery = value),
                     style: TextStyle(fontFamily: 'Cairo', fontSize: 13.sp),
                     decoration: InputDecoration(
-                      hintText: 'بحث في الأذكار...',
+                      hintText: l10n.adkar_search_hint,
                       hintStyle: TextStyle(
                         fontFamily: 'Cairo',
                         color: context.color.onSurfaceVariant,
@@ -188,6 +190,7 @@ class _AdkarPageState extends ConsumerState<AdkarPage> {
     int index,
   ) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
       child: Material(
@@ -230,7 +233,7 @@ class _AdkarPageState extends ConsumerState<AdkarPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        adkar.category,
+                        _localizedAdkarCategory(l10n, adkar.category),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -243,7 +246,7 @@ class _AdkarPageState extends ConsumerState<AdkarPage> {
                       ),
                       SizedBox(height: 2.h),
                       Text(
-                        '${adkar.text.length} ذكر',
+                        l10n.adkar_details_count(adkar.text.length),
                         style: TextStyle(
                           fontSize: 10.5.sp,
                           fontFamily: 'Cairo',
@@ -267,6 +270,7 @@ class _AdkarPageState extends ConsumerState<AdkarPage> {
   }
 
   Widget _buildVirtueSection(BuildContext context, AdkarEntity virtue) {
+    final l10n = AppLocalizations.of(context)!;
     final displayedText = _isVirtueExpanded
         ? virtue.text
         : virtue.text.take(3).toList();
@@ -293,7 +297,7 @@ class _AdkarPageState extends ConsumerState<AdkarPage> {
               ),
               SizedBox(width: 8.w),
               Text(
-                'فضائل الذكر',
+                l10n.adkar_virtues_title,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 18.sp,
@@ -333,7 +337,9 @@ class _AdkarPageState extends ConsumerState<AdkarPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    _isVirtueExpanded ? 'عرض أقل' : 'عرض المزيد من الفضائل',
+                    _isVirtueExpanded
+                        ? l10n.duaa_show_less
+                        : l10n.adkar_show_more_virtues,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       color: context.color.tertiary,
@@ -378,12 +384,13 @@ class _AdkarHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.fromLTRB(14.w, 12.h, 14.w, 8.h),
       child: Row(
         children: [
           IconButton.filledTonal(
-            tooltip: 'العودة',
+            tooltip: l10n.go_back,
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_rounded),
           ),
@@ -407,7 +414,7 @@ class _AdkarHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'الأذكار والأدعية',
+                  l10n.adkar_adia,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 20.sp,
@@ -416,7 +423,7 @@ class _AdkarHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'حصنك اليومي من الذكر والدعاء',
+                  l10n.adkar_header_subtitle,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 10.5.sp,
@@ -439,6 +446,7 @@ class _EmptySearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Padding(
         padding: EdgeInsets.all(32.r),
@@ -452,7 +460,7 @@ class _EmptySearch extends StatelessWidget {
             ),
             SizedBox(height: 12.h),
             Text(
-              'لا توجد نتائج لـ «$query»',
+              l10n.adkar_empty_search(query),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Cairo',
@@ -491,6 +499,7 @@ class _AdkarError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return SafeArea(
       child: Column(
         children: [
@@ -515,7 +524,7 @@ class _AdkarError extends StatelessWidget {
                     ),
                     SizedBox(height: 12.h),
                     Text(
-                      'تعذر تحميل الأذكار',
+                      l10n.adkar_load_error,
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         fontSize: 15.sp,
@@ -527,7 +536,7 @@ class _AdkarError extends StatelessWidget {
                     FilledButton.icon(
                       onPressed: onRetry,
                       icon: const Icon(Icons.refresh_rounded),
-                      label: const Text('إعادة المحاولة'),
+                      label: Text(l10n.retry),
                     ),
                   ],
                 ),
@@ -538,4 +547,17 @@ class _AdkarError extends StatelessWidget {
       ),
     );
   }
+}
+
+String _localizedAdkarCategory(AppLocalizations l10n, String category) {
+  return switch (category.trim()) {
+    'فضل الذكر' => l10n.adkar_virtues_title,
+    'أذكار الصباح والمساء' => l10n.quick_adkar_morning_evening,
+    'أذكار النوم' => l10n.quick_adkar_sleep,
+    'الأذكار بعد السلام من الصلاة' => l10n.quick_adkar_after_prayer,
+    'أذكار الاستيقاظ من النوم' => l10n.quick_adkar_wake_up,
+    'دعاء الهم والحزن' => l10n.quick_adkar_worry_sadness,
+    'الاستغفار والتوبة' => l10n.quick_adkar_forgiveness,
+    _ => category,
+  };
 }

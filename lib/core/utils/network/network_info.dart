@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
 
 class NetworkInfo {
   // دالة الفحص الرئيسية (بقيت كما هي في التسمية والمنطق)

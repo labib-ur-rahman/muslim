@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/features/adkar/domain/entities/adkar_entity.dart';
-import 'package:zad_al_muslim/features/adkar/domain/usecases/get_all_adkar.dart';
-import 'package:zad_al_muslim/features/adkar/domain/usecases/get_adkar_by_category.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/features/adkar/domain/entities/adkar_entity.dart';
+import 'package:shirahsoft_muslim/features/adkar/domain/usecases/get_all_adkar.dart';
+import 'package:shirahsoft_muslim/features/adkar/domain/usecases/get_adkar_by_category.dart';
 
 // Provider to get the use cases from GetIt
 final getAllAdkarUseCaseProvider = Provider<GetAllAdkar>((ref) {

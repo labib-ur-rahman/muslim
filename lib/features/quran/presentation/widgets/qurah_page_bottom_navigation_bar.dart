@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/constants/routes.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/extensions/screen_util_sizes.dart';
-import 'package:zad_al_muslim/core/extensions/sizes_ext.dart';
-import 'package:zad_al_muslim/features/quran/presentation/widgets/marks_modal_bottom_sheet.dart';
-import 'package:zad_al_muslim/features/quran/presentation/widgets/quran_search_sheet.dart';
+import 'package:shirahsoft_muslim/core/constants/routes.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/extensions/screen_util_sizes.dart';
+import 'package:shirahsoft_muslim/core/extensions/sizes_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/widgets/marks_modal_bottom_sheet.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/widgets/quran_search_sheet.dart';
 
 class QurahPageBottomNavigationBar extends ConsumerStatefulWidget {
   final VoidCallback? onIndexPressed;
@@ -54,6 +55,7 @@ class _QurahPageBottomNavigationBarState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SlideTransition(
       position: _offsetAnimation,
       child: Padding(
@@ -75,53 +77,68 @@ class _QurahPageBottomNavigationBarState
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildNavItem(context, Icons.auto_stories_rounded, "الفهرس", () {
-                if (widget.onIndexPressed != null) {
-                  widget.onIndexPressed!();
-                }
-              }),
+              _buildNavItem(
+                context,
+                Icons.auto_stories_rounded,
+                l10n.quran_nav_index,
+                () {
+                  if (widget.onIndexPressed != null) {
+                    widget.onIndexPressed!();
+                  }
+                },
+              ),
               _buildDivider(context),
-              _buildNavItem(context, Icons.search_rounded, "بحث", () {
-                showModalBottomSheet(
-                  isScrollControlled: true,
-                  showDragHandle: false,
-                  barrierColor: context.color.brightness == Brightness.dark
-                      ? Colors.white.withValues(alpha: .2)
-                      : Colors.black54,
-                  sheetAnimationStyle: const AnimationStyle(
-                    duration: Duration(milliseconds: 800),
-                    curve: Curves.decelerate,
-                  ),
-                  constraints: BoxConstraints(
-                    maxHeight: context.mediaQueryHeight - 100.h,
-                  ),
-                  context: context,
-                  builder: (context) {
-                    return const QuranSearchSheet();
-                  },
-                );
-              }),
+              _buildNavItem(
+                context,
+                Icons.search_rounded,
+                l10n.quran_nav_search,
+                () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    showDragHandle: false,
+                    barrierColor: context.color.brightness == Brightness.dark
+                        ? Colors.white.withValues(alpha: .2)
+                        : Colors.black54,
+                    sheetAnimationStyle: const AnimationStyle(
+                      duration: Duration(milliseconds: 800),
+                      curve: Curves.decelerate,
+                    ),
+                    constraints: BoxConstraints(
+                      maxHeight: context.mediaQueryHeight - 100.h,
+                    ),
+                    context: context,
+                    builder: (context) {
+                      return const QuranSearchSheet();
+                    },
+                  );
+                },
+              ),
               _buildDivider(context),
-              _buildNavItem(context, Icons.bookmarks_rounded, "العلامات", () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  showDragHandle: false,
-                  barrierColor: context.color.brightness == Brightness.dark
-                      ? Colors.white.withValues(alpha: .2)
-                      : Colors.black54,
-                  backgroundColor: Colors.transparent,
-                  sheetAnimationStyle: const AnimationStyle(
-                    duration: Duration(milliseconds: 600),
-                    curve: Curves.decelerate,
-                  ),
-                  builder: (context) {
-                    return const MarksModalBottomSheet();
-                  },
-                );
-              }),
+              _buildNavItem(
+                context,
+                Icons.bookmarks_rounded,
+                l10n.quran_nav_bookmarks,
+                () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    showDragHandle: false,
+                    barrierColor: context.color.brightness == Brightness.dark
+                        ? Colors.white.withValues(alpha: .2)
+                        : Colors.black54,
+                    backgroundColor: Colors.transparent,
+                    sheetAnimationStyle: const AnimationStyle(
+                      duration: Duration(milliseconds: 600),
+                      curve: Curves.decelerate,
+                    ),
+                    builder: (context) {
+                      return const MarksModalBottomSheet();
+                    },
+                  );
+                },
+              ),
               _buildDivider(context),
-              _buildNavItem(context, Icons.settings_rounded, "الإعدادات", () {
+              _buildNavItem(context, Icons.settings_rounded, l10n.settings, () {
                 Navigator.of(context).pushNamed(Routes.quranSettingsPage);
               }),
             ],

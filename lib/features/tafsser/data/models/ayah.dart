@@ -1,6 +1,6 @@
 import 'package:isar_community/isar.dart';
 import '../../domain/entities/tafsser_entities.dart';
-import 'package:zad_al_muslim/features/tafsser/data/models/tafsser_surah.dart';
+import 'package:shirahsoft_muslim/features/tafsser/data/models/tafsser_surah.dart';
 
 part 'ayah.g.dart';
 

@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:zad_al_muslim/core/common/providers/daily_content_provider.dart';
+import 'package:shirahsoft_muslim/core/common/providers/daily_content_provider.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
 
 class TodayDuaa extends ConsumerStatefulWidget {
   const TodayDuaa({super.key});
@@ -76,7 +77,8 @@ class _TodayDuaaState extends ConsumerState<TodayDuaa> {
   }
 
   Future<void> _copyDuaa(String duaaText) async {
-    final text = '$duaaText\n\nمن تطبيق زاد المسلم';
+    final l10n = AppLocalizations.of(context)!;
+    final text = '$duaaText\n\n${l10n.duaa_shared_from_app}';
 
     await Clipboard.setData(ClipboardData(text: text));
 
@@ -98,8 +100,9 @@ class _TodayDuaaState extends ConsumerState<TodayDuaa> {
   }
 
   Future<void> _shareDuaa(String duaaText) async {
+    final l10n = AppLocalizations.of(context)!;
     await SharePlus.instance.share(
-      ShareParams(text: '$duaaText\n\nمن تطبيق زاد المسلم'),
+      ShareParams(text: '$duaaText\n\n${l10n.duaa_shared_from_app}'),
     );
   }
 }
@@ -124,6 +127,7 @@ class _DuaaContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: EdgeInsets.all(18.r),
@@ -177,7 +181,9 @@ class _DuaaContent extends StatelessWidget {
                           ? Icons.expand_less_rounded
                           : Icons.expand_more_rounded,
                     ),
-                    label: Text(isExpanded ? 'عرض أقل' : 'عرض الدعاء كاملًا'),
+                    label: Text(
+                      isExpanded ? l10n.duaa_show_less : l10n.duaa_show_full,
+                    ),
                   ),
                 ],
               ],
@@ -210,7 +216,7 @@ class _DuaaContent extends StatelessWidget {
               Expanded(
                 child: _DuaaActionButton(
                   icon: Icons.copy_rounded,
-                  label: 'نسخ الدعاء',
+                  label: l10n.duaa_copy_action,
                   onTap: onCopy,
                   isPrimary: true,
                 ),
@@ -221,7 +227,7 @@ class _DuaaContent extends StatelessWidget {
               Expanded(
                 child: _DuaaActionButton(
                   icon: Icons.share_rounded,
-                  label: 'مشاركة',
+                  label: l10n.duaa_share_action,
                   onTap: onShare,
                 ),
               ),
@@ -239,6 +245,7 @@ class _DuaaHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Row(
       children: [
@@ -263,7 +270,7 @@ class _DuaaHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'دعاء اليوم',
+                l10n.today_duaa,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 17.sp,
@@ -274,7 +281,7 @@ class _DuaaHeader extends StatelessWidget {
               ),
               SizedBox(height: 2.h),
               Text(
-                'دعاء مختار يتجدد كل يوم',
+                l10n.duaa_daily_subtitle,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 10.5.sp,
@@ -294,7 +301,7 @@ class _DuaaHeader extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.r),
           ),
           child: Text(
-            'اليوم',
+            l10n.pray_time_today,
             style: TextStyle(
               fontFamily: 'Cairo',
               fontSize: 10.sp,
@@ -314,6 +321,7 @@ class _CopiedMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
       width: double.infinity,
@@ -332,7 +340,7 @@ class _CopiedMessage extends StatelessWidget {
           ),
           SizedBox(width: 7.w),
           Text(
-            'تم نسخ الدعاء',
+            l10n.duaa_copied_message,
             style: TextStyle(
               fontFamily: 'Cairo',
               fontSize: 11.sp,
@@ -504,6 +512,7 @@ class _DuaaError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 26.h),
@@ -518,7 +527,7 @@ class _DuaaError extends StatelessWidget {
           SizedBox(height: 10.h),
 
           Text(
-            'تعذر تحميل دعاء اليوم',
+            l10n.duaa_load_error,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Cairo',
@@ -533,7 +542,7 @@ class _DuaaError extends StatelessWidget {
           TextButton.icon(
             onPressed: onRetry,
             icon: const Icon(Icons.refresh_rounded),
-            label: const Text('إعادة المحاولة'),
+            label: Text(l10n.retry),
           ),
         ],
       ),

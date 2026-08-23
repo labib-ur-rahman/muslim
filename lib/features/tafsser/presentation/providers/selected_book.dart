@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/features/tafsser/domain/entities/tafsser_entities.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/features/tafsser/domain/entities/tafsser_entities.dart';
 
 part 'selected_book.g.dart';
 

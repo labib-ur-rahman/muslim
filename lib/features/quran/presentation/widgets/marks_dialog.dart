@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:zad_al_muslim/core/extensions/sizes_ext.dart';
-import 'package:zad_al_muslim/core/l10n/app_localizations.dart';
-import 'package:zad_al_muslim/core/utils/arabic_numbers.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/mark.dart';
-import 'package:zad_al_muslim/core/common/providers/theme_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/sizes_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/utils/arabic_numbers.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/mark.dart';
+import 'package:shirahsoft_muslim/core/common/providers/theme_provider.dart';
 
 class MarksDialog extends ConsumerStatefulWidget {
   final PageController pageController;
@@ -81,7 +81,11 @@ class _MarksDialogState extends ConsumerState<MarksDialog> {
                                   ),
                                 ),
                                 title: Text(
-                                  "سُورَةُ ${markProvider[index].surahName}",
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.quran_surah_label(
+                                    markProvider[index].surahName,
+                                  ),
                                   style: TextStyle(
                                     fontSize: context.witdthScreen * 0.06,
                                     fontFamily: "Amiri",
@@ -108,7 +112,9 @@ class _MarksDialogState extends ConsumerState<MarksDialog> {
                         SizedBox(height: context.heightScreen * 0.05),
                         Center(
                           child: Text(
-                            "لم يتم إضافة فواصل الى الآن",
+                            AppLocalizations.of(
+                              context,
+                            )!.quran_no_saved_bookmarks,
                             style: TextStyle(
                               fontSize: context.witdthScreen * 0.05,
                               color: theme == ThemeMode.light

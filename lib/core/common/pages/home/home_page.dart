@@ -3,18 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zad_al_muslim/core/common/providers/home_clock_provider.dart';
-import 'package:zad_al_muslim/core/common/widgets/home/home_header.dart';
-import 'package:zad_al_muslim/core/common/widgets/home/service_tile.dart';
-import 'package:zad_al_muslim/core/common/widgets/home/today_duaa.dart';
-import 'package:zad_al_muslim/core/constants/routes.dart';
-import 'package:zad_al_muslim/core/constants/shared_pref_keys.dart';
-import 'package:zad_al_muslim/core/l10n/app_localizations.dart';
-import 'package:zad_al_muslim/features/quran/data/models/mark.dart';
-import 'package:zad_al_muslim/features/quran/presentation/pages/quran_pages.dart';
-import 'package:zad_al_muslim/core/common/widgets/home/next_prayer_card.dart';
-import 'package:zad_al_muslim/core/common/widgets/home/quick_adkar_strip.dart';
-import 'package:zad_al_muslim/core/common/widgets/home/reading_progress_card.dart';
+import 'package:shirahsoft_muslim/core/common/providers/home_clock_provider.dart';
+import 'package:shirahsoft_muslim/core/common/widgets/home/home_header.dart';
+import 'package:shirahsoft_muslim/core/common/widgets/home/service_tile.dart';
+import 'package:shirahsoft_muslim/core/common/widgets/home/today_duaa.dart';
+import 'package:shirahsoft_muslim/core/constants/routes.dart';
+import 'package:shirahsoft_muslim/core/constants/shared_pref_keys.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/data/models/mark.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/pages/quran_pages.dart';
+import 'package:shirahsoft_muslim/core/common/widgets/home/next_prayer_card.dart';
+import 'package:shirahsoft_muslim/core/common/widgets/home/quick_adkar_strip.dart';
+import 'package:shirahsoft_muslim/core/common/widgets/home/reading_progress_card.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -99,7 +99,7 @@ class PrimarySectionWidget extends ConsumerWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final localizations = AppLocalizations.of(context)!;
     final now = ref.watch(homeClockProvider).value ?? DateTime.now();
-    final adkarContent = _getAdkarContent(now);
+    final adkarContent = _getAdkarContent(localizations, now);
 
     return Padding(
       padding: EdgeInsets.fromLTRB(14.w, 16.h, 14.w, 10.h),
@@ -119,9 +119,9 @@ class PrimarySectionWidget extends ConsumerWidget {
                 children: [
                   ServiceTile(
                     width: tileWidth,
-                    title: 'القرآن المُرتل',
-                    subtitle: 'استماع وتحميل',
-                    actionName: "استمع الآن",
+                    title: localizations.home_moratal_title,
+                    subtitle: localizations.home_moratal_subtitle,
+                    actionName: localizations.home_moratal_action,
                     iconImage: 'assets/icons/voice.png',
                     accentColor: colorScheme.primary,
                     onTap: () => _openQuranMoratal(context),
@@ -130,7 +130,7 @@ class PrimarySectionWidget extends ConsumerWidget {
                     width: tileWidth,
                     title: localizations.adkar_adia,
                     subtitle: adkarContent.value,
-                    actionName: "طمأن قلبك بذكر الله",
+                    actionName: localizations.home_adkar_action,
                     iconImage: 'assets/icons/prayer.png',
                     accentColor: colorScheme.tertiary,
                     onTap: () {
@@ -140,8 +140,8 @@ class PrimarySectionWidget extends ConsumerWidget {
                   ServiceTile(
                     width: tileWidth,
                     title: localizations.qebla_direction,
-                    subtitle: 'تحديد الاتجاه',
-                    actionName: "البوصلة جاهزة",
+                    subtitle: localizations.home_qibla_subtitle,
+                    actionName: localizations.home_qibla_action,
                     iconImage: 'assets/icons/kaaba.png',
                     accentColor: colorScheme.secondary,
                     onTap: () {
@@ -151,8 +151,8 @@ class PrimarySectionWidget extends ConsumerWidget {
                   ServiceTile(
                     width: tileWidth,
                     title: localizations.sunah,
-                    subtitle: 'أحاديث وهدي نبوي',
-                    actionName: "تصفح الأحاديث",
+                    subtitle: localizations.home_sunnah_subtitle,
+                    actionName: localizations.home_sunnah_action,
                     iconImage: 'assets/icons/quran2.png',
                     accentColor: colorScheme.primary,
                     onTap: () {
@@ -168,18 +168,21 @@ class PrimarySectionWidget extends ConsumerWidget {
     );
   }
 
-  _AdkarCardContent _getAdkarContent(DateTime now) {
+  _AdkarCardContent _getAdkarContent(
+    AppLocalizations localizations,
+    DateTime now,
+  ) {
     final hour = now.hour;
 
     if (hour >= 4 && hour < 12) {
-      return const _AdkarCardContent('أذكار الصباح');
+      return _AdkarCardContent(localizations.settings_morning_adkar);
     }
 
     if (hour >= 12 && hour < 18) {
-      return const _AdkarCardContent('الأذكار اليومية');
+      return _AdkarCardContent(localizations.home_daily_adkar);
     }
 
-    return const _AdkarCardContent('أذكار المساء');
+    return _AdkarCardContent(localizations.settings_evening_adkar);
   }
 }
 
@@ -191,6 +194,7 @@ class _AdkarCardContent {
 
 Widget _buildSectionHeader(BuildContext context) {
   final colorScheme = Theme.of(context).colorScheme;
+  final l10n = AppLocalizations.of(context)!;
 
   return Row(
     children: [
@@ -215,7 +219,7 @@ Widget _buildSectionHeader(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'خدماتك اليومية',
+              l10n.home_daily_services_title,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 16.sp,
@@ -228,7 +232,7 @@ Widget _buildSectionHeader(BuildContext context) {
             SizedBox(height: 1.h),
 
             Text(
-              'القرآن والأذكار والسنة بين يديك',
+              l10n.home_daily_services_subtitle,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 10.sp,

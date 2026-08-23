@@ -5,16 +5,17 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qcf_quran/qcf_quran.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/utils/network/network_info.dart';
-import 'package:zad_al_muslim/features/quran_moratal/data/services/moratal_download_service.dart';
-import 'package:zad_al_muslim/features/quran_moratal/domain/entities/surah_meta_moratal_entity.dart';
-import 'package:zad_al_muslim/features/quran_moratal/presentation/providers/moratal_download_provider.dart';
-import 'package:zad_al_muslim/features/quran_moratal/presentation/providers/moratal_player_provider.dart';
-import 'package:zad_al_muslim/features/quran_moratal/presentation/providers/surahs_names_moratal_provider.dart';
-import 'package:zad_al_muslim/features/quran_moratal/presentation/widgets/internet_error_message.dart';
-import 'package:zad_al_muslim/features/quran_moratal/presentation/widgets/moratal_mini_player.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/utils/network/network_info.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/data/services/moratal_download_service.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/domain/entities/surah_meta_moratal_entity.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/presentation/providers/moratal_download_provider.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/presentation/providers/moratal_player_provider.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/presentation/providers/surahs_names_moratal_provider.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/presentation/widgets/internet_error_message.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/presentation/widgets/moratal_mini_player.dart';
 
 class SelectQariSurahPage extends ConsumerStatefulWidget {
   final Map<String, String> qariData;
@@ -169,6 +170,7 @@ class _SelectQariSurahPageState extends ConsumerState<SelectQariSurahPage> {
     required bool isAlreadyDownloaded,
   }) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -225,14 +227,12 @@ class _SelectQariSurahPageState extends ConsumerState<SelectQariSurahPage> {
                               children: [
                                 _buildInfoChip(
                                   Icons.menu_book_rounded,
-                                  surah.verseCount >= 10
-                                      ? '${surah.verseCount} آية'
-                                      : '${surah.verseCount} آيات',
+                                  l10n.quran_ayah_count(surah.verseCount),
                                   context,
                                 ),
                                 _buildInfoChip(
                                   Icons.grid_view_rounded,
-                                  'الجزء ${surah.juzzNumber}',
+                                  l10n.quran_juz_number(surah.juzzNumber),
                                   context,
                                 ),
                               ],
@@ -343,12 +343,13 @@ class _SurahPageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.fromLTRB(14.w, 12.h, 14.w, 8.h),
       child: Row(
         children: [
           IconButton.filledTonal(
-            tooltip: 'العودة',
+            tooltip: l10n.go_back,
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_rounded),
           ),
@@ -371,7 +372,7 @@ class _SurahPageHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'سور القرآن الكريم',
+                  l10n.moratal_surahs_title,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 18.sp,
@@ -479,7 +480,7 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
           _popupItem(
             value: 'download',
             icon: Icons.download_for_offline_rounded,
-            label: 'تحميل السورة',
+            label: AppLocalizations.of(context)!.moratal_download_surah,
             color: context.color.primary,
             context: context,
           ),
@@ -491,7 +492,7 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
           _popupItem(
             value: 'delete',
             icon: Icons.delete_outline_rounded,
-            label: 'حذف السورة',
+            label: AppLocalizations.of(context)!.moratal_delete_surah,
             color: context.color.error,
             context: context,
           ),
@@ -503,7 +504,7 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
           _popupItem(
             value: 'cancel',
             icon: Icons.cancel_outlined,
-            label: 'إلغاء التحميل',
+            label: AppLocalizations.of(context)!.moratal_cancel_download,
             color: context.color.error,
             context: context,
           ),
@@ -549,6 +550,7 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
     SurahDownloadState state,
   ) async {
     final notifier = ref.read(singleSurahDownloadProvider(_params).notifier);
+    final l10n = AppLocalizations.of(context)!;
 
     switch (value) {
       // ─── تحميل السورة ────────────────────────────────────────────────────
@@ -594,7 +596,9 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
                       SizedBox(width: 8.w),
                       Expanded(
                         child: Text(
-                          'تم تحميل سورة ${getSurahNameArabic(_params.surahNumber)} بنجاح',
+                          l10n.moratal_surah_downloaded_success(
+                            getSurahNameArabic(_params.surahNumber),
+                          ),
                           style: TextStyle(
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
@@ -647,7 +651,9 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
                         SizedBox(width: 8.w),
                         Expanded(
                           child: Text(
-                            'تم حذف سورة ${getSurahNameArabic(_params.surahNumber)} من الجهاز',
+                            l10n.moratal_surah_deleted_success(
+                              getSurahNameArabic(_params.surahNumber),
+                            ),
                             style: TextStyle(
                               fontFamily: 'Cairo',
                               fontWeight: FontWeight.bold,
@@ -673,7 +679,7 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
           _showSnackBar(
             context,
             icon: Icons.cancel_outlined,
-            message: 'تم إلغاء التحميل وحذف الملف المؤقت.',
+            message: l10n.moratal_cancelled_temp_deleted,
             color: Colors.red.shade700,
           );
         }
@@ -726,6 +732,7 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
   // ---------------------------------------------------------------------------
 
   Future<bool?> _showDeleteDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -744,7 +751,7 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
             ),
             SizedBox(width: 8.w),
             Text(
-              'حذف السورة',
+              l10n.moratal_delete_surah,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 16.sp,
@@ -754,14 +761,14 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
           ],
         ),
         content: Text(
-          'هل تريد حذف هذه السورة من الجهاز؟\nلا يمكن التراجع عن هذا الإجراء.',
+          l10n.moratal_delete_surah_message,
           style: TextStyle(fontFamily: 'Cairo', fontSize: 13.sp, height: 1.6),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
             child: Text(
-              'إلغاء',
+              l10n.settings_cancel,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 13.sp,
@@ -779,7 +786,7 @@ class _SurahOptionsMenuState extends ConsumerState<_SurahOptionsMenu> {
               ),
             ),
             child: Text(
-              'حذف',
+              l10n.settings_delete,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 13.sp,

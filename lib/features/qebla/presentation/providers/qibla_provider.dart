@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_compass/flutter_compass.dart';
-import 'package:zad_al_muslim/core/common/providers/user_position_provider.dart';
-import 'package:zad_al_muslim/features/qebla/data/repositories/qibla_repository_impl.dart';
-import 'package:zad_al_muslim/features/qebla/domain/entities/qibla_entity.dart';
-import 'package:zad_al_muslim/features/qebla/domain/usecases/get_qibla_direction.dart';
+import 'package:shirahsoft_muslim/core/common/providers/user_position_provider.dart';
+import 'package:shirahsoft_muslim/features/qebla/data/repositories/qibla_repository_impl.dart';
+import 'package:shirahsoft_muslim/features/qebla/domain/entities/qibla_entity.dart';
+import 'package:shirahsoft_muslim/features/qebla/domain/usecases/get_qibla_direction.dart';
 
 /// -- 1. مخزن استدعاء حساب القبلة --
 /// يقرأ الإحداثيات المخزنة من SharedPreferences ويحسب زاوية القبلة فوراً

@@ -6,33 +6,34 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:zad_al_muslim/core/common/providers/theme_provider.dart';
-import 'package:zad_al_muslim/core/constants/enums/qrai_names_ayah_by_ayah.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/extensions/screen_util_sizes.dart';
-import 'package:zad_al_muslim/core/extensions/sizes_ext.dart';
-import 'package:zad_al_muslim/core/themes/theme_notifier.dart';
-import 'package:zad_al_muslim/features/quran/data/models/mark.dart';
-import 'package:zad_al_muslim/features/quran/domain/repositories/voice_ayah_by_ayah_repo.dart';
-import 'package:zad_al_muslim/features/quran/domain/usecases/get_surah_number_by_page_number.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/audio_player_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/mark.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/player_state_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/surah_by_page_number_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/voice_ayah_by_ayah_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/widgets/index_surah_menu.dart';
-import 'package:zad_al_muslim/features/quran/presentation/widgets/mini_audio_player.dart';
-import 'package:zad_al_muslim/features/quran/presentation/widgets/qurah_page_bottom_navigation_bar.dart';
-import 'package:zad_al_muslim/features/quran/presentation/widgets/quran_page_app_bar.dart';
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/core/common/providers/theme_provider.dart';
+import 'package:shirahsoft_muslim/core/constants/enums/qrai_names_ayah_by_ayah.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/extensions/screen_util_sizes.dart';
+import 'package:shirahsoft_muslim/core/extensions/sizes_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/themes/theme_notifier.dart';
+import 'package:shirahsoft_muslim/features/quran/data/models/mark.dart';
+import 'package:shirahsoft_muslim/features/quran/domain/repositories/voice_ayah_by_ayah_repo.dart';
+import 'package:shirahsoft_muslim/features/quran/domain/usecases/get_surah_number_by_page_number.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/audio_player_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/mark.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/player_state_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/surah_by_page_number_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/voice_ayah_by_ayah_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/widgets/index_surah_menu.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/widgets/mini_audio_player.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/widgets/qurah_page_bottom_navigation_bar.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/widgets/quran_page_app_bar.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
 import 'package:flutter/services.dart';
-import 'package:zad_al_muslim/features/tafsser/presentation/providers/selected_book.dart';
-import 'package:zad_al_muslim/features/tafsser/presentation/widgets/show_tafsser_modal_bottom.dart';
+import 'package:shirahsoft_muslim/features/tafsser/presentation/providers/selected_book.dart';
+import 'package:shirahsoft_muslim/features/tafsser/presentation/widgets/show_tafsser_modal_bottom.dart';
 import 'package:qcf_quran/qcf_quran.dart' hide ScreenType;
 import 'package:share_plus/share_plus.dart';
-import 'package:zad_al_muslim/features/quran/presentation/pages/quran_vertical.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/pages/quran_vertical.dart';
 
 class QuranPages extends ConsumerStatefulWidget {
   final int? pageNumber;
@@ -222,6 +223,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
   ) {
     final settings = ref.watch(quranSettingsProvider);
     final isDark = themeMode == ThemeMode.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     final List<Color> currentColorsList = isDark
         ? [
@@ -426,7 +428,12 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
                           Row(
                             children: [
                               Text(
-                                "الجزء ${getJuzNumber(globalSurahNumber, globalStartOfSurah)}",
+                                l10n.quran_juz_number(
+                                  getJuzNumber(
+                                    globalSurahNumber,
+                                    globalStartOfSurah,
+                                  ),
+                                ),
                                 style: TextStyle(
                                   fontFamily: "Cairo",
                                   fontSize: 14.sp,
@@ -488,7 +495,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
                                                   ),
                                                   SizedBox(width: 10.w),
                                                   Text(
-                                                    "تم إضافة علامة القراءة",
+                                                    l10n.quran_reading_mark_added,
                                                     style: TextStyle(
                                                       fontSize: 14.sp,
                                                       fontFamily: "Cairo",
@@ -530,7 +537,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
                                                   ),
                                                   SizedBox(width: 10.w),
                                                   Text(
-                                                    "تم إزالة العلامة",
+                                                    l10n.quran_bookmark_removed,
                                                     style: TextStyle(
                                                       fontSize: 14.sp,
                                                       fontFamily: "Cairo",
@@ -655,6 +662,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
     BuildContext context,
     QariModel currentSelectedQariProvider,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: 5.h,
@@ -679,7 +687,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
         children: [
           _actionButton(
             icon: Icons.copy_rounded,
-            label: 'نسخ',
+            label: l10n.quran_action_copy,
             onTap: () async {
               final text = getVerse(
                 _surahNumber,
@@ -689,7 +697,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
               await Clipboard.setData(ClipboardData(text: text));
               if (!context.mounted) return;
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('تم نسخ الآية بنجاح')),
+                SnackBar(content: Text(l10n.quran_ayah_copied_success)),
               );
               _highlightAyah = false;
               setState(() {});
@@ -697,7 +705,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
           ),
           _actionButton(
             icon: Icons.play_arrow_rounded,
-            label: 'قراءة',
+            label: l10n.quran_action_read,
             onTap: () async {
               final url = ref.read(
                 voiceAyahByAyahProvider(
@@ -714,7 +722,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        "حدث خطأ",
+                        l10n.generic_error,
                         style: TextStyle(fontSize: 20.sp),
                       ),
                     ),
@@ -747,9 +755,10 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
                         Uri.parse(url),
                         tag: MediaItem(
                           id: 'ayah_${_surahNumber}s_$_verseNumber',
-                          title:
-                              'سورة ${SurahNames.getFormattedName(_surahNumber)}',
-                          artist: 'الآية $_verseNumber',
+                          title: l10n.quran_surah_label(
+                            SurahNames.getFormattedName(_surahNumber),
+                          ),
+                          artist: l10n.quran_ayah_number(_verseNumber),
                           artUri: file.uri,
                         ),
                       ),
@@ -760,10 +769,8 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
                   } catch (e) {
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "تعذر تشغيل الصوت. تحقق من اتصالك بالإنترنت.",
-                          ),
+                        SnackBar(
+                          content: Text(l10n.quran_audio_connection_error),
                         ),
                       );
                     }
@@ -785,7 +792,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
                 icon: isMarked
                     ? Icons.bookmark_added_rounded
                     : Icons.bookmark_add_outlined,
-                label: 'علامة',
+                label: l10n.quran_action_bookmark,
                 onTap: () async {
                   final notifier = ref.read(marksProvder.notifier);
                   if (!isMarked) {
@@ -822,7 +829,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
                               SizedBox(width: 10.w),
                               Expanded(
                                 child: Text(
-                                  "تم حفظ الآية. يمكنك الوصول إليها سريعاً من خلال الصفحة الرئيسية.",
+                                  l10n.quran_ayah_saved_home,
                                   style: TextStyle(
                                     fontSize: 13.sp,
                                     fontFamily: "Cairo",
@@ -861,7 +868,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
                               ),
                               SizedBox(width: 10.w),
                               Text(
-                                "تم إزالة العلامة",
+                                l10n.quran_bookmark_removed,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontFamily: "Cairo",
@@ -879,7 +886,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
           ),
           _actionButton(
             icon: Icons.menu_book_rounded,
-            label: 'تفسير',
+            label: l10n.quran_action_tafsir,
             onTap: () {
               final defaultBookId = ref.read(selectedBookProvider).id;
               showTafsserModalBottom(
@@ -893,7 +900,7 @@ class _QuranPagesState extends ConsumerState<QuranPages> {
           ),
           _actionButton(
             icon: Icons.share_rounded,
-            label: 'مشاركة',
+            label: l10n.quran_action_share,
             onTap: () async {
               final text = getVerse(
                 _surahNumber,

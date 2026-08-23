@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/errors/failures.dart';
-import 'package:zad_al_muslim/features/tafsser/domain/entities/tafsser_entities.dart';
-import 'package:zad_al_muslim/features/tafsser/domain/usecases/get_tafsser_books_usecase.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/errors/failures.dart';
+import 'package:shirahsoft_muslim/features/tafsser/domain/entities/tafsser_entities.dart';
+import 'package:shirahsoft_muslim/features/tafsser/domain/usecases/get_tafsser_books_usecase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'tafsser_book.g.dart';

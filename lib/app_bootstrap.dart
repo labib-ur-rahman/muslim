@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:timezone/data/latest.dart' as tz;
-import 'package:zad_al_muslim/core/di/injection_container.dart' as di;
-import 'package:zad_al_muslim/core/utils/notifications/notification_service.dart';
-import 'package:zad_al_muslim/core/notification_sound/notification_sound_manager.dart';
-import 'package:zad_al_muslim/infrastructure/repositories/notification_scheduler_impl.dart';
-import 'package:zad_al_muslim/infrastructure/lifecycle/app_lifecycle_observer.dart';
-import 'package:zad_al_muslim/features/quran/domain/services/quran_search_indexer.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart' as di;
+import 'package:shirahsoft_muslim/core/utils/notifications/notification_service.dart';
+import 'package:shirahsoft_muslim/core/notification_sound/notification_sound_manager.dart';
+import 'package:shirahsoft_muslim/infrastructure/repositories/notification_scheduler_impl.dart';
+import 'package:shirahsoft_muslim/infrastructure/lifecycle/app_lifecycle_observer.dart';
+import 'package:shirahsoft_muslim/features/quran/domain/services/quran_search_indexer.dart';
 
 // Imports needed for initializeAppData
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar_community/isar.dart';
-import 'package:zad_al_muslim/features/hadith/data/models/hadith_model.dart';
-import 'package:zad_al_muslim/features/hadith/data/repositories/insert_hadith.dart';
-import 'package:zad_al_muslim/features/quran/data/repositories/insert_quran_pages.dart';
-import 'package:zad_al_muslim/features/tafsser/data/repositories/insert_tafsser.dart';
-import 'package:zad_al_muslim/features/adkar/data/repositories/insert_adkar_to_isar.dart';
-import 'package:zad_al_muslim/core/utils/location/location_locator.dart';
-import 'package:zad_al_muslim/core/common/providers/user_position_provider.dart';
-import 'package:zad_al_muslim/core/utils/location/providers/location_status_provider.dart';
-import 'package:zad_al_muslim/core/constants/enums/my_enums.dart';
+import 'package:shirahsoft_muslim/features/hadith/data/models/hadith_model.dart';
+import 'package:shirahsoft_muslim/features/hadith/data/repositories/insert_hadith.dart';
+import 'package:shirahsoft_muslim/features/quran/data/repositories/insert_quran_pages.dart';
+import 'package:shirahsoft_muslim/features/tafsser/data/repositories/insert_tafsser.dart';
+import 'package:shirahsoft_muslim/features/adkar/data/repositories/insert_adkar_to_isar.dart';
+import 'package:shirahsoft_muslim/core/utils/location/location_locator.dart';
+import 'package:shirahsoft_muslim/core/common/providers/user_position_provider.dart';
+import 'package:shirahsoft_muslim/core/utils/location/providers/location_status_provider.dart';
+import 'package:shirahsoft_muslim/core/constants/enums/my_enums.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
-import 'package:zad_al_muslim/domain/usecases/recalculate_and_schedule_usecase.dart';
-import 'package:zad_al_muslim/domain/entities/location.dart' as domain_loc;
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
-import 'package:zad_al_muslim/core/utils/notifications/notification_inbox_service.dart';
+import 'package:shirahsoft_muslim/domain/usecases/recalculate_and_schedule_usecase.dart';
+import 'package:shirahsoft_muslim/domain/entities/location.dart' as domain_loc;
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/utils/notifications/notification_inbox_service.dart';
 
 class AppBootstrap {
   /// ─────────────────────────────────────────────────────────────────

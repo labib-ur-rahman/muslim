@@ -1,18 +1,18 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:zad_al_muslim/core/constants/enums/qrai_names_ayah_by_ayah.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/features/quran/domain/repositories/voice_ayah_by_ayah_repo.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/voice_ayah_by_ayah_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/player_state_provider.dart';
-import 'package:zad_al_muslim/features/quran_moratal/data/services/moratal_download_service.dart';
-import 'package:zad_al_muslim/core/utils/network/network_info.dart';
+import 'package:shirahsoft_muslim/core/constants/enums/qrai_names_ayah_by_ayah.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/features/quran/domain/repositories/voice_ayah_by_ayah_repo.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/voice_ayah_by_ayah_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/player_state_provider.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/data/services/moratal_download_service.dart';
+import 'package:shirahsoft_muslim/core/utils/network/network_info.dart';
 import 'package:qcf_quran/qcf_quran.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/services.dart';

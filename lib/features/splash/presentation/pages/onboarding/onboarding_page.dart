@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/splash/presentation/pages/onboarding/first_page_onborading.dart';
-import 'package:zad_al_muslim/features/splash/presentation/pages/onboarding/second_page_onborading.dart';
-import 'package:zad_al_muslim/features/splash/presentation/pages/onboarding/third_page_onborading.dart';
-import 'package:zad_al_muslim/features/splash/presentation/pages/onboarding/fourth_page_onboarding.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/features/splash/presentation/pages/onboarding/first_page_onborading.dart';
+import 'package:shirahsoft_muslim/features/splash/presentation/pages/onboarding/second_page_onborading.dart';
+import 'package:shirahsoft_muslim/features/splash/presentation/pages/onboarding/third_page_onborading.dart';
+import 'package:shirahsoft_muslim/features/splash/presentation/pages/onboarding/fourth_page_onboarding.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

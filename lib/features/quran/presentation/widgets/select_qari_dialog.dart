@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/constants/enums/qrai_names_ayah_by_ayah.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/audio_player_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
+import 'package:shirahsoft_muslim/core/constants/enums/qrai_names_ayah_by_ayah.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/audio_player_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
 
 class SelectQariDialog extends ConsumerWidget {
   const SelectQariDialog({super.key});
@@ -13,6 +14,7 @@ class SelectQariDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedQari = ref.watch(selectedQariProvider);
     const qariList = QariNamesAyahByAyah.allQaris;
+    final l10n = AppLocalizations.of(context)!;
 
     return Dialog(
       backgroundColor: context.color.surface,
@@ -37,7 +39,7 @@ class SelectQariDialog extends ConsumerWidget {
                   ),
                   SizedBox(width: 10.w),
                   Text(
-                    'اختيار القارئ',
+                    l10n.quran_select_qari_title,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       fontSize: 18.sp,
@@ -153,7 +155,7 @@ class SelectQariDialog extends ConsumerWidget {
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(
-                'إلغاء',
+                l10n.settings_cancel,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 14.sp,

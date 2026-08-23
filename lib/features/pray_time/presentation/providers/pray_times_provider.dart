@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/domain/repositories/i_prayer_repository.dart';
-import 'package:zad_al_muslim/domain/entities/prayer_time.dart' as domain;
-import 'package:zad_al_muslim/features/pray_time/presentation/providers/prayer_adjustments_provider.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/domain/repositories/i_prayer_repository.dart';
+import 'package:shirahsoft_muslim/domain/entities/prayer_time.dart' as domain;
+import 'package:shirahsoft_muslim/features/pray_time/presentation/providers/prayer_adjustments_provider.dart';
 import '../../domain/entities/prayer_times_entity.dart';
 
 /// موفر اليوم المحدد حالياً للعرض. الافتراضي هو اليوم الحالي.

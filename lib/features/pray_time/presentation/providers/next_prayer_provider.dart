@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:zad_al_muslim/features/pray_time/domain/entities/prayer_times_entity.dart';
-import 'package:zad_al_muslim/features/pray_time/presentation/providers/pray_times_provider.dart';
+import 'package:shirahsoft_muslim/features/pray_time/domain/entities/prayer_times_entity.dart';
+import 'package:shirahsoft_muslim/features/pray_time/presentation/providers/pray_times_provider.dart';
 
 /// بيانات الصلاة القادمة الجاهزة للاستخدام داخل الواجهة.
 class NextPrayerInfo {

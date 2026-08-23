@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
 import '../../domain/entities/tafsser_entities.dart';
 import '../providers/tafsser_download_provider.dart';
 

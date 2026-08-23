@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zad_al_muslim/core/l10n/app_localizations.dart';
-import 'package:zad_al_muslim/core/services/app_update/app_update_model.dart';
-import 'package:zad_al_muslim/core/services/app_update/app_update_providers.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/services/app_update/app_update_model.dart';
+import 'package:shirahsoft_muslim/core/services/app_update/app_update_providers.dart';
 
 class UpdateDialog extends ConsumerStatefulWidget {
   const UpdateDialog({super.key, required this.update});
@@ -34,7 +34,9 @@ class _UpdateDialogState extends ConsumerState<UpdateDialog> {
             .openStore(widget.update.storeUrl);
       } catch (_) {
         if (mounted) {
-          setState(() => _error = AppLocalizations.of(context)!.storeOpenFailed);
+          setState(
+            () => _error = AppLocalizations.of(context)!.storeOpenFailed,
+          );
         }
       }
     } finally {
@@ -55,7 +57,10 @@ class _UpdateDialogState extends ConsumerState<UpdateDialog> {
           Text(widget.update.message),
           if (_error != null) ...[
             const SizedBox(height: 12),
-            Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+            Text(
+              _error!,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
           ],
         ],
       ),

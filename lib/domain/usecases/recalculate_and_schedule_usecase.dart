@@ -1,8 +1,8 @@
 import 'package:adhan/adhan.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/utils/location/location_locator.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/utils/location/location_locator.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
 import '../entities/location.dart';
 import '../entities/prayer_time.dart';
 import '../repositories/i_prayer_repository.dart';

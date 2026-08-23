@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/providers/hadith_provider.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/providers/favorites_provider.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/widgets/hadith_card.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/widgets/hadith_modal_bottom.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/providers/hadith_provider.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/providers/favorites_provider.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/widgets/hadith_card.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/widgets/hadith_modal_bottom.dart';
 
 class FeaturedHadithsTab extends ConsumerWidget {
   const FeaturedHadithsTab({super.key});
@@ -14,10 +15,12 @@ class FeaturedHadithsTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final favoritesState = ref.watch(favoritesProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     return favoritesState.when(
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, stack) => Center(child: Text("حدث خطأ: $error")),
+      error: (error, stack) =>
+          Center(child: Text(l10n.hadith_error(error.toString()))),
       data: (featuredHadiths) {
         if (featuredHadiths.isEmpty) {
           return Center(
@@ -50,7 +53,7 @@ class FeaturedHadithsTab extends ConsumerWidget {
                   ),
                   SizedBox(height: 18.h),
                   Text(
-                    'مفضلتك بانتظارك',
+                    l10n.hadith_favorites_empty_title,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       fontSize: 18.sp,
@@ -60,7 +63,7 @@ class FeaturedHadithsTab extends ConsumerWidget {
                   ),
                   SizedBox(height: 6.h),
                   Text(
-                    'اضغط على النجمة بجانب أي حديث لحفظه والعودة إليه بسهولة.',
+                    l10n.hadith_favorites_empty_subtitle,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Cairo',

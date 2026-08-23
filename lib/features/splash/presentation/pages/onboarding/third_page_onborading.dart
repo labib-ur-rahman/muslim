@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/utils/notifications/notification_permission_service.dart';
-import 'package:zad_al_muslim/features/splash/presentation/pages/onboarding/onboarding_init.dart';
+import 'package:shirahsoft_muslim/core/utils/notifications/notification_permission_service.dart';
+import 'package:shirahsoft_muslim/features/splash/presentation/pages/onboarding/onboarding_init.dart';
 
 class ThirdPageOnboarding extends StatelessWidget {
   const ThirdPageOnboarding({super.key});

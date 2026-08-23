@@ -8,7 +8,7 @@
 flutterfire configure
 ```
 
-اختر تطبيق Android ذي المعرّف `com.zad_al_muslim.adnan`. سيُنشئ الأمر
+اختر تطبيق Android ذي المعرّف `com.shirahsoft_muslim.adnan`. سيُنشئ الأمر
 `firebase_options.dart` وملفات إعداد المنصة. عند استخدام الملف المولّد، مرّر
 `DefaultFirebaseOptions.currentPlatform` إلى `Firebase.initializeApp`.
 
@@ -26,7 +26,7 @@ flutterfire configure
 | `minimum_android_build` | Number | أقدم build مسموح |
 | `update_title_ar` | String | `يتوفر تحديث جديد` |
 | `update_message_ar` | String | `حدّث التطبيق الآن للحصول على أحدث التحسينات والإصلاحات.` |
-| `play_store_url` | String | `https://play.google.com/store/apps/details?id=com.zad_al_muslim.adnan` |
+| `play_store_url` | String | `https://play.google.com/store/apps/details?id=com.shirahsoft_muslim.adnan` |
 
 المقارنة تستخدم `PackageInfo.buildNumber` فقط. إذا كانت `latest` أصغر من
 `minimum` تُعامل `latest` كأنها مساوية لـ `minimum` ويسجّل التطبيق تحذيرًا.

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
-import 'package:zad_al_muslim/core/constants/routes.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/core/constants/routes.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
 import 'package:qcf_quran/qcf_quran.dart';
 
 class QuranPageAppBar extends ConsumerStatefulWidget {
@@ -58,6 +59,7 @@ class _QuranPageAppBarState extends ConsumerState<QuranPageAppBar>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SlideTransition(
       position: _offsetAnimation,
       child: SafeArea(
@@ -82,7 +84,7 @@ class _QuranPageAppBarState extends ConsumerState<QuranPageAppBar>
               children: [
                 // زر العودة بتنسيق متناسق
                 _buildSquareAction(
-                  message: "الصفحة الرئيسية",
+                  message: l10n.home,
                   icon: Icons.arrow_back_ios_rounded,
                   onTap: () => Navigator.of(
                     context,
@@ -98,7 +100,7 @@ class _QuranPageAppBarState extends ConsumerState<QuranPageAppBar>
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "سورة ${widget.surahName}",
+                        l10n.quran_surah_label(widget.surahName),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 17.sp,
@@ -114,7 +116,7 @@ class _QuranPageAppBarState extends ConsumerState<QuranPageAppBar>
                         spacing: 16.w,
                         children: [
                           Text(
-                            "الجزء ${widget.juzzNumber}",
+                            l10n.quran_juz_number(widget.juzzNumber),
                             style: TextStyle(
                               fontSize: 12.sp,
                               fontFamily: "Cairo",
@@ -123,7 +125,7 @@ class _QuranPageAppBarState extends ConsumerState<QuranPageAppBar>
                             ),
                           ),
                           Text(
-                            "عدد الآيات ${widget.verseCount}",
+                            l10n.quran_ayah_count(widget.verseCount),
                             style: TextStyle(
                               fontSize: 12.sp,
                               fontFamily: "Cairo",

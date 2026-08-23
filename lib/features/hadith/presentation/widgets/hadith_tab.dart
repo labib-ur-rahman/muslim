@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:zad_al_muslim/core/constants/enums/my_enums.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/providers/hadith_provider.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/widgets/filter_container.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/widgets/hadith_search_bar.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/widgets/hadith_card.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/widgets/hadith_modal_bottom.dart';
+import 'package:shirahsoft_muslim/core/constants/enums/my_enums.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/providers/hadith_provider.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/widgets/filter_container.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/widgets/hadith_search_bar.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/widgets/hadith_card.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/widgets/hadith_modal_bottom.dart';
 
 class HadithTab extends ConsumerStatefulWidget {
   const HadithTab({super.key});
@@ -45,6 +46,7 @@ class _HadithTabState extends ConsumerState<HadithTab> {
   Widget build(BuildContext context) {
     final hadithState = ref.watch(hadithProvider);
     final notifier = ref.watch(hadithProvider.notifier);
+    final l10n = AppLocalizations.of(context)!;
 
     // Smart Tags list defined by user
     final smartTags = [
@@ -93,7 +95,7 @@ class _HadithTabState extends ConsumerState<HadithTab> {
                                 : context.color.outlineVariant,
                           ),
                           label: Text(
-                            tag.arabicName,
+                            _localizedBukhariBook(l10n, tag),
                             style: TextStyle(
                               fontFamily: "Cairo",
                               fontSize: 13.sp,
@@ -122,8 +124,8 @@ class _HadithTabState extends ConsumerState<HadithTab> {
           // Filters and Search (Future)
           Row(
             children: [
-              const BookFilterContainer(
-                title: "الكتاب",
+              BookFilterContainer(
+                title: l10n.hadith_filter_book,
                 iconData: Icons.book_outlined,
                 // color: context.color.primary,
               ),
@@ -140,7 +142,7 @@ class _HadithTabState extends ConsumerState<HadithTab> {
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (err, stack) => Center(
                 child: Text(
-                  "خطأ في تحميل الأحاديث: $err",
+                  l10n.hadith_load_error(err.toString()),
                   style: TextStyle(fontSize: 16.sp, fontFamily: "Cairo"),
                 ),
               ),
@@ -217,6 +219,8 @@ class _HadithTabState extends ConsumerState<HadithTab> {
     required BuildContext context,
     required WidgetRef ref,
   }) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
       child: InkWell(
@@ -246,7 +250,7 @@ class _HadithTabState extends ConsumerState<HadithTab> {
               ),
               SizedBox(width: 8.w),
               Text(
-                "حذف الفلاتر",
+                l10n.hadith_clear_filters,
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontFamily: "Cairo",
@@ -268,6 +272,7 @@ class _EmptyHadiths extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Padding(
         padding: EdgeInsets.all(28.r),
@@ -288,7 +293,7 @@ class _EmptyHadiths extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             Text(
-              'لا توجد نتائج مطابقة',
+              l10n.hadith_empty_title,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 17.sp,
@@ -298,7 +303,7 @@ class _EmptyHadiths extends StatelessWidget {
             ),
             SizedBox(height: 5.h),
             Text(
-              'جرّب تغيير عبارة البحث أو إزالة بعض الفلاتر.',
+              l10n.hadith_empty_subtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Cairo',
@@ -311,4 +316,18 @@ class _EmptyHadiths extends StatelessWidget {
       ),
     );
   }
+}
+
+String _localizedBukhariBook(AppLocalizations l10n, SahihBukhariBook book) {
+  return switch (book) {
+    SahihBukhariBook.belief => l10n.hadith_book_belief,
+    SahihBukhariBook.salat => l10n.hadith_book_salat,
+    SahihBukhariBook.knowledge => l10n.hadith_book_knowledge,
+    SahihBukhariBook.salesAndTrade => l10n.hadith_book_sales,
+    SahihBukhariBook.adab => l10n.hadith_book_adab,
+    SahihBukhariBook.riqaq => l10n.hadith_book_riqaq,
+    SahihBukhariBook.invocations => l10n.hadith_book_invocations,
+    SahihBukhariBook.tawheel => l10n.hadith_book_tawhid,
+    _ => book.arabicName,
+  };
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/common/widgets/page_header.dart';
+import 'package:shirahsoft_muslim/core/common/widgets/page_header.dart';
 
 class CustomLicensePage extends StatefulWidget {
   const CustomLicensePage({super.key});

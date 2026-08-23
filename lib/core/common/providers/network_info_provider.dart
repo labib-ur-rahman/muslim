@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:zad_al_muslim/core/constants/enums/my_enums.dart';
-import 'package:zad_al_muslim/core/utils/network/network_info.dart';
-import 'package:zad_al_muslim/core/utils/location/providers/location_status_provider.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/constants/enums/my_enums.dart';
+import 'package:shirahsoft_muslim/core/utils/network/network_info.dart';
+import 'package:shirahsoft_muslim/core/utils/location/providers/location_status_provider.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
 
 class NetworkInfoNotifier extends StateNotifier<NetworkInfoState> {
   final Ref ref;

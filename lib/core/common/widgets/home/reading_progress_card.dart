@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
-import 'package:zad_al_muslim/features/quran/data/models/mark.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/mark.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/data/models/mark.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/mark.dart';
 
 /// بطاقة واحدة تجمع متابعة القراءة وتقدم الختمة، وتعرض دعوة بداية عند غياب
 /// علامة قراءة محفوظة.
@@ -26,6 +27,7 @@ class _ReadingProgressCardState extends ConsumerState<ReadingProgressCard> {
   Widget build(BuildContext context) {
     final mark = ref.watch(latestReadingMarkProvider);
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final currentPage = mark?.pageNumber.clamp(
       1,
@@ -78,7 +80,7 @@ class _ReadingProgressCardState extends ConsumerState<ReadingProgressCard> {
                     SizedBox(height: 14.h),
                   ] else ...[
                     Text(
-                      'ابدأ رحلتك مع القرآن الكريم، واحفظ موضعك لتتابع من حيث توقفت.',
+                      l10n.home_reading_empty_body,
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         fontSize: 12.sp,
@@ -108,6 +110,7 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     final surahNumber = mark?.surahNumber ?? 1;
 
     return Row(
@@ -131,7 +134,9 @@ class _Header extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                mark == null ? 'ابدأ تلاوة القرآن' : 'متابعة القراءة',
+                mark == null
+                    ? l10n.home_reading_start_title
+                    : l10n.home_reading_continue_title,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 17.sp,
@@ -142,10 +147,8 @@ class _Header extends StatelessWidget {
               SizedBox(height: 2.h),
               Text(
                 mark == null
-                    ? 'رحلتك مع كتاب الله تبدأ من هنا'
-                    : 'سورة ${SurahNames.getFormattedName(surahNumber)}'
-                          '${mark!.ayahNumber == null ? '' : ' • الآية ${mark!.ayahNumber}'}'
-                          ' • الصفحة ${mark!.pageNumber}',
+                    ? l10n.home_reading_start_subtitle
+                    : _readingPositionSubtitle(l10n, surahNumber, mark!),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -188,8 +191,9 @@ class _Progress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Semantics(
-      label: 'نسبة تقدم القراءة ${(progress * 100).round()} بالمئة',
+      label: l10n.home_reading_progress_semantics((progress * 100).round()),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.r),
         child: LinearProgressIndicator(
@@ -210,6 +214,7 @@ class _ReadingDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     final remaining = ReadingProgressCard.totalPages - mark.pageNumber;
 
     return Wrap(
@@ -219,13 +224,16 @@ class _ReadingDetails extends StatelessWidget {
         _Detail(
           icon: Icons.bookmark_rounded,
           text: mark.ayahNumber == null
-              ? 'موضعك: الصفحة ${mark.pageNumber}'
-              : 'موضعك: الآية ${mark.ayahNumber} • الصفحة ${mark.pageNumber}',
+              ? l10n.home_reading_position_page(mark.pageNumber)
+              : l10n.home_reading_position_ayah_page(
+                  mark.ayahNumber!,
+                  mark.pageNumber,
+                ),
           color: scheme.primary,
         ),
         _Detail(
           icon: Icons.flag_outlined,
-          text: 'المتبقي: $remaining صفحة',
+          text: l10n.home_reading_remaining_pages(remaining),
           color: scheme.tertiary,
         ),
       ],
@@ -267,10 +275,13 @@ class _ContinueAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Row(
       children: [
         Text(
-          hasReading ? 'تابع القراءة' : 'ابدأ القراءة',
+          hasReading
+              ? l10n.home_reading_continue_action
+              : l10n.home_reading_start_action,
           style: TextStyle(
             fontFamily: 'Cairo',
             fontSize: 12.sp,
@@ -283,4 +294,21 @@ class _ContinueAction extends StatelessWidget {
       ],
     );
   }
+}
+
+String _readingPositionSubtitle(
+  AppLocalizations l10n,
+  int surahNumber,
+  Mark mark,
+) {
+  final surahName = SurahNames.getFormattedName(surahNumber);
+  if (mark.ayahNumber == null) {
+    return l10n.home_reading_surah_page(surahName, mark.pageNumber);
+  }
+
+  return l10n.home_reading_surah_ayah_page(
+    surahName,
+    mark.ayahNumber!,
+    mark.pageNumber,
+  );
 }

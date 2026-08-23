@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zad_al_muslim/core/notification_sound/notification_sound_manager.dart';
-import 'package:zad_al_muslim/features/adhan/data/reciter_catalog.dart';
-import 'package:zad_al_muslim/features/adhan/domain/reciter.dart';
+import 'package:shirahsoft_muslim/core/notification_sound/notification_sound_manager.dart';
+import 'package:shirahsoft_muslim/features/adhan/data/reciter_catalog.dart';
+import 'package:shirahsoft_muslim/features/adhan/domain/reciter.dart';
 
 class AdhanSettings {
   AdhanSettings(this._prefs);

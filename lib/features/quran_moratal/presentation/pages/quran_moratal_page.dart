@@ -4,12 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
-import 'package:zad_al_muslim/core/constants/enums/qari_names_moratal.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/utils/network/network_info.dart';
-import 'package:zad_al_muslim/features/quran_moratal/presentation/pages/select_qari_surah_page.dart';
-import 'package:zad_al_muslim/features/quran_moratal/presentation/providers/moratal_download_provider.dart';
-import 'package:zad_al_muslim/features/quran_moratal/presentation/widgets/moratal_mini_player.dart';
+import 'package:shirahsoft_muslim/core/constants/enums/qari_names_moratal.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/utils/network/network_info.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/presentation/pages/select_qari_surah_page.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/presentation/providers/moratal_download_provider.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/presentation/widgets/moratal_mini_player.dart';
 
 import '../widgets/internet_error_message.dart';
 
@@ -37,6 +38,7 @@ class _QuranMoratalPageState extends ConsumerState<QuranMoratalPage> {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: scheme.surfaceContainerLowest,
@@ -83,7 +85,7 @@ class _QuranMoratalPageState extends ConsumerState<QuranMoratalPage> {
                     ),
                     SizedBox(height: 16.h),
                     Text(
-                      "تحميل القرآن الكريم",
+                      l10n.moratal_download_quran_title,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -93,7 +95,7 @@ class _QuranMoratalPageState extends ConsumerState<QuranMoratalPage> {
                     ),
                     SizedBox(height: 6.h),
                     Text(
-                      "حمّل سور القرآن كاملة للاستماع إليها بدون اتصال بالإنترنت في أي وقت.",
+                      l10n.moratal_download_quran_subtitle,
                       style: TextStyle(
                         fontSize: 12,
                         fontFamily: "Cairo",
@@ -188,12 +190,13 @@ class _MoratalHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.fromLTRB(14.w, 12.h, 14.w, 8.h),
       child: Row(
         children: [
           IconButton.filledTonal(
-            tooltip: 'العودة',
+            tooltip: l10n.go_back,
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_rounded),
           ),
@@ -217,7 +220,7 @@ class _MoratalHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'القرآن المُرتل',
+                  l10n.home_moratal_title,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 20.sp,
@@ -226,7 +229,7 @@ class _MoratalHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'اختر قارئك المفضل واستمع بخشوع',
+                  l10n.moratal_header_subtitle,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 10.5.sp,
@@ -237,7 +240,7 @@ class _MoratalHeader extends StatelessWidget {
             ),
           ),
           IconButton.filledTonal(
-            tooltip: 'إدارة التنزيلات',
+            tooltip: l10n.moratal_manage_downloads,
             onPressed: onOpenDownloads,
             icon: const Icon(Icons.download_for_offline_outlined),
           ),
@@ -260,14 +263,8 @@ class _QariListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final serverUrl = qariData['server'] ?? '';
-    final String narration;
-    if (serverUrl.contains('Warsh')) {
-      narration = 'رواية ورش عن نافع';
-    } else if (serverUrl.contains('AlDorai')) {
-      narration = 'رواية الدوري عن الكسائي';
-    } else {
-      narration = 'رواية حفص عن عاصم';
-    }
+    final l10n = AppLocalizations.of(context)!;
+    final narration = _localizedNarration(l10n, serverUrl);
 
     final scheme = Theme.of(context).colorScheme;
     return Material(
@@ -364,14 +361,8 @@ class _QariListTileDrawer extends ConsumerWidget {
     final sizeAsync = ref.watch(qariDownloadedSizeMBProvider(params.qariId));
 
     final serverUrl = qariData['server'] ?? '';
-    final String narration;
-    if (serverUrl.contains('Warsh')) {
-      narration = 'رواية ورش عن نافع';
-    } else if (serverUrl.contains('AlDorai')) {
-      narration = 'رواية الدوري عن الكسائي';
-    } else {
-      narration = 'رواية حفص عن عاصم';
-    }
+    final l10n = AppLocalizations.of(context)!;
+    final narration = _localizedNarration(l10n, serverUrl);
 
     return Card(
       elevation: 0,
@@ -459,7 +450,7 @@ class _QariListTileDrawer extends ConsumerWidget {
                             borderRadius: BorderRadius.circular(8.r),
                           ),
                           child: Text(
-                            "${size.toStringAsFixed(1)} م.ب",
+                            l10n.quran_size_mb(size.toStringAsFixed(1)),
                             style: TextStyle(
                               fontSize: 10.sp,
                               fontFamily: 'Cairo',
@@ -482,7 +473,9 @@ class _QariListTileDrawer extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "تحميل سورة ${downloadState.currentSurah} من 114",
+                    l10n.moratal_downloading_surah_progress(
+                      downloadState.currentSurah,
+                    ),
                     style: TextStyle(
                       fontSize: 11.sp,
                       fontFamily: 'Cairo',
@@ -530,7 +523,7 @@ class _QariListTileDrawer extends ConsumerWidget {
                   },
                   icon: Icon(Icons.menu_book_rounded, size: 16.sp),
                   label: Text(
-                    "عرض السور",
+                    l10n.moratal_show_surahs,
                     style: TextStyle(
                       fontSize: 11.sp,
                       fontFamily: 'Cairo',
@@ -647,6 +640,7 @@ class _DownloadButton extends ConsumerWidget {
 
   Future<void> _handleDownloadTap(BuildContext context, WidgetRef ref) async {
     final notifier = ref.read(moratalDownloadProvider(params).notifier);
+    final l10n = AppLocalizations.of(context)!;
 
     switch (downloadState.status) {
       case QariDownloadStatus.completed:
@@ -677,7 +671,7 @@ class _DownloadButton extends ConsumerWidget {
                     SizedBox(width: 8.w),
                     Expanded(
                       child: Text(
-                        'تم تحميل جميع السور. يمكنك الاستماع بدون إنترنت!',
+                        l10n.moratal_all_surahs_downloaded,
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           fontWeight: FontWeight.bold,
@@ -727,7 +721,9 @@ class _DownloadButton extends ConsumerWidget {
                       SizedBox(width: 8.w),
                       Expanded(
                         child: Text(
-                          'تم إيقاف تحميل السور للقارئ ${qariData["name"]}',
+                          l10n.moratal_download_stopped_for_qari(
+                            qariData["name"] ?? '',
+                          ),
                           style: TextStyle(
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
@@ -782,7 +778,9 @@ class _DownloadButton extends ConsumerWidget {
                       SizedBox(width: 8.w),
                       Expanded(
                         child: Text(
-                          'جاري إستكمال تحميل السور للقارئ ${qariData["name"]}',
+                          l10n.moratal_resuming_download_for_qari(
+                            qariData["name"] ?? '',
+                          ),
                           style: TextStyle(
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
@@ -834,7 +832,9 @@ class _DownloadButton extends ConsumerWidget {
                       SizedBox(width: 8.w),
                       Expanded(
                         child: Text(
-                          'بدأت عميلة تحميل السور للقارئ ${qariData["name"]}',
+                          l10n.moratal_started_download_for_qari(
+                            qariData["name"] ?? '',
+                          ),
                           style: TextStyle(
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
@@ -860,7 +860,8 @@ class _DownloadButton extends ConsumerWidget {
     BuildContext context, {
     required bool isResume,
   }) {
-    final qariName = qariData['name'] ?? 'القارئ';
+    final l10n = AppLocalizations.of(context)!;
+    final qariName = qariData['name'] ?? l10n.moratal_default_qari;
     return showDialog<bool>(
       context: context,
       barrierDismissible: false,
@@ -881,7 +882,9 @@ class _DownloadButton extends ConsumerWidget {
             SizedBox(width: 10.w),
             Expanded(
               child: Text(
-                isResume ? 'استكمال التحميل' : 'تحميل سور القرآن',
+                isResume
+                    ? l10n.moratal_resume_download_title
+                    : l10n.moratal_download_all_title,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontWeight: FontWeight.bold,
@@ -897,8 +900,8 @@ class _DownloadButton extends ConsumerWidget {
           children: [
             Text(
               isResume
-                  ? 'سيتم استكمال تحميل سور القرآن الكريم بصوت $qariName من حيث توقف.'
-                  : 'سيتم تحميل جميع سور القرآن الكريم (١١٤ سورة) بصوت $qariName على جهازك.',
+                  ? l10n.moratal_resume_download_message(qariName)
+                  : l10n.moratal_download_all_message(qariName),
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 13.5.sp,
@@ -930,7 +933,7 @@ class _DownloadButton extends ConsumerWidget {
                       SizedBox(width: 8.w),
                       Expanded(
                         child: Text(
-                          'هذه العملية قد تستهلك ما بين ٥٠٠ ميجابايت إلى ٢ جيجابايت من بيانات الإنترنت.',
+                          l10n.moratal_download_data_warning,
                           style: TextStyle(
                             fontFamily: 'Cairo',
                             fontSize: 12.sp,
@@ -957,7 +960,7 @@ class _DownloadButton extends ConsumerWidget {
                       SizedBox(width: 8.w),
                       Expanded(
                         child: Text(
-                          'يرجى ترك التطبيق مفتوحاً حتى اكتمال التحميل. يمكنك الاستكمال في أي وقت إذا أُغلق التطبيق.',
+                          l10n.moratal_download_keep_open_warning,
                           style: TextStyle(
                             fontFamily: 'Cairo',
                             fontSize: 12.sp,
@@ -979,7 +982,7 @@ class _DownloadButton extends ConsumerWidget {
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
             child: Text(
-              'إلغاء',
+              l10n.settings_cancel,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontWeight: FontWeight.bold,
@@ -1006,7 +1009,7 @@ class _DownloadButton extends ConsumerWidget {
               ),
             ),
             child: Text(
-              isResume ? 'استكمال' : 'تحميل الآن',
+              isResume ? l10n.moratal_resume : l10n.moratal_download_now,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontWeight: FontWeight.bold,
@@ -1020,6 +1023,7 @@ class _DownloadButton extends ConsumerWidget {
   }
 
   Future<bool?> _showCancelDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -1027,7 +1031,7 @@ class _DownloadButton extends ConsumerWidget {
           borderRadius: BorderRadius.circular(20.r),
         ),
         title: Text(
-          'إيقاف التحميل',
+          l10n.moratal_stop_download_title,
           style: TextStyle(
             fontFamily: 'Cairo',
             fontWeight: FontWeight.bold,
@@ -1035,14 +1039,14 @@ class _DownloadButton extends ConsumerWidget {
           ),
         ),
         content: Text(
-          'هل تريد إيقاف التحميل؟\nسيتم حفظ السور التي تم تحميلها بالفعل، ويمكنك الاستكمال لاحقاً.',
+          l10n.moratal_stop_download_message,
           style: TextStyle(fontFamily: 'Cairo', fontSize: 13.sp, height: 1.6),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
             child: Text(
-              'متابعة التحميل',
+              l10n.moratal_continue_download,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontWeight: FontWeight.bold,
@@ -1059,7 +1063,7 @@ class _DownloadButton extends ConsumerWidget {
               ),
             ),
             child: Text(
-              'إيقاف',
+              l10n.moratal_stop,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontWeight: FontWeight.bold,
@@ -1111,7 +1115,8 @@ class _DeleteButton extends ConsumerWidget {
   }
 
   Future<void> _handleDeleteTap(BuildContext context, WidgetRef ref) async {
-    final qariName = qariData['name'] ?? 'القارئ';
+    final l10n = AppLocalizations.of(context)!;
+    final qariName = qariData['name'] ?? l10n.moratal_default_qari;
     final confirm = await _showDeleteConfirmDialog(context, qariName);
     if (confirm == true && context.mounted) {
       await ref
@@ -1144,7 +1149,7 @@ class _DeleteButton extends ConsumerWidget {
                     SizedBox(width: 10.w),
                     Expanded(
                       child: Text(
-                        'تم حذف جميع سور $qariName من الجهاز.',
+                        l10n.moratal_deleted_all_for_qari(qariName),
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           fontWeight: FontWeight.bold,
@@ -1167,6 +1172,7 @@ class _DeleteButton extends ConsumerWidget {
     BuildContext context,
     String qariName,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     return showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -1183,7 +1189,7 @@ class _DeleteButton extends ConsumerWidget {
             SizedBox(width: 8.w),
             Expanded(
               child: Text(
-                'حذف السور المُحمَّلة',
+                l10n.moratal_delete_downloaded_title,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontWeight: FontWeight.bold,
@@ -1194,14 +1200,14 @@ class _DeleteButton extends ConsumerWidget {
           ],
         ),
         content: Text(
-          'سيتم حذف $downloadedCount سورة مُحمَّلة بصوت $qariName من جهازك.\nلا يمكن التراجع عن هذا الإجراء.',
+          l10n.moratal_delete_downloaded_message(downloadedCount, qariName),
           style: TextStyle(fontFamily: 'Cairo', fontSize: 13.sp, height: 1.6),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
             child: Text(
-              'إلغاء',
+              l10n.settings_cancel,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontWeight: FontWeight.bold,
@@ -1219,7 +1225,7 @@ class _DeleteButton extends ConsumerWidget {
               ),
             ),
             child: Text(
-              'حذف',
+              l10n.settings_delete,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontWeight: FontWeight.bold,
@@ -1231,4 +1237,14 @@ class _DeleteButton extends ConsumerWidget {
       ),
     );
   }
+}
+
+String _localizedNarration(AppLocalizations l10n, String serverUrl) {
+  if (serverUrl.contains('Warsh')) {
+    return l10n.moratal_narration_warsh;
+  }
+  if (serverUrl.contains('AlDorai')) {
+    return l10n.moratal_narration_dorai;
+  }
+  return l10n.moratal_narration_hafs;
 }

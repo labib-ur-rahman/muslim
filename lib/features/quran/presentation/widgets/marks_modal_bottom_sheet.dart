@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/quran/data/models/mark.dart';
-import 'package:zad_al_muslim/features/quran/presentation/pages/quran_pages.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/mark.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/data/models/mark.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/pages/quran_pages.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/mark.dart';
 
 class MarksModalBottomSheet extends ConsumerWidget {
   const MarksModalBottomSheet({super.key});
@@ -13,6 +14,7 @@ class MarksModalBottomSheet extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final marks = ref.watch(marksProvder);
     final primaryColor = context.color.primary;
+    final l10n = AppLocalizations.of(context)!;
 
     final pageMarks = marks.where((m) => m.ayahNumber == null).toList();
     final ayahMarks = marks.where((m) => m.ayahNumber != null).toList();
@@ -39,7 +41,7 @@ class MarksModalBottomSheet extends ConsumerWidget {
             ),
 
             Text(
-              "العلامات المحفوظة",
+              l10n.quran_saved_bookmarks,
               style: TextStyle(
                 fontSize: 18.sp,
                 fontFamily: "Cairo",
@@ -79,9 +81,9 @@ class MarksModalBottomSheet extends ConsumerWidget {
                     fontFamily: "Cairo",
                     fontSize: 15.sp,
                   ),
-                  tabs: const [
-                    Tab(text: "الصفحات"),
-                    Tab(text: "الآيات"),
+                  tabs: [
+                    Tab(text: l10n.quran_pages_tab),
+                    Tab(text: l10n.quran_ayahs_tab),
                   ],
                 ),
               ),
@@ -126,6 +128,7 @@ class _MarkListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (marks.isEmpty) {
+      final l10n = AppLocalizations.of(context)!;
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +140,7 @@ class _MarkListView extends ConsumerWidget {
             ),
             SizedBox(height: 10.h),
             Text(
-              "لا توجد علامات محفوظة",
+              l10n.quran_no_saved_bookmarks,
               style: TextStyle(
                 fontSize: 16.sp,
                 fontFamily: "Cairo",
@@ -155,6 +158,7 @@ class _MarkListView extends ConsumerWidget {
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         final mark = marks[index];
+        final l10n = AppLocalizations.of(context)!;
         final formattedDate =
             "${mark.date.year}/${mark.date.month}/${mark.date.day}";
 
@@ -189,7 +193,7 @@ class _MarkListView extends ConsumerWidget {
               ),
             ),
             title: Text(
-              isAyahList ? "سورة ${mark.surahName}" : "سورة ${mark.surahName}",
+              l10n.quran_surah_label(mark.surahName),
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 16.sp,
@@ -203,8 +207,11 @@ class _MarkListView extends ConsumerWidget {
                 SizedBox(height: 4.h),
                 Text(
                   isAyahList
-                      ? "الآية ${mark.ayahNumber} - صفحة ${mark.pageNumber}"
-                      : "صفحة ${mark.pageNumber}",
+                      ? l10n.quran_ayah_page_label(
+                          mark.ayahNumber ?? 0,
+                          mark.pageNumber,
+                        )
+                      : l10n.quran_page_number(mark.pageNumber),
                   style: TextStyle(
                     fontSize: 13.sp,
                     fontFamily: "Cairo",
@@ -214,7 +221,7 @@ class _MarkListView extends ConsumerWidget {
                 ),
                 SizedBox(height: 2.h),
                 Text(
-                  "تاريخ الحفظ: $formattedDate",
+                  l10n.quran_saved_date(formattedDate),
                   style: TextStyle(
                     fontSize: 11.sp,
                     fontFamily: "Cairo",
@@ -224,7 +231,7 @@ class _MarkListView extends ConsumerWidget {
               ],
             ),
             trailing: IconButton(
-              tooltip: 'حذف العلامة',
+              tooltip: l10n.quran_delete_bookmark,
               icon: Icon(
                 Icons.delete_outline_rounded,
                 color: context.color.error,

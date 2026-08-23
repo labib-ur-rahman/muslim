@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zad_al_muslim/core/common/providers/network_info_provider.dart';
-import 'package:zad_al_muslim/core/common/providers/user_position_provider.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/features/pray_time/domain/entities/user_address_entity.dart';
-import 'package:zad_al_muslim/core/utils/location/location_locator.dart';
+import 'package:shirahsoft_muslim/core/common/providers/network_info_provider.dart';
+import 'package:shirahsoft_muslim/core/common/providers/user_position_provider.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/features/pray_time/domain/entities/user_address_entity.dart';
+import 'package:shirahsoft_muslim/core/utils/location/location_locator.dart';
 
-import 'package:zad_al_muslim/features/pray_time/domain/usecases/get_user_address.dart';
+import 'package:shirahsoft_muslim/features/pray_time/domain/usecases/get_user_address.dart';
 
 final userAddressProvider =
     AsyncNotifierProvider<UserAddressNotifier, UserAddressEntity?>(() {

@@ -1,13 +1,14 @@
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/audio_player_provider.dart';
-import 'package:zad_al_muslim/features/quran_moratal/presentation/providers/moratal_player_provider.dart';
-import 'package:zad_al_muslim/features/quran_moratal/presentation/providers/ayah_timing_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/audio_player_provider.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/presentation/providers/moratal_player_provider.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/presentation/providers/ayah_timing_provider.dart';
 import 'package:qcf_quran/qcf_quran.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -21,6 +22,7 @@ class MoratalMiniPlayer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentMoratalSurah = ref.watch(currentMoratalSurahProvider);
     final audioPlayer = ref.watch(audioPlayerProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     if (currentMoratalSurah == null) return const SizedBox.shrink();
 
@@ -107,7 +109,9 @@ class MoratalMiniPlayer extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'سورة ${currentMoratalSurah.surahName}',
+                            l10n.quran_surah_label(
+                              currentMoratalSurah.surahName,
+                            ),
                             style: TextStyle(
                               fontFamily: 'Cairo',
                               fontSize: 14.sp,
@@ -562,7 +566,9 @@ class _MoratalFullPlayerSheetState
                         borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Text(
-                        'الآية $ayahNumber',
+                        AppLocalizations.of(
+                          context,
+                        )!.quran_ayah_number(ayahNumber),
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           fontSize: 13.sp,
@@ -587,7 +593,9 @@ class _MoratalFullPlayerSheetState
       child: Column(
         children: [
           Text(
-            'سورة ${currentSurah.surahName}',
+            AppLocalizations.of(
+              context,
+            )!.quran_surah_label(currentSurah.surahName),
             style: TextStyle(
               fontFamily: 'Cairo',
               fontSize: 22.sp,
@@ -648,10 +656,10 @@ class _MoratalFullPlayerSheetState
           // ── Loop button ──
           Tooltip(
             message: _loopMode == LoopMode.off
-                ? 'تفعيل التكرار'
+                ? AppLocalizations.of(context)!.moratal_enable_repeat
                 : _loopMode == LoopMode.one
-                ? 'تكرار الكل'
-                : 'إيقاف التكرار',
+                ? AppLocalizations.of(context)!.moratal_repeat_all
+                : AppLocalizations.of(context)!.moratal_disable_repeat,
             child: IconButton(
               icon: Icon(
                 _loopMode == LoopMode.one
@@ -676,7 +684,7 @@ class _MoratalFullPlayerSheetState
                   : '${speed.toStringAsFixed(2)}x';
 
               return PopupMenuButton<double>(
-                tooltip: 'سرعة التشغيل',
+                tooltip: AppLocalizations.of(context)!.moratal_playback_speed,
                 initialValue: speed,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.r),
@@ -704,13 +712,18 @@ class _MoratalFullPlayerSheetState
                   setState(() => _speed = v);
                   player.setSpeed(v);
                 },
-                itemBuilder: (_) => const [
-                  PopupMenuItem(value: 0.5, child: Text('0.5x')),
-                  PopupMenuItem(value: 0.75, child: Text('0.75x')),
-                  PopupMenuItem(value: 1.0, child: Text('1.0x (طبيعي)')),
-                  PopupMenuItem(value: 1.25, child: Text('1.25x')),
-                  PopupMenuItem(value: 1.5, child: Text('1.5x')),
-                  PopupMenuItem(value: 2.0, child: Text('2.0x')),
+                itemBuilder: (_) => [
+                  const PopupMenuItem(value: 0.5, child: Text('0.5x')),
+                  const PopupMenuItem(value: 0.75, child: Text('0.75x')),
+                  PopupMenuItem(
+                    value: 1.0,
+                    child: Text(
+                      AppLocalizations.of(context)!.moratal_speed_normal,
+                    ),
+                  ),
+                  const PopupMenuItem(value: 1.25, child: Text('1.25x')),
+                  const PopupMenuItem(value: 1.5, child: Text('1.5x')),
+                  const PopupMenuItem(value: 2.0, child: Text('2.0x')),
                 ],
               );
             },
@@ -735,7 +748,7 @@ class _MoratalFullPlayerSheetState
         children: [
           // ── Previous surah ──
           IconButton(
-            tooltip: 'السورة السابقة',
+            tooltip: AppLocalizations.of(context)!.moratal_previous_surah,
             iconSize: 38.sp,
             icon: Icon(
               Icons.skip_next_rounded,
@@ -748,7 +761,7 @@ class _MoratalFullPlayerSheetState
 
           // ── Rewind 10s ──
           IconButton(
-            tooltip: 'تأخير 10 ثوانٍ',
+            tooltip: AppLocalizations.of(context)!.moratal_rewind_10,
             iconSize: 30.sp,
             icon: Icon(Icons.replay_10_rounded, color: context.color.onSurface),
             onPressed: () {
@@ -788,7 +801,7 @@ class _MoratalFullPlayerSheetState
 
           // ── Fast Forward 10s ──
           IconButton(
-            tooltip: 'تقديم 10 ثوانٍ',
+            tooltip: AppLocalizations.of(context)!.moratal_forward_10,
             iconSize: 30.sp,
             icon: Icon(
               Icons.forward_10_rounded,
@@ -803,7 +816,7 @@ class _MoratalFullPlayerSheetState
 
           // ── Next surah ──
           IconButton(
-            tooltip: 'السورة التالية',
+            tooltip: AppLocalizations.of(context)!.moratal_next_surah,
             iconSize: 38.sp,
             icon: Icon(
               Icons.skip_previous_rounded,

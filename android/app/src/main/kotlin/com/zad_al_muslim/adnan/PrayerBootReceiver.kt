@@ -1,4 +1,4 @@
-package com.zad_al_muslim.adnan
+package com.shirahsoft_muslim.adnan
 
 import android.content.BroadcastReceiver
 import android.content.Context

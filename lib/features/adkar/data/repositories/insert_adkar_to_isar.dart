@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:isar_community/isar.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
-import 'package:zad_al_muslim/features/adkar/data/models/adkar_model.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/features/adkar/data/models/adkar_model.dart';
 
 Future<void> insertAdkarToIsar() async {
   final db = sl<Isar>();

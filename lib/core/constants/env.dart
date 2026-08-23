@@ -3,7 +3,7 @@ class Env {
   // must be changed when the server is hosted
 
   static String androidAppLink =
-      "https://play.google.com/store/apps/details?id=com.zad_al_muslim.adnan";
+      "https://play.google.com/store/apps/details?id=com.shirahsoft.app";
   static String iOSAppLink = "https://apps.apple.com/app/idXXXXXXXXXX";
 
   //  pure api url
@@ -20,9 +20,9 @@ class Env {
 
   // this url host privcy policy link for the app
   static const String privcyPolicyUrl =
-      "https://adnannasr.github.io/Zad_Al-Muslim/privacy-policy.html";
+      "https://labib-ur-rahman.github.io/Zad_Al-Muslim/privacy-policy.html";
 
   // this url host terms of use link for the app
   static const String termsOfuseUrl =
-      "https://adnannasr.github.io/Zad_Al-Muslim/terms-of-use.html";
+      "https://labib-ur-rahman.github.io/Zad_Al-Muslim/terms-of-use.html";
 }

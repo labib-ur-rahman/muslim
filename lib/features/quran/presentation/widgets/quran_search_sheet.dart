@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'package:zad_al_muslim/features/quran/domain/services/quran_search_indexer.dart';
+import 'package:shirahsoft_muslim/features/quran/domain/services/quran_search_indexer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/quran/presentation/pages/quran_pages.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/pages/quran_pages.dart';
 import 'package:qcf_quran/qcf_quran.dart' as qcf;
 
 class QuranSearchSheet extends StatefulWidget {
@@ -75,6 +76,7 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       height: double.infinity,
       decoration: BoxDecoration(
@@ -118,7 +120,7 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
                       controller: _searchController,
                       style: TextStyle(fontFamily: 'Naskh', fontSize: 16.sp),
                       decoration: InputDecoration(
-                        hintText: 'ابحث عن سورة أو آية...',
+                        hintText: l10n.quran_search_hint,
                         fillColor: Colors.transparent,
                         hintStyle: TextStyle(
                           fontFamily: 'Cairo',
@@ -141,7 +143,7 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
                 TextButton(
                   onPressed: () => Navigator.pop(context),
                   child: Text(
-                    'إلغاء',
+                    l10n.settings_cancel,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       color: context.color.primary,
@@ -163,23 +165,22 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
                 slivers: [
                   if (_searchController.text.trim().isEmpty &&
                       _recentSearches.isEmpty)
-                    const SliverFillRemaining(
+                    SliverFillRemaining(
                       hasScrollBody: false,
                       child: _SearchEmptyState(
                         icon: Icons.travel_explore_rounded,
-                        title: 'ابحث في آيات القرآن',
-                        subtitle:
-                            'اكتب كلمة أو جزءاً من آية للوصول إليها بسرعة.',
+                        title: l10n.quran_search_empty_title,
+                        subtitle: l10n.quran_search_empty_subtitle,
                       ),
                     ),
                   if (_searchController.text.trim().isNotEmpty &&
                       _searchResults.isEmpty)
-                    const SliverFillRemaining(
+                    SliverFillRemaining(
                       hasScrollBody: false,
                       child: _SearchEmptyState(
                         icon: Icons.search_off_rounded,
-                        title: 'لا توجد نتائج',
-                        subtitle: 'تحقق من الكتابة أو جرّب عبارة أقصر.',
+                        title: l10n.quran_search_no_results_title,
+                        subtitle: l10n.quran_search_no_results_subtitle,
                       ),
                     ),
                   if (_recentSearches.isNotEmpty)
@@ -188,7 +189,7 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'عمليات البحث الأخيرة',
+                            l10n.quran_search_recent,
                             style: TextStyle(
                               fontFamily: 'Cairo',
                               fontSize: 14.sp,
@@ -203,7 +204,10 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
                             children: _recentSearches.map((search) {
                               return ActionChip(
                                 label: Text(
-                                  'سورة ${search['surah']} - آية ${search['ayah']}',
+                                  l10n.quran_surah_ayah_label(
+                                    search['surah'] as String,
+                                    search['ayah'] as int,
+                                  ),
                                   style: TextStyle(
                                     fontFamily: 'Cairo',
                                     fontSize: 12.sp,
@@ -239,7 +243,7 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'نتائج مقترحة',
+                              l10n.quran_search_suggested_results,
                               style: TextStyle(
                                 fontFamily: 'Cairo',
                                 fontSize: 14.sp,
@@ -249,7 +253,9 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
                             ),
                             SizedBox(height: 12.h),
                             Text(
-                              'نتائج البحث (${_searchResults.length})',
+                              l10n.quran_search_results_count(
+                                _searchResults.length,
+                              ),
                               style: TextStyle(
                                 fontFamily: 'Cairo',
                                 fontSize: 14.sp,
@@ -278,6 +284,7 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
   }
 
   Widget _buildResultItem(BuildContext context, Map item) {
+    final l10n = AppLocalizations.of(context)!;
     return InkWell(
       onTap: () {
         final surahNumber = item['surahNumber'] as int;
@@ -326,7 +333,7 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
                     ),
                     SizedBox(width: 8.w),
                     Text(
-                      'سورة ${item['surah']}',
+                      l10n.quran_surah_label(item['surah'] as String),
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         fontSize: 13.sp,
@@ -337,7 +344,7 @@ class _QuranSearchSheetState extends State<QuranSearchSheet> {
                   ],
                 ),
                 Text(
-                  'آية ${item['ayah']}',
+                  l10n.quran_ayah_number(item['ayah'] as int),
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 11.sp,

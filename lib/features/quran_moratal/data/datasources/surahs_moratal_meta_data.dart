@@ -1,6 +1,6 @@
 import 'package:qcf_quran/qcf_quran.dart';
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
-import 'package:zad_al_muslim/features/quran_moratal/data/models/surah_meta_moratal_model.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/data/models/surah_meta_moratal_model.dart';
 
 abstract class SurahsMoratalMetaData {
   List<SurahMetaMoratalModel> surahsNames();

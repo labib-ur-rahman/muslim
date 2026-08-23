@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zad_al_muslim/core/constants/enums/my_enums.dart';
-import 'package:zad_al_muslim/core/extensions/sizes_ext.dart';
-import 'package:zad_al_muslim/core/l10n/app_localizations.dart';
-import 'package:zad_al_muslim/core/common/providers/language_provider.dart';
+import 'package:shirahsoft_muslim/core/constants/enums/my_enums.dart';
+import 'package:shirahsoft_muslim/core/extensions/sizes_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/common/providers/language_provider.dart';
 
 class LanguageDialog extends ConsumerStatefulWidget {
   final Function(AppLocale langCode)? onLanguageSelected;
@@ -19,6 +19,7 @@ class _LanguageDialogState extends ConsumerState<LanguageDialog> {
     AppLocale.ar: "العربية",
     AppLocale.en: "English",
     AppLocale.de: "Deutsch",
+    AppLocale.bn: "বাংলা",
     //"ur": "اردو",
     //"fr": "Français",
     //"ms": "Bahasa Melayu",

@@ -2,13 +2,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/l10n/app_localizations.dart';
-import 'package:zad_al_muslim/core/common/providers/theme_provider.dart';
-import 'package:zad_al_muslim/core/common/pages/home/home_page.dart';
-import 'package:zad_al_muslim/core/utils/notifications/notification_tap_handler.dart';
-import 'package:zad_al_muslim/core/utils/notifications/pending_notification_navigation.dart';
-import 'package:zad_al_muslim/features/settings/presentation/pages/settings_page.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/common/providers/theme_provider.dart';
+import 'package:shirahsoft_muslim/core/common/pages/home/home_page.dart';
+import 'package:shirahsoft_muslim/core/utils/notifications/notification_tap_handler.dart';
+import 'package:shirahsoft_muslim/core/utils/notifications/pending_notification_navigation.dart';
+import 'package:shirahsoft_muslim/features/settings/presentation/pages/settings_page.dart';
 
 class CustomNavigationBar extends ConsumerStatefulWidget {
   const CustomNavigationBar({super.key});

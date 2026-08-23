@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
 
 class AyahDelayDialog extends ConsumerWidget {
   const AyahDelayDialog({super.key});
@@ -11,14 +12,15 @@ class AyahDelayDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(quranSettingsProvider);
     final selectedDelay = settings.ayahDelaySeconds;
+    final l10n = AppLocalizations.of(context)!;
 
     final List<Map<String, dynamic>> delayOptions = [
-      {'label': 'بدون توقف', 'value': 0},
-      {'label': 'ثانية واحدة', 'value': 1},
-      {'label': 'ثانيتين', 'value': 2},
-      {'label': '3 ثوانٍ', 'value': 3},
-      {'label': '4 ثوانٍ', 'value': 4},
-      {'label': '5 ثوانٍ', 'value': 5},
+      {'label': l10n.quran_delay_no_pause, 'value': 0},
+      {'label': l10n.quran_delay_one_second, 'value': 1},
+      {'label': l10n.quran_delay_two_seconds, 'value': 2},
+      {'label': l10n.quran_delay_seconds(3), 'value': 3},
+      {'label': l10n.quran_delay_seconds(4), 'value': 4},
+      {'label': l10n.quran_delay_seconds(5), 'value': 5},
     ];
 
     return Dialog(
@@ -41,7 +43,7 @@ class AyahDelayDialog extends ConsumerWidget {
                   ),
                   SizedBox(width: 10.w),
                   Text(
-                    'الفاصل الزمني بين الآيات',
+                    l10n.quran_settings_ayah_delay,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       fontSize: 18.sp,
@@ -153,7 +155,7 @@ class AyahDelayDialog extends ConsumerWidget {
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(
-                'إلغاء',
+                l10n.settings_cancel,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 14.sp,

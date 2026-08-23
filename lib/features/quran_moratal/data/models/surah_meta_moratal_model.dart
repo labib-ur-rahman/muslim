@@ -1,5 +1,5 @@
-import 'package:zad_al_muslim/features/quran/domain/entities/surah_meta_entity.dart';
-import 'package:zad_al_muslim/features/quran_moratal/domain/entities/surah_meta_moratal_entity.dart';
+import 'package:shirahsoft_muslim/features/quran/domain/entities/surah_meta_entity.dart';
+import 'package:shirahsoft_muslim/features/quran_moratal/domain/entities/surah_meta_moratal_entity.dart';
 
 class SurahMetaMoratalModel extends SurahMetaMoratalEntity {
   SurahMetaMoratalModel({

@@ -1,4 +1,4 @@
-package com.zad_al_muslim.adnan
+package com.shirahsoft_muslim.adnan
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -46,7 +46,7 @@ class AdhanPlaybackService : Service() {
     private fun notification(title: String): android.app.Notification {
         val manager = getSystemService(NotificationManager::class.java)
         manager.createNotificationChannel(NotificationChannel(CHANNEL_ID, "زاد المسلم - الأذان", NotificationManager.IMPORTANCE_LOW))
-        return NotificationCompat.Builder(this, CHANNEL_ID).setSmallIcon(com.zad_al_muslim.adnan.R.mipmap.ic_launcher).setContentTitle(title).setContentText("جارٍ تشغيل الأذان").setOngoing(true).build()
+        return NotificationCompat.Builder(this, CHANNEL_ID).setSmallIcon(com.shirahsoft_muslim.adnan.R.mipmap.ic_launcher).setContentTitle(title).setContentText("جارٍ تشغيل الأذان").setOngoing(true).build()
     }
 
     private fun stopPlayback() { player?.run { stop(); release() }; player = null }

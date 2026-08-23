@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:isar_community/isar.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
-import 'package:zad_al_muslim/features/hadith/data/models/hadith_model.dart';
-import 'package:zad_al_muslim/features/hadith/data/models/reference_model.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/features/hadith/data/models/hadith_model.dart';
+import 'package:shirahsoft_muslim/features/hadith/data/models/reference_model.dart';
 
 Future<void> insertHadithToIsar() async {
   final db = sl<Isar>();

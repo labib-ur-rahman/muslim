@@ -4,25 +4,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:adhan/adhan.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:zad_al_muslim/core/common/providers/user_position_provider.dart';
-import 'package:zad_al_muslim/core/constants/enums/my_enums.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/common/providers/user_position_provider.dart';
+import 'package:shirahsoft_muslim/core/constants/enums/my_enums.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zad_al_muslim/core/utils/location/location_locator.dart';
-import 'package:zad_al_muslim/domain/entities/location.dart' as domain_loc;
-import 'package:zad_al_muslim/domain/usecases/recalculate_and_schedule_usecase.dart';
+import 'package:shirahsoft_muslim/core/utils/location/location_locator.dart';
+import 'package:shirahsoft_muslim/domain/entities/location.dart' as domain_loc;
+import 'package:shirahsoft_muslim/domain/usecases/recalculate_and_schedule_usecase.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
-import 'package:zad_al_muslim/core/utils/location/providers/location_status_provider.dart';
-import 'package:zad_al_muslim/core/common/providers/network_info_provider.dart';
-import 'package:zad_al_muslim/core/utils/location/providers/service_status_provider.dart';
+import 'package:shirahsoft_muslim/core/utils/location/providers/location_status_provider.dart';
+import 'package:shirahsoft_muslim/core/common/providers/network_info_provider.dart';
+import 'package:shirahsoft_muslim/core/utils/location/providers/service_status_provider.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:zad_al_muslim/features/adhan/presentation/widgets/adhan_settings_dialog.dart';
-import 'package:zad_al_muslim/features/pray_time/presentation/providers/user_address_provider.dart';
-import 'package:zad_al_muslim/features/settings/presentation/providers/app_settings_provider.dart';
-import 'package:zad_al_muslim/features/pray_time/data/models/prayer_adjustments_model.dart';
-import 'package:zad_al_muslim/features/settings/presentation/widgets/prayer_notification_selection_dialog.dart';
+import 'package:shirahsoft_muslim/features/pray_time/presentation/providers/user_address_provider.dart';
+import 'package:shirahsoft_muslim/features/settings/presentation/providers/app_settings_provider.dart';
+import 'package:shirahsoft_muslim/features/pray_time/data/models/prayer_adjustments_model.dart';
+import 'package:shirahsoft_muslim/features/settings/presentation/widgets/prayer_notification_selection_dialog.dart';
 
 import '../providers/pray_times_provider.dart';
 import '../providers/prayer_adjustments_provider.dart';
@@ -110,7 +110,9 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
       if (!mounted) return;
       if (!serviceEnabled) {
         ref.read(locationStatusProvider.notifier).setStatus({
-          LocationMessage.locationDisabled: "الـ GPS معطل، يرجى تفعيله",
+          LocationMessage.locationDisabled: AppLocalizations.of(
+            context,
+          )!.pray_time_location_disabled_message,
         });
         return;
       }
@@ -241,7 +243,9 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
 
                             if (entity == null) {
                               return _buildErrorState(
-                                error: "تعذر الحصول على مواقيت الصلاة",
+                                error: AppLocalizations.of(
+                                  context,
+                                )!.pray_time_fetch_error,
                                 context: context,
                                 status: locationStatusMessage,
                                 networkState: networkState,
@@ -292,13 +296,14 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
     DateTime selectedDate,
   ) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.fromLTRB(14.w, 12.h, 14.w, 10.h),
       child: Row(
         children: [
           // زر الرجوع
           Tooltip(
-            message: "الصفحة الرئيسية",
+            message: l10n.home,
             child: Material(
               color: scheme.surfaceContainerHigh,
               borderRadius: BorderRadius.circular(14.r),
@@ -325,7 +330,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "أوقات الصلاة",
+                  l10n.pray_times,
                   style: TextStyle(
                     color: scheme.onSurface,
                     fontSize: 22.sp,
@@ -355,7 +360,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                       highlightColor: scheme.surfaceContainerLow,
                     ),
                     child: Text(
-                      "جاري تحميل الموقع...",
+                      l10n.pray_time_location_loading,
                       style: TextStyle(
                         color: scheme.onSurfaceVariant,
                         fontSize: 12.sp,
@@ -399,7 +404,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                       ),
                       SizedBox(width: 4.w),
                       Text(
-                        "اليوم",
+                        l10n.pray_time_today,
                         style: TextStyle(
                           color: scheme.onSecondaryContainer,
                           fontSize: 12.sp,
@@ -426,6 +431,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
     bool use24format,
     bool isCurrentDay,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     final prayerIcons = {
       "الفجر": Icons.wb_twilight_rounded,
       "الشروق": Icons.wb_sunny_outlined,
@@ -493,7 +499,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "مواقيت الصلاة",
+                        l10n.pray_time_times_section_title,
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
@@ -528,7 +534,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                                 ),
                                 SizedBox(width: 4.w),
                                 Text(
-                                  "إعادة تعيين",
+                                  l10n.settings_reset_settings_confirm,
                                   style: TextStyle(
                                     color: context.color.onSecondaryContainer,
                                     fontSize: 12.sp,
@@ -565,11 +571,12 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
 
                       final timeStr = use24format
                           ? DateFormat.Hm().format(time)
-                          : DateFormat.jm("ar").format(time);
+                          : DateFormat.jm(l10n.localeName).format(time);
 
                       return _buildPrayerRow(
                         context: context,
                         name: name,
+                        displayName: _localizedPrayerName(l10n, name),
                         time: timeStr,
                         icon: prayerIcons[name] ?? Icons.circle,
                         isCurrent: isCurrent,
@@ -708,10 +715,11 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
     final canForward = canGoForward(selectedDate);
     final canBack = canGoBack(selectedDate);
     final isCurrentDay = isToday(selectedDate);
+    final l10n = AppLocalizations.of(context)!;
 
     String dateLabel;
     if (isCurrentDay) {
-      dateLabel = "اليوم";
+      dateLabel = l10n.pray_time_today;
     } else {
       final diff = selectedDate
           .difference(
@@ -724,11 +732,14 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
           .inDays;
 
       if (diff == 1) {
-        dateLabel = "الغد";
+        dateLabel = l10n.pray_time_tomorrow;
       } else if (diff == -1) {
-        dateLabel = "أمس";
+        dateLabel = l10n.pray_time_yesterday;
       } else {
-        dateLabel = DateFormat('EEE، d MMM', 'ar').format(selectedDate);
+        dateLabel = DateFormat(
+          'EEE، d MMM',
+          l10n.localeName,
+        ).format(selectedDate);
       }
     }
 
@@ -746,7 +757,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
         children: [
           // زر السابق
           _buildNavButton(
-            message: "السابق",
+            message: l10n.pray_time_previous_day,
             icon: Icons.chevron_left_rounded,
             enabled: canBack,
             onTap: () {
@@ -774,7 +785,10 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                     ),
                   ),
                   Text(
-                    DateFormat('d MMMM yyyy', 'ar').format(selectedDate),
+                    DateFormat(
+                      'd MMMM yyyy',
+                      l10n.localeName,
+                    ).format(selectedDate),
                     style: TextStyle(
                       color: scheme.onSurfaceVariant,
                       fontSize: 11.sp,
@@ -787,7 +801,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
           ),
           // زر القادم
           _buildNavButton(
-            message: "القادم",
+            message: l10n.pray_time_next_day,
             icon: Icons.chevron_right_rounded,
             enabled: canForward,
             onTap: () {
@@ -836,6 +850,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
   }
 
   Future<void> _showDatePicker(BuildContext context, DateTime selected) async {
+    final l10n = AppLocalizations.of(context)!;
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
     final picked = await showDatePicker(
@@ -843,7 +858,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
       initialDate: selected,
       firstDate: today.subtract(const Duration(days: 30)),
       lastDate: today.add(const Duration(days: 30)),
-      locale: const Locale('ar'),
+      locale: Locale(l10n.localeName),
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
@@ -883,7 +898,8 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
     final minutes = remaining.inMinutes.remainder(60);
     final seconds = remaining.inSeconds.remainder(60);
 
-    final prayerName = _translatePrayer(next);
+    final l10n = AppLocalizations.of(context)!;
+    final prayerName = _localizedPrayerFromEnum(l10n, next);
 
     final scheme = Theme.of(context).colorScheme;
     return Container(
@@ -923,7 +939,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "الصلاة القادمة",
+                  l10n.home_next_prayer,
                   style: TextStyle(
                     color: scheme.onSecondaryContainer.withValues(alpha: 0.72),
                     fontSize: 12.sp,
@@ -959,7 +975,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                 ),
               ),
               Text(
-                "متبقي على الأذان",
+                l10n.pray_time_remaining_to_adhan,
                 style: TextStyle(
                   color: scheme.onSecondaryContainer.withValues(alpha: 0.68),
                   fontSize: 11.sp,
@@ -980,6 +996,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
   Widget _buildPrayerRow({
     required BuildContext context,
     required String name,
+    required String displayName,
     required String time,
     required IconData icon,
     required bool isCurrent,
@@ -1052,7 +1069,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
         title: Row(
           children: [
             Text(
-              name,
+              displayName,
               style: TextStyle(
                 fontSize: 16.sp,
                 fontWeight: isCurrent ? FontWeight.bold : FontWeight.w500,
@@ -1064,7 +1081,10 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
             // مؤشر التعديل
             if (isModified)
               Tooltip(
-                message: offset > 0 ? '+$offset دقيقة' : '$offset دقيقة',
+                message: _formatMinuteOffset(
+                  AppLocalizations.of(context)!,
+                  offset,
+                ),
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
                   decoration: BoxDecoration(
@@ -1132,7 +1152,9 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
             ),
             // زر الإعدادات
             Tooltip(
-              message: 'ضبط وقت $name',
+              message: AppLocalizations.of(
+                context,
+              )!.pray_time_adjust_prayer_time(displayName),
               child: Material(
                 color: surfaceColor.withValues(alpha: 0.06),
                 borderRadius: BorderRadius.circular(9.r),
@@ -1167,6 +1189,8 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
     int currentOffset,
   ) {
     int tempOffset = currentOffset;
+    final l10n = AppLocalizations.of(context)!;
+    final displayPrayerName = _localizedPrayerName(l10n, prayerName);
 
     showModalBottomSheet(
       context: context,
@@ -1223,7 +1247,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "ضبط وقت $prayerName",
+                          l10n.pray_time_adjust_prayer_time(displayPrayerName),
                           style: TextStyle(
                             fontSize: 17.sp,
                             fontWeight: FontWeight.bold,
@@ -1232,7 +1256,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                           ),
                         ),
                         Text(
-                          "الحد الأقصى ± 60 دقيقة",
+                          l10n.pray_time_adjustment_limit,
                           style: TextStyle(
                             fontSize: 12.sp,
                             color: context.color.onSurface.withValues(
@@ -1281,10 +1305,10 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                       SizedBox(width: 8.w),
                       Text(
                         tempOffset == 0
-                            ? "لا يوجد تعديل"
+                            ? l10n.pray_time_no_adjustment
                             : tempOffset > 0
-                            ? "+$tempOffset دقيقة"
-                            : "$tempOffset دقيقة",
+                            ? l10n.pray_time_minutes_offset_positive(tempOffset)
+                            : l10n.pray_time_minutes_offset(tempOffset),
                         style: TextStyle(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.bold,
@@ -1384,7 +1408,9 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                           ),
                         ),
                         child: Text(
-                          val == 0 ? "أصلي" : (val > 0 ? "+$val" : "$val"),
+                          val == 0
+                              ? l10n.pray_time_original_time
+                              : (val > 0 ? "+$val" : "$val"),
                           style: TextStyle(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
@@ -1421,7 +1447,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                           padding: EdgeInsets.symmetric(vertical: 14.h),
                         ),
                         child: Text(
-                          "إلغاء",
+                          l10n.settings_cancel,
                           style: TextStyle(
                             fontSize: 15.sp,
                             fontFamily: "Cairo",
@@ -1453,7 +1479,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                           padding: EdgeInsets.symmetric(vertical: 14.h),
                         ),
                         child: Text(
-                          "حفظ التعديل",
+                          l10n.pray_time_save_adjustment,
                           style: TextStyle(
                             fontSize: 15.sp,
                             fontFamily: "Cairo",
@@ -1476,6 +1502,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
   // نافذة تأكيد إعادة تعيين جميع التعديلات
   // ==========================================
   void _showResetConfirmation(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -1483,7 +1510,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
           borderRadius: BorderRadius.circular(20.r),
         ),
         title: Text(
-          "إعادة تعيين التعديلات",
+          l10n.pray_time_reset_adjustments_title,
           style: TextStyle(
             fontFamily: "Cairo",
             fontWeight: FontWeight.bold,
@@ -1491,14 +1518,14 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
           ),
         ),
         content: Text(
-          "هل تريد إعادة جميع أوقات الصلاة إلى أوقاتها الأصلية المحسوبة؟",
+          l10n.pray_time_reset_adjustments_message,
           style: TextStyle(fontFamily: "Cairo", fontSize: 14.sp),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
             child: Text(
-              "إلغاء",
+              l10n.settings_cancel,
               style: TextStyle(
                 color: context.color.onSurface,
                 fontFamily: "Cairo",
@@ -1519,9 +1546,9 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                 borderRadius: BorderRadius.circular(12.r),
               ),
             ),
-            child: const Text(
-              "إعادة تعيين",
-              style: TextStyle(
+            child: Text(
+              l10n.settings_reset_settings_confirm,
+              style: const TextStyle(
                 fontFamily: "Cairo",
                 fontWeight: FontWeight.bold,
               ),
@@ -1589,6 +1616,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
   }
 
   Widget _buildNoInternetWidget() {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 40.w),
@@ -1614,7 +1642,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
             ),
             SizedBox(height: 16.h),
             Text(
-              "لا يوجد اتصال بالإنترنت",
+              l10n.pray_time_no_internet_title,
               style: TextStyle(
                 color: context.color.onSurface,
                 fontSize: 18.sp,
@@ -1624,7 +1652,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
             ),
             SizedBox(height: 8.h),
             Text(
-              "سيتم التحديث تلقائياً عند عودة الاتصال",
+              l10n.pray_time_no_internet_subtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: context.color.onSurface.withValues(alpha: 0.6),
@@ -1644,6 +1672,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
     String? technicalError,
   }) {
     final messageType = status.keys.first;
+    final l10n = AppLocalizations.of(context)!;
 
     return Center(
       child: SingleChildScrollView(
@@ -1661,16 +1690,16 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
               SizedBox(height: 24.h),
               Text(
                 messageType == LocationMessage.locationDisabled
-                    ? "خدمة الموقع معطلة"
+                    ? l10n.pray_time_location_service_disabled
                     : messageType == LocationMessage.locationNotAllowed
-                    ? "أذونات الموقع مطلوبة"
+                    ? l10n.pray_time_location_permission_required
                     : messageType == LocationMessage.locationNotAllowedEver
-                    ? "أذونات الموقع مرفوضة بشكل دائم"
+                    ? l10n.pray_time_location_permission_denied_forever
                     : messageType == LocationMessage.loading
-                    ? "جاري التحميل"
+                    ? l10n.pray_time_loading
                     : messageType == LocationMessage.error
-                    ? "حدث خطأ"
-                    : "عذراً هناك خطأ ما",
+                    ? l10n.pray_time_error_title
+                    : l10n.pray_time_unknown_error_title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 22.sp,
@@ -1689,7 +1718,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                 child: Text(
                   status.values.isNotEmpty
                       ? status.values.first
-                      : "خطأ غير معروف",
+                      : l10n.pray_time_unknown_error_message,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.sp,
@@ -1724,11 +1753,12 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
     Map<LocationMessage, String> status,
   ) {
     final messageType = status.keys.first;
+    final l10n = AppLocalizations.of(context)!;
     if (messageType == LocationMessage.locationNotAllowedEver) {
       return FilledButton.icon(
         onPressed: () async => await Geolocator.openAppSettings(),
         icon: const Icon(Icons.settings),
-        label: const Text("فتح الإعدادات"),
+        label: Text(l10n.settings),
         style: FilledButton.styleFrom(
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
           shape: RoundedRectangleBorder(
@@ -1741,9 +1771,9 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
       return FilledButton.icon(
         onPressed: _checkAndFetchLocation,
         icon: const Icon(Icons.location_on_rounded),
-        label: const Text(
-          "منح إذن الموقع",
-          style: TextStyle(fontFamily: "Cairo"),
+        label: Text(
+          l10n.pray_time_grant_location_permission,
+          style: const TextStyle(fontFamily: "Cairo"),
         ),
       );
     }
@@ -1751,16 +1781,16 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
       return FilledButton.icon(
         onPressed: Geolocator.openLocationSettings,
         icon: const Icon(Icons.gps_fixed_rounded),
-        label: const Text(
-          "تشغيل خدمة الموقع",
-          style: TextStyle(fontFamily: "Cairo"),
+        label: Text(
+          l10n.pray_time_enable_location_service,
+          style: const TextStyle(fontFamily: "Cairo"),
         ),
       );
     }
     return Text(
       messageType == LocationMessage.locationDisabled
-          ? "سيتم التحديث تلقائياً عند تفعيل الـ GPS"
-          : "يجب منح أذن الوصول الى الموقع بشكل يدوي",
+          ? l10n.pray_time_gps_auto_refresh_message
+          : l10n.pray_time_manual_permission_message,
       textAlign: TextAlign.center,
       style: TextStyle(
         color: context.color.onSurfaceVariant,
@@ -1800,13 +1830,17 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
       if (!mounted) return;
       if (!serviceEnabled) {
         ref.read(locationStatusProvider.notifier).setStatus({
-          LocationMessage.locationDisabled: "الـ GPS معطل، يرجى تفعيله",
+          LocationMessage.locationDisabled: AppLocalizations.of(
+            context,
+          )!.pray_time_location_disabled_message,
         });
         return;
       }
 
       ref.read(locationStatusProvider.notifier).setStatus({
-        LocationMessage.loading: "جاري تحديد موقعك الحالي...",
+        LocationMessage.loading: AppLocalizations.of(
+          context,
+        )!.pray_time_detecting_location,
       });
 
       final locationLocator = sl<LocationLocatorImpl>();
@@ -1847,20 +1881,24 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
 
   void _showLocationDeletedAlert() {
     if (!mounted) return;
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (ctx) => AlertDialog(
-        title: const Text("تنبيه", style: TextStyle(fontFamily: 'Cairo')),
-        content: const Text(
-          "تم حذف بيانات الموقع مسبقاً من التطبيق بناءً على طلبك. قد تكون أوقات الصلاة المعروضة حالياً غير دقيقة لأنها تعتمد على آخر موقع معروف قبل الحذف.\nهل ترغب في تحديث بيانات الموقع الآن لتصحيح الأوقات؟",
-          style: TextStyle(fontFamily: 'Cairo', height: 1.5),
+        title: Text(
+          l10n.pray_time_alert_title,
+          style: const TextStyle(fontFamily: 'Cairo'),
+        ),
+        content: Text(
+          l10n.pray_time_location_deleted_message,
+          style: const TextStyle(fontFamily: 'Cairo', height: 1.5),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
             child: Text(
-              "تجاهل",
+              l10n.pray_time_ignore,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 color: context.color.onSurface,
@@ -1873,7 +1911,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
               sl<SharedPreferences>().setBool('is_location_deleted', false);
 
               ref.read(locationStatusProvider.notifier).setStatus({
-                LocationMessage.loading: "جاري تحديد موقعك الحالي...",
+                LocationMessage.loading: l10n.pray_time_detecting_location,
               });
 
               final locationLocator = sl<LocationLocatorImpl>();
@@ -1910,7 +1948,7 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
                 },
               );
             },
-            child: const Text("تحديث الموقع"),
+            child: Text(l10n.settings_update_location),
           ),
         ],
       ),
@@ -1968,23 +2006,42 @@ class _PrayTimePageState extends ConsumerState<PrayTimePage>
     }
   }
 
-  String _translatePrayer(Prayer prayer) {
+  String _localizedPrayerFromEnum(AppLocalizations l10n, Prayer prayer) {
     switch (prayer) {
       case Prayer.fajr:
-        return "الفجر";
+        return l10n.fajer;
       case Prayer.sunrise:
-        return "الشروق";
+        return l10n.settings_prayer_sunrise;
       case Prayer.dhuhr:
-        return "الظهر";
+        return l10n.duhur;
       case Prayer.asr:
-        return "العصر";
+        return l10n.asr;
       case Prayer.maghrib:
-        return "المغرب";
+        return l10n.magrib;
       case Prayer.isha:
-        return "العشاء";
+        return l10n.esha;
       default:
-        return "قريباً";
+        return l10n.pray_time_soon;
     }
+  }
+
+  String _localizedPrayerName(AppLocalizations l10n, String name) {
+    return switch (name) {
+      "الفجر" => l10n.fajer,
+      "الشروق" => l10n.settings_prayer_sunrise,
+      "الظهر" => l10n.duhur,
+      "العصر" => l10n.asr,
+      "المغرب" => l10n.magrib,
+      "العشاء" => l10n.esha,
+      _ => name,
+    };
+  }
+
+  String _formatMinuteOffset(AppLocalizations l10n, int offset) {
+    if (offset > 0) {
+      return l10n.pray_time_minutes_offset_positive(offset);
+    }
+    return l10n.pray_time_minutes_offset(offset);
   }
 
   Color _prayerIconColorResolver({

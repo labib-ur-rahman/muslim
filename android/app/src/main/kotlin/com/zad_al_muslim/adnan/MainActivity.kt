@@ -1,4 +1,4 @@
-package com.zad_al_muslim.adnan
+package com.shirahsoft_muslim.adnan
 
 import android.content.Intent
 import android.app.AlarmManager
@@ -10,8 +10,8 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : AudioServiceActivity() {
-    private val notificationSettingsChannel = "com.zad_al_muslim.adnan/notification_sound_settings"
-    private val adhanAlarmChannel = "com.zad_al_muslim.adnan/adhan_alarm"
+    private val notificationSettingsChannel = "com.shirahsoft_muslim.adnan/notification_sound_settings"
+    private val adhanAlarmChannel = "com.shirahsoft_muslim.adnan/adhan_alarm"
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -70,7 +70,7 @@ class MainActivity : AudioServiceActivity() {
 
     private fun pendingAdhan(id: Int, asset: String = "", title: String = ""): PendingIntent {
         val intent = Intent(this, AdhanAlarmReceiver::class.java).apply {
-            action = "com.zad_al_muslim.adnan.PLAY_ADHAN.$id"
+            action = "com.shirahsoft_muslim.adnan.PLAY_ADHAN.$id"
             putExtra("asset", asset)
             putExtra("title", title)
         }

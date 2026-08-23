@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/quran/presentation/pages/full_audio_player_page.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/audio_player_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/player_state_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/pages/full_audio_player_page.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/audio_player_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/player_state_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
 
 class MiniAudioPlayer extends ConsumerWidget {
   const MiniAudioPlayer({super.key});
@@ -15,6 +16,7 @@ class MiniAudioPlayer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentAyah = ref.watch(currentPlayingAyahProvider);
+    final l10n = AppLocalizations.of(context)!;
     final autoScrollWithAudio = ref
         .watch(quranSettingsProvider)
         .autoScrollWithAudio;
@@ -24,10 +26,12 @@ class MiniAudioPlayer extends ConsumerWidget {
       return const SizedBox.shrink();
     }
 
-    final String title = "سورة ${currentAyah.surahName}";
+    final String title = l10n.quran_surah_label(currentAyah.surahName);
 
-    final String subtitle =
-        "الآية ${currentAyah.ayahNumber} - ${ref.watch(selectedQariProvider).name}";
+    final String subtitle = l10n.quran_ayah_qari_label(
+      currentAyah.ayahNumber,
+      ref.watch(selectedQariProvider).name,
+    );
 
     return GestureDetector(
       onTap: () {
@@ -131,8 +135,8 @@ class MiniAudioPlayer extends ConsumerWidget {
 
                     IconButton(
                       tooltip: autoScrollWithAudio
-                          ? "الغاء التمرير التلقائي"
-                          : "تفعيل التمرير التلقائي",
+                          ? l10n.quran_disable_auto_scroll
+                          : l10n.quran_enable_auto_scroll,
                       onPressed: () {
                         final notifier = ref.read(
                           quranSettingsProvider.notifier,
@@ -172,8 +176,8 @@ class MiniAudioPlayer extends ConsumerWidget {
                                     Expanded(
                                       child: Text(
                                         autoScrollWithAudio
-                                            ? "تم إلغاء تفعيل التمرير التلقائي للآيات"
-                                            : "تم تفعيل التمرير التلقائي للآيات",
+                                            ? l10n.quran_auto_scroll_disabled
+                                            : l10n.quran_auto_scroll_enabled,
                                         style: TextStyle(
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.w600,
@@ -221,7 +225,7 @@ class MiniAudioPlayer extends ConsumerWidget {
 
                         if (playing != true) {
                           return IconButton(
-                            tooltip: "تشغيل",
+                            tooltip: l10n.moratal_play,
                             icon: Icon(Icons.play_arrow_rounded, size: 28.sp),
                             color: context.color.primary,
                             onPressed: audioPlayer.play,
@@ -229,7 +233,7 @@ class MiniAudioPlayer extends ConsumerWidget {
                         } else if (processingState !=
                             ProcessingState.completed) {
                           return IconButton(
-                            tooltip: "إيقاف",
+                            tooltip: l10n.moratal_pause,
                             icon: Icon(Icons.pause_rounded, size: 28.sp),
                             color: context.color.primary,
                             onPressed: audioPlayer.pause,
@@ -245,7 +249,7 @@ class MiniAudioPlayer extends ConsumerWidget {
                     ),
 
                     IconButton(
-                      tooltip: "إغلاق",
+                      tooltip: l10n.close,
                       icon: Icon(Icons.close_rounded, size: 24.sp),
                       color: context.color.onSurface.withValues(alpha: .5),
                       // padding: EdgeInsets.zero,

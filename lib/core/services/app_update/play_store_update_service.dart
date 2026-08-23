@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_update/in_app_update.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
 
 class PlayStoreUpdateException implements Exception {
   const PlayStoreUpdateException(this.message);

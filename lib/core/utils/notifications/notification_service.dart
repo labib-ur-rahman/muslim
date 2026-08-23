@@ -1,6 +1,6 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
-import 'package:zad_al_muslim/core/utils/notifications/pending_notification_navigation.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/utils/notifications/pending_notification_navigation.dart';
 import 'notification_tap_handler.dart';
 
 class NotificationService {

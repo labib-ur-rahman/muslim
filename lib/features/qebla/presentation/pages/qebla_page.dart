@@ -5,11 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:zad_al_muslim/core/common/providers/user_position_provider.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/features/qebla/presentation/providers/qibla_provider.dart';
-import 'package:zad_al_muslim/features/qebla/presentation/widgets/qibla_compass_painter.dart';
-import 'package:zad_al_muslim/app_bootstrap.dart';
+import 'package:shirahsoft_muslim/core/common/providers/user_position_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/qebla/presentation/providers/qibla_provider.dart';
+import 'package:shirahsoft_muslim/features/qebla/presentation/widgets/qibla_compass_painter.dart';
+import 'package:shirahsoft_muslim/app_bootstrap.dart';
 
 class QeblaPage extends ConsumerStatefulWidget {
   const QeblaPage({super.key});
@@ -188,6 +189,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
   // ──────────────────────────────────────────────────────────
 
   Widget _buildMagneticWarning(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
       decoration: BoxDecoration(
@@ -208,7 +210,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
           SizedBox(width: 8.w),
           Expanded(
             child: Text(
-              'لأعلى دقة، ابتعد عن الأجهزة الكهربائية والأجسام المعدنية.',
+              l10n.qibla_magnetic_warning,
               style: TextStyle(
                 fontSize: 13.sp,
                 height: 1.6,
@@ -231,13 +233,14 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
     double qiblaAngle,
     double distanceKm,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     return Row(
       children: [
         Expanded(
           child: _buildInfoChip(
             context,
             icon: Icons.explore_rounded,
-            label: 'زاوية القبلة',
+            label: l10n.qibla_angle_label,
             value: '${qiblaAngle.toStringAsFixed(1)}°',
           ),
         ),
@@ -246,8 +249,8 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
           child: _buildInfoChip(
             context,
             icon: Icons.route_rounded,
-            label: 'المسافة إلى الكعبة',
-            value: '${distanceKm.toStringAsFixed(0)} كم',
+            label: l10n.qibla_distance_label,
+            value: l10n.qibla_distance_km(distanceKm.toStringAsFixed(0)),
           ),
         ),
       ],
@@ -306,6 +309,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
   }
 
   Widget _buildCalibrationTip(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16.r),
@@ -319,7 +323,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
           SizedBox(width: 12.w),
           Expanded(
             child: Text(
-              'حرّك الهاتف على شكل الرقم 8 إذا لاحظت أن اتجاه البوصلة غير مستقر.',
+              l10n.qibla_calibration_tip,
               style: TextStyle(
                 fontSize: 13.sp,
                 height: 1.6,
@@ -337,6 +341,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
   // ──────────────────────────────────────────────────────────
 
   Widget _buildCompassPlaceholder(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SizedBox(
       width: 280.w,
       height: 280.w,
@@ -347,7 +352,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
             CircularProgressIndicator(color: context.color.primary),
             SizedBox(height: 16.h),
             Text(
-              'جارٍ تحميل البوصلة…',
+              l10n.qibla_compass_loading,
               style: TextStyle(fontFamily: 'Cairo', fontSize: 13.sp),
             ),
           ],
@@ -361,6 +366,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
   // ──────────────────────────────────────────────────────────
 
   Widget _buildNoSensorState(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Padding(
         padding: EdgeInsets.all(32.r),
@@ -374,7 +380,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
             ),
             SizedBox(height: 24.h),
             Text(
-              'المستشعر غير متوفر',
+              l10n.qibla_no_sensor_title,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 20.sp,
@@ -384,7 +390,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
             ),
             SizedBox(height: 12.h),
             Text(
-              'جهازك لا يحتوي على مستشعر مغناطيسي\n(Magnetometer) مطلوب لتحديد اتجاه البوصلة.',
+              l10n.qibla_no_sensor_subtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Cairo',
@@ -404,6 +410,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
   // ──────────────────────────────────────────────────────────
 
   Widget _buildNoLocationState(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Padding(
         padding: EdgeInsets.all(32.r),
@@ -417,7 +424,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
             ),
             SizedBox(height: 24.h),
             Text(
-              'الموقع غير محدد',
+              l10n.qibla_no_location_title,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 20.sp,
@@ -427,8 +434,7 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
             ),
             SizedBox(height: 12.h),
             Text(
-              'لم توافق على مشاركة موقعك، لذلك لا يمكن حساب اتجاه القبلة. '
-              'يمكنك منح إذن الموقع الآن لاستخدام هذه الميزة.',
+              l10n.qibla_no_location_subtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Cairo',
@@ -441,9 +447,9 @@ class _QeblaPageState extends ConsumerState<QeblaPage>
             FilledButton.icon(
               onPressed: _requestLocation,
               icon: const Icon(Icons.my_location_rounded),
-              label: const Text(
-                'تحديد موقعي',
-                style: TextStyle(
+              label: Text(
+                l10n.qibla_find_my_location,
+                style: const TextStyle(
                   fontFamily: 'Cairo',
                   fontWeight: FontWeight.bold,
                 ),
@@ -468,13 +474,14 @@ class _QiblaHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: EdgeInsets.fromLTRB(14.w, 12.h, 14.w, 8.h),
       child: Row(
         children: [
           IconButton.filledTonal(
-            tooltip: 'العودة',
+            tooltip: l10n.go_back,
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_rounded),
           ),
@@ -498,7 +505,7 @@ class _QiblaHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'اتجاه القبلة',
+                  l10n.qebla_direction,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 20.sp,
@@ -507,7 +514,7 @@ class _QiblaHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'اعثر على اتجاه الكعبة بدقة',
+                  l10n.qibla_header_subtitle,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 10.5.sp,
@@ -547,6 +554,7 @@ class _CompassWidget extends StatelessWidget {
         : context.color.secondary;
     final ringColor = Theme.of(context).colorScheme.onSurface;
     final labelColor = Theme.of(context).colorScheme.onSurface;
+    final l10n = AppLocalizations.of(context)!;
 
     return Column(
       children: [
@@ -561,7 +569,7 @@ class _CompassWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.r),
           ),
           child: Text(
-            isAligned ? 'أنت باتجاه القبلة' : _headingLabel(heading),
+            isAligned ? l10n.qibla_aligned : _headingLabel(l10n, heading),
             style: TextStyle(
               fontFamily: 'Cairo',
               fontSize: 13.sp,
@@ -608,7 +616,7 @@ class _CompassWidget extends StatelessWidget {
               Icon(Icons.mosque_rounded, color: qiblaColor, size: 18.sp),
               SizedBox(width: 6.w),
               Text(
-                'اتجاه القبلة',
+                l10n.qebla_direction,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 14.sp,
@@ -623,15 +631,16 @@ class _CompassWidget extends StatelessWidget {
     );
   }
 
-  String _headingLabel(double heading) {
+  String _headingLabel(AppLocalizations l10n, double heading) {
     final h = heading % 360;
-    if (h < 22.5 || h >= 337.5) return 'شمال — ${h.toStringAsFixed(0)}°';
-    if (h < 67.5) return 'شمال شرق — ${h.toStringAsFixed(0)}°';
-    if (h < 112.5) return 'شرق — ${h.toStringAsFixed(0)}°';
-    if (h < 157.5) return 'جنوب شرق — ${h.toStringAsFixed(0)}°';
-    if (h < 202.5) return 'جنوب — ${h.toStringAsFixed(0)}°';
-    if (h < 247.5) return 'جنوب غرب — ${h.toStringAsFixed(0)}°';
-    if (h < 292.5) return 'غرب — ${h.toStringAsFixed(0)}°';
-    return 'شمال غرب — ${h.toStringAsFixed(0)}°';
+    final degrees = h.toStringAsFixed(0);
+    if (h < 22.5 || h >= 337.5) return l10n.qibla_heading_north(degrees);
+    if (h < 67.5) return l10n.qibla_heading_north_east(degrees);
+    if (h < 112.5) return l10n.qibla_heading_east(degrees);
+    if (h < 157.5) return l10n.qibla_heading_south_east(degrees);
+    if (h < 202.5) return l10n.qibla_heading_south(degrees);
+    if (h < 247.5) return l10n.qibla_heading_south_west(degrees);
+    if (h < 292.5) return l10n.qibla_heading_west(degrees);
+    return l10n.qibla_heading_north_west(degrees);
   }
 }

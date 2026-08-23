@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zad_al_muslim/core/l10n/app_localizations.dart';
-import 'package:zad_al_muslim/core/services/app_update/app_update_model.dart';
-import 'package:zad_al_muslim/core/services/app_update/app_update_providers.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/services/app_update/app_update_model.dart';
+import 'package:shirahsoft_muslim/core/services/app_update/app_update_providers.dart';
 
 class UpdateRequiredPage extends ConsumerStatefulWidget {
   const UpdateRequiredPage({super.key, required this.update});
@@ -73,19 +73,26 @@ class _UpdateRequiredPageState extends ConsumerState<UpdateRequiredPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.security_update_good_rounded,
-                        size: 88, color: colors.primary),
+                    Icon(
+                      Icons.security_update_good_rounded,
+                      size: 88,
+                      color: colors.primary,
+                    ),
                     const SizedBox(height: 24),
-                    Text(widget.update.title,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headlineSmall),
+                    Text(
+                      widget.update.title,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
                     const SizedBox(height: 12),
                     Text(widget.update.message, textAlign: TextAlign.center),
                     if (_error != null) ...[
                       const SizedBox(height: 16),
-                      Text(_error!,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: colors.error)),
+                      Text(
+                        _error!,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: colors.error),
+                      ),
                     ],
                     const SizedBox(height: 28),
                     SizedBox(
@@ -95,7 +102,9 @@ class _UpdateRequiredPageState extends ConsumerState<UpdateRequiredPage> {
                         icon: _loading
                             ? const SizedBox.square(
                                 dimension: 20,
-                                child: CircularProgressIndicator(strokeWidth: 2),
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
                               )
                             : const Icon(Icons.download_rounded),
                         label: Text(l10n.updateApp),

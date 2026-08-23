@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/features/tafsser/domain/entities/tafsser_entities.dart';
-import 'package:zad_al_muslim/features/tafsser/domain/usecases/get_ayah_tafsser_usecase.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/features/tafsser/domain/entities/tafsser_entities.dart';
+import 'package:shirahsoft_muslim/features/tafsser/domain/usecases/get_ayah_tafsser_usecase.dart';
 
 final ayahTafsserProvider =
     FutureProvider.family<

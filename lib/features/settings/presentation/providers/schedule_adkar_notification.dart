@@ -1,13 +1,13 @@
 import 'dart:math';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/core/utils/notifications/notification_service.dart';
-import 'package:zad_al_muslim/domain/repositories/i_prayer_repository.dart';
-import 'package:zad_al_muslim/domain/entities/prayer_time.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
-import 'package:zad_al_muslim/core/notification_sound/notification_sound_manager.dart';
-import 'package:zad_al_muslim/core/utils/notifications/notification_inbox_service.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/core/utils/notifications/notification_service.dart';
+import 'package:shirahsoft_muslim/domain/repositories/i_prayer_repository.dart';
+import 'package:shirahsoft_muslim/domain/entities/prayer_time.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/notification_sound/notification_sound_manager.dart';
+import 'package:shirahsoft_muslim/core/utils/notifications/notification_inbox_service.dart';
 
 class ScheduleAdkarNotification {
   static const int morningNotificationId = 10;

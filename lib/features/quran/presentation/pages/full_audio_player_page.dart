@@ -2,19 +2,20 @@ import 'dart:io';
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
-import 'package:zad_al_muslim/features/quran/domain/repositories/voice_ayah_by_ayah_repo.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/audio_player_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/player_state_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/voice_ayah_by_ayah_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/domain/repositories/voice_ayah_by_ayah_repo.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/audio_player_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/player_state_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/voice_ayah_by_ayah_provider.dart';
 import 'package:qcf_quran/qcf_quran.dart';
 
 class FullAudioPlayerPage extends ConsumerStatefulWidget {
@@ -75,6 +76,11 @@ class _FullAudioPlayerPageState extends ConsumerState<FullAudioPlayerPage> {
   }
 
   Future<void> _loadAndPlay(int surah, int ayah) async {
+    final l10n = AppLocalizations.of(context)!;
+    final surahTitle = l10n.quran_surah_label(
+      SurahNames.getFormattedName(surah),
+    );
+    final ayahArtist = l10n.quran_ayah_number(ayah);
     final player = ref.read(audioPlayerProvider);
     await player.stop();
 
@@ -94,7 +100,7 @@ class _FullAudioPlayerPageState extends ConsumerState<FullAudioPlayerPage> {
       (failure) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("فشل الحصول على رابط الآية")),
+            SnackBar(content: Text(l10n.quran_failed_get_ayah_url)),
           );
         }
       },
@@ -111,8 +117,8 @@ class _FullAudioPlayerPageState extends ConsumerState<FullAudioPlayerPage> {
               Uri.parse(url),
               tag: MediaItem(
                 id: 'ayah_${surah}_$ayah',
-                title: 'سورة ${SurahNames.getFormattedName(surah)}',
-                artist: 'الآية $ayah',
+                title: surahTitle,
+                artist: ayahArtist,
                 artUri: file.uri,
               ),
             ),
@@ -124,7 +130,7 @@ class _FullAudioPlayerPageState extends ConsumerState<FullAudioPlayerPage> {
           AppLogger.logger.e("رسالة الخطأ: $e");
           if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("تعذر التشغيل. لا يوجد اتصال.")),
+            SnackBar(content: Text(l10n.quran_playback_no_connection)),
           );
         }
       },
@@ -135,6 +141,7 @@ class _FullAudioPlayerPageState extends ConsumerState<FullAudioPlayerPage> {
   Widget build(BuildContext context) {
     final player = ref.watch(audioPlayerProvider);
     final currentAyah = ref.watch(currentPlayingAyahProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
       decoration: BoxDecoration(
@@ -195,8 +202,8 @@ class _FullAudioPlayerPageState extends ConsumerState<FullAudioPlayerPage> {
               children: [
                 Text(
                   currentAyah != null
-                      ? "سورة ${currentAyah.surahName}"
-                      : "غير محدد",
+                      ? l10n.quran_surah_label(currentAyah.surahName)
+                      : l10n.quran_not_selected,
                   style: TextStyle(
                     fontFamily: "Cairo",
                     fontSize: 24.sp,
@@ -207,7 +214,10 @@ class _FullAudioPlayerPageState extends ConsumerState<FullAudioPlayerPage> {
                 SizedBox(height: 5.h),
                 Text(
                   currentAyah != null
-                      ? "الآية ${currentAyah.ayahNumber} - بصوت ${ref.watch(selectedQariProvider).name}"
+                      ? l10n.quran_ayah_by_qari(
+                          currentAyah.ayahNumber,
+                          ref.watch(selectedQariProvider).name,
+                        )
                       : "-",
                   style: TextStyle(
                     fontFamily: "Cairo",
@@ -270,7 +280,7 @@ class _FullAudioPlayerPageState extends ConsumerState<FullAudioPlayerPage> {
                         ? context.color.onSurface.withValues(alpha: .4)
                         : context.color.primary,
                   ),
-                  tooltip: 'تكرار',
+                  tooltip: l10n.moratal_enable_repeat,
                   onPressed: () {
                     setState(() {
                       if (_loopMode == LoopMode.off) {
@@ -393,7 +403,7 @@ class _FullAudioPlayerPageState extends ConsumerState<FullAudioPlayerPage> {
                     final speed = snapshot.data ?? 1.0;
                     return PopupMenuButton<double>(
                       initialValue: speed,
-                      tooltip: 'السرعة',
+                      tooltip: l10n.moratal_playback_speed,
                       icon: Text(
                         "${speed}x",
                         style: TextStyle(
@@ -408,9 +418,9 @@ class _FullAudioPlayerPageState extends ConsumerState<FullAudioPlayerPage> {
                       itemBuilder: (context) => [
                         const PopupMenuItem(value: 0.5, child: Text('0.5x')),
                         const PopupMenuItem(value: 0.75, child: Text('0.75x')),
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 1.0,
-                          child: Text('1.0x (طبيعي)'),
+                          child: Text(l10n.moratal_speed_normal),
                         ),
                         const PopupMenuItem(value: 1.25, child: Text('1.25x')),
                         const PopupMenuItem(value: 1.5, child: Text('1.5x')),

@@ -11,7 +11,7 @@
 - `notification_sound_manager.dart`: سجل القنوات الثابت، إنشاؤها بصورة آمنة ومتكررة، تفاصيل Android، فتح إعدادات النظام، ونقطة تكامل وضع صوت الصلاة.
 - `notification_sound_settings_dialog.dart`: واجهة Flutter صغيرة تستهلك الواجهة العامة للوحدة فقط، ولا تحتوي على Android intents.
 
-Android Intent موجود في `MainActivity.kt` خلف `MethodChannel` باسم `com.zad_al_muslim.adnan/notification_sound_settings`.
+Android Intent موجود في `MainActivity.kt` خلف `MethodChannel` باسم `com.shirahsoft_muslim.adnan/notification_sound_settings`.
 
 ## Notification Channels
 
@@ -39,7 +39,7 @@ Android Intent موجود في `MainActivity.kt` خلف `MethodChannel` باسم
 - `lib/features/settings/presentation/providers/schedule_adkar_notification.dart`: استخدام قناتي أذكار الصباح والمساء المسجلتين.
 - `lib/features/settings/presentation/pages/settings_page.dart`: إضافة مدخل «أصوات الإشعارات».
 - `android/app/src/main/AndroidManifest.xml`: تشغيل `MainActivity` (الوارثة من `AudioServiceActivity`) حتى يُسجّل Android MethodChannel.
-- `android/app/src/main/kotlin/com/zad_al_muslim/adnan/MainActivity.kt`: فتح إعدادات إشعارات التطبيق أو Channel محددة عبر Android APIs.
+- `android/app/src/main/kotlin/com/shirahsoft_muslim/adnan/MainActivity.kt`: فتح إعدادات إشعارات التطبيق أو Channel محددة عبر Android APIs.
 
 ## Android Implementation
 

@@ -43,7 +43,7 @@ class NotificationSoundManager {
   NotificationSoundManager._();
 
   static const _settingsChannel = MethodChannel(
-    'com.zad_al_muslim.adnan/notification_sound_settings',
+    'com.shirahsoft_muslim.adnan/notification_sound_settings',
   );
   static const prayerAudioModePreferenceKey = 'prayer_notification_audio_mode';
 

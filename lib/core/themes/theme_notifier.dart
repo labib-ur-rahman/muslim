@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const Color kDefaultScheme = Color(0xFF176B70);

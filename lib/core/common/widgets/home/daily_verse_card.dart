@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/common/providers/daily_content_provider.dart';
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/common/providers/daily_content_provider.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
 
 class DailyVerseCard extends ConsumerStatefulWidget {
   const DailyVerseCard({super.key});

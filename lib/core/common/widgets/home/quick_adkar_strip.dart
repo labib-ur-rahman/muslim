@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/common/providers/home_clock_provider.dart';
-import 'package:zad_al_muslim/features/adkar/domain/entities/adkar_entity.dart';
-import 'package:zad_al_muslim/features/adkar/presentation/pages/adkar_details_page.dart';
-import 'package:zad_al_muslim/features/adkar/presentation/providers/adkar_provider.dart';
+import 'package:shirahsoft_muslim/core/common/providers/home_clock_provider.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/adkar/domain/entities/adkar_entity.dart';
+import 'package:shirahsoft_muslim/features/adkar/presentation/pages/adkar_details_page.dart';
+import 'package:shirahsoft_muslim/features/adkar/presentation/providers/adkar_provider.dart';
 
 class QuickAdkarStrip extends ConsumerWidget {
   const QuickAdkarStrip({super.key});
@@ -12,37 +13,37 @@ class QuickAdkarStrip extends ConsumerWidget {
   static const List<_QuickAdkarItem> _quickItems = [
     _QuickAdkarItem(
       category: 'أذكار الصباح والمساء',
-      shortTitle: 'الصباح والمساء',
+      type: _QuickAdkarType.morningEvening,
       icon: Icons.wb_sunny_rounded,
       accent: _AdkarAccent.primary,
     ),
     _QuickAdkarItem(
       category: 'أذكار النوم',
-      shortTitle: 'أذكار النوم',
+      type: _QuickAdkarType.sleep,
       icon: Icons.bedtime_rounded,
       accent: _AdkarAccent.secondary,
     ),
     _QuickAdkarItem(
       category: 'الأذكار بعد السلام من الصلاة',
-      shortTitle: 'بعد الصلاة',
+      type: _QuickAdkarType.afterPrayer,
       icon: Icons.mosque_rounded,
       accent: _AdkarAccent.tertiary,
     ),
     _QuickAdkarItem(
       category: 'أذكار الاستيقاظ من النوم',
-      shortTitle: 'الاستيقاظ',
+      type: _QuickAdkarType.wakeUp,
       icon: Icons.alarm_rounded,
       accent: _AdkarAccent.secondary,
     ),
     _QuickAdkarItem(
       category: 'دعاء الهم والحزن',
-      shortTitle: 'الهم والحزن',
+      type: _QuickAdkarType.worrySadness,
       icon: Icons.favorite_outline_rounded,
       accent: _AdkarAccent.tertiary,
     ),
     _QuickAdkarItem(
       category: 'الاستغفار والتوبة',
-      shortTitle: 'الاستغفار',
+      type: _QuickAdkarType.forgiveness,
       icon: Icons.auto_awesome_rounded,
       accent: _AdkarAccent.primary,
     ),
@@ -158,6 +159,7 @@ class _SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Row(
       children: [
@@ -182,7 +184,7 @@ class _SectionHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'اختصارات الأذكار',
+                l10n.quick_adkar_title,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 16.sp,
@@ -193,7 +195,7 @@ class _SectionHeader extends StatelessWidget {
               ),
               SizedBox(height: 1.h),
               Text(
-                'وصول سريع إلى أذكارك اليومية',
+                l10n.quick_adkar_subtitle,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 11.sp,
@@ -240,6 +242,8 @@ class _QuickAdkarCardState extends State<_QuickAdkarCard> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final accentColor = _resolveAccentColor(colorScheme, widget.item.accent);
+    final l10n = AppLocalizations.of(context)!;
+    final title = _localizedQuickAdkarTitle(l10n, widget.item.type);
 
     final foregroundColor = widget.isAvailable
         ? colorScheme.onSurface
@@ -266,7 +270,7 @@ class _QuickAdkarCardState extends State<_QuickAdkarCard> {
           splashColor: accentColor.withValues(alpha: 0.08),
           highlightColor: accentColor.withValues(alpha: 0.04),
           child: Ink(
-            width: widget.item.shortTitle.length <= 13 ? 150.w : 170.w,
+            width: title.length <= 13 ? 150.w : 170.w,
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18.r),
@@ -305,7 +309,7 @@ class _QuickAdkarCardState extends State<_QuickAdkarCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.item.shortTitle,
+                        title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -322,9 +326,9 @@ class _QuickAdkarCardState extends State<_QuickAdkarCard> {
                       Text(
                         widget.isAvailable
                             ? widget.isRecommended
-                                  ? 'مقترح الآن'
-                                  : 'فتح الذكر'
-                            : 'غير متوفر',
+                                  ? l10n.quick_adkar_recommended_now
+                                  : l10n.quick_adkar_open
+                            : l10n.quick_adkar_unavailable,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -446,6 +450,7 @@ class _QuickAdkarError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 14.w),
@@ -468,7 +473,7 @@ class _QuickAdkarError extends StatelessWidget {
 
             Expanded(
               child: Text(
-                'تعذر تحميل اختصارات الأذكار',
+                l10n.quick_adkar_load_error,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 10.5.sp,
@@ -478,7 +483,7 @@ class _QuickAdkarError extends StatelessWidget {
               ),
             ),
 
-            TextButton(onPressed: onRetry, child: const Text('إعادة المحاولة')),
+            TextButton(onPressed: onRetry, child: Text(l10n.retry)),
           ],
         ),
       ),
@@ -489,15 +494,35 @@ class _QuickAdkarError extends StatelessWidget {
 class _QuickAdkarItem {
   const _QuickAdkarItem({
     required this.category,
-    required this.shortTitle,
+    required this.type,
     required this.icon,
     required this.accent,
   });
 
   final String category;
-  final String shortTitle;
+  final _QuickAdkarType type;
   final IconData icon;
   final _AdkarAccent accent;
 }
 
 enum _AdkarAccent { primary, secondary, tertiary }
+
+enum _QuickAdkarType {
+  morningEvening,
+  sleep,
+  afterPrayer,
+  wakeUp,
+  worrySadness,
+  forgiveness,
+}
+
+String _localizedQuickAdkarTitle(AppLocalizations l10n, _QuickAdkarType type) {
+  return switch (type) {
+    _QuickAdkarType.morningEvening => l10n.quick_adkar_morning_evening,
+    _QuickAdkarType.sleep => l10n.quick_adkar_sleep,
+    _QuickAdkarType.afterPrayer => l10n.quick_adkar_after_prayer,
+    _QuickAdkarType.wakeUp => l10n.quick_adkar_wake_up,
+    _QuickAdkarType.worrySadness => l10n.quick_adkar_worry_sadness,
+    _QuickAdkarType.forgiveness => l10n.quick_adkar_forgiveness,
+  };
+}

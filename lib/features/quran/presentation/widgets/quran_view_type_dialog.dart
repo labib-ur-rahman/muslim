@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/extensions/sizes_ext.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/extensions/sizes_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/quran_settings_provider.dart';
 
 class QuranViewTypeDialog extends ConsumerStatefulWidget {
   const QuranViewTypeDialog({super.key});
@@ -23,17 +24,18 @@ class _QuranViewTypeDialogState extends ConsumerState<QuranViewTypeDialog> {
     final settings = ref.watch(quranSettingsProvider);
     final selectedType = settings.quranViewType;
     final currentFontSize = _localFontSize ?? settings.quranVerticalFontSize;
+    final l10n = AppLocalizations.of(context)!;
 
     final List<Map<String, dynamic>> viewOptions = [
       {
-        'label': 'الشكل الثابت',
-        'description': 'عرض الصفحة بحجم ثابت لا يتغيّر',
+        'label': l10n.quran_view_fixed,
+        'description': l10n.quran_view_fixed_description,
         'icon': Icons.push_pin,
         'value': QuranViewType.fixed,
       },
       {
-        'label': 'الشكل القابل للتكبير والتصغير',
-        'description': 'قابل للتكبير والتصغير بإصبعين',
+        'label': l10n.quran_view_zoomable,
+        'description': l10n.quran_view_zoomable_description,
         'icon': Icons.zoom_in_rounded,
         'value': QuranViewType.zoomable,
       },
@@ -69,7 +71,7 @@ class _QuranViewTypeDialogState extends ConsumerState<QuranViewTypeDialog> {
                         ),
                         SizedBox(width: 10.w),
                         Text(
-                          'طريقة عرض الصفحة',
+                          l10n.quran_view_page_display,
                           style: TextStyle(
                             fontFamily: 'Cairo',
                             fontSize: context.mediaQueryWidth * 0.04,
@@ -228,7 +230,7 @@ class _QuranViewTypeDialogState extends ConsumerState<QuranViewTypeDialog> {
                           ),
                           SizedBox(width: 8.w),
                           Text(
-                            'حجم الخط',
+                            l10n.font_size,
                             style: TextStyle(
                               fontFamily: 'Cairo',
                               fontSize: 14.sp,
@@ -322,7 +324,7 @@ class _QuranViewTypeDialogState extends ConsumerState<QuranViewTypeDialog> {
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text(
-                      'إغلاق',
+                      l10n.close,
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         fontSize: 14.sp,

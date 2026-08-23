@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/constants/env.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/utils/network/network_info.dart';
-import 'package:zad_al_muslim/features/tafsser/domain/entities/tafsser_entities.dart';
-import 'package:zad_al_muslim/features/tafsser/presentation/providers/tafsser_book.dart';
-import 'package:zad_al_muslim/features/tafsser/presentation/widgets/tafseer_dialog.dart';
-import 'package:zad_al_muslim/features/tafsser/presentation/widgets/tafsser_buttons.dart';
-import 'package:zad_al_muslim/features/tafsser/domain/usecases/tafseer_utils.dart';
-import 'package:zad_al_muslim/features/tafsser/presentation/providers/tafsser_download_provider.dart';
+import 'package:shirahsoft_muslim/core/constants/env.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/utils/network/network_info.dart';
+import 'package:shirahsoft_muslim/features/tafsser/domain/entities/tafsser_entities.dart';
+import 'package:shirahsoft_muslim/features/tafsser/presentation/providers/tafsser_book.dart';
+import 'package:shirahsoft_muslim/features/tafsser/presentation/widgets/tafseer_dialog.dart';
+import 'package:shirahsoft_muslim/features/tafsser/presentation/widgets/tafsser_buttons.dart';
+import 'package:shirahsoft_muslim/features/tafsser/domain/usecases/tafseer_utils.dart';
+import 'package:shirahsoft_muslim/features/tafsser/presentation/providers/tafsser_download_provider.dart';
 
 class TafseerPage extends ConsumerStatefulWidget {
   const TafseerPage({super.key});

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/constants/enums/my_enums.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/extensions/sizes_ext.dart';
-import 'package:zad_al_muslim/features/hadith/presentation/providers/hadith_provider.dart';
+import 'package:shirahsoft_muslim/core/constants/enums/my_enums.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/extensions/sizes_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/hadith/presentation/providers/hadith_provider.dart';
 
 class BookFilterContainer extends ConsumerStatefulWidget {
   final String title;
@@ -30,6 +31,7 @@ class _BookFilterContainerState extends ConsumerState<BookFilterContainer> {
   @override
   Widget build(BuildContext context) {
     final Color primary = Theme.of(context).colorScheme.primary;
+    final l10n = AppLocalizations.of(context)!;
 
     ref.watch(hadithProvider); // الاستماع لتغيرات الأحاديث لإعادة البناء
     final notifier = ref.read(hadithProvider.notifier);
@@ -40,7 +42,9 @@ class _BookFilterContainerState extends ConsumerState<BookFilterContainer> {
       activeBook = SahihBukhariBook.fromId(currentBookNumber);
     }
 
-    final String displayTitle = activeBook?.arabicName ?? widget.title;
+    final String displayTitle = activeBook == null
+        ? widget.title
+        : _localizedBukhariBook(l10n, activeBook);
     final bool isFiltered = activeBook != null;
 
     return InkWell(
@@ -78,7 +82,7 @@ class _BookFilterContainerState extends ConsumerState<BookFilterContainer> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        book.arabicName,
+                        _localizedBukhariBook(l10n, book),
                         style: TextStyle(
                           fontSize: context.witdthScreen * 0.035,
                           color: context.color.onSurface,
@@ -153,4 +157,18 @@ class _BookFilterContainerState extends ConsumerState<BookFilterContainer> {
       ),
     );
   }
+}
+
+String _localizedBukhariBook(AppLocalizations l10n, SahihBukhariBook book) {
+  return switch (book) {
+    SahihBukhariBook.belief => l10n.hadith_book_belief,
+    SahihBukhariBook.salat => l10n.hadith_book_salat,
+    SahihBukhariBook.knowledge => l10n.hadith_book_knowledge,
+    SahihBukhariBook.salesAndTrade => l10n.hadith_book_sales,
+    SahihBukhariBook.adab => l10n.hadith_book_adab,
+    SahihBukhariBook.riqaq => l10n.hadith_book_riqaq,
+    SahihBukhariBook.invocations => l10n.hadith_book_invocations,
+    SahihBukhariBook.tawheel => l10n.hadith_book_tawhid,
+    _ => book.arabicName,
+  };
 }

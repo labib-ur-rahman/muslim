@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:qcf_quran/qcf_quran.dart' as qcf;
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
 
 class QuranSearchIndexer {
   static List<Map<String, dynamic>> cache = [];

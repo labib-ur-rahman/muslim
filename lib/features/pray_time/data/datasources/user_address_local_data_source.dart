@@ -1,4 +1,4 @@
-import 'package:zad_al_muslim/features/pray_time/data/models/user_address_model.dart';
+import 'package:shirahsoft_muslim/features/pray_time/data/models/user_address_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class UserAddressLocalDataSource {

@@ -1,6 +1,6 @@
 import 'package:isar_community/isar.dart';
-import 'package:zad_al_muslim/features/hadith/data/models/reference_model.dart';
-import 'package:zad_al_muslim/features/hadith/domain/entities/hadith_entity.dart';
+import 'package:shirahsoft_muslim/features/hadith/data/models/reference_model.dart';
+import 'package:shirahsoft_muslim/features/hadith/domain/entities/hadith_entity.dart';
 
 part 'hadith_model.g.dart';
 

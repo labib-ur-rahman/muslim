@@ -1,5 +1,5 @@
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
 
 class UrlLauncherHandler {
   static Future<void> openEmail(String url) async {

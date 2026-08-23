@@ -3,14 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dartz/dartz.dart' show Either;
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/errors/failures.dart';
-import 'package:zad_al_muslim/features/quran/data/models/juzz_model.dart';
-import 'package:zad_al_muslim/features/quran/presentation/pages/quran_pages.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/all_juzz_provider.dart';
-import 'package:zad_al_muslim/features/quran/presentation/providers/surahs_meta_provider.dart';
-import 'package:zad_al_muslim/features/quran/domain/entities/surah_meta_entity.dart';
-import 'package:zad_al_muslim/core/constants/surah_names.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/core/errors/failures.dart';
+import 'package:shirahsoft_muslim/features/quran/data/models/juzz_model.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/pages/quran_pages.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/all_juzz_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/providers/surahs_meta_provider.dart';
+import 'package:shirahsoft_muslim/features/quran/domain/entities/surah_meta_entity.dart';
+import 'package:shirahsoft_muslim/core/constants/surah_names.dart';
 import "package:qcf_quran/qcf_quran.dart";
 
 class SelectSurahPage extends ConsumerStatefulWidget {
@@ -26,12 +27,13 @@ class _QuranIndexHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.fromLTRB(14.w, 12.h, 14.w, 8.h),
       child: Row(
         children: [
           IconButton.filledTonal(
-            tooltip: 'العودة',
+            tooltip: l10n.go_back,
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_rounded),
           ),
@@ -55,7 +57,7 @@ class _QuranIndexHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'فهرس المصحف',
+                  l10n.quran_index_title,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 20.sp,
@@ -64,7 +66,7 @@ class _QuranIndexHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'اختر سورة أو جزءاً لبدء القراءة',
+                  l10n.quran_index_subtitle,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 10.5.sp,
@@ -95,6 +97,7 @@ class _SelectSurahPageState extends ConsumerState<SelectSurahPage> {
     final surahsMeta = ref.watch(surahsMetaProvider);
     final juzzData = ref.watch(allJuzzProvider);
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -127,9 +130,9 @@ class _SelectSurahPageState extends ConsumerState<SelectSurahPage> {
                     fontWeight: FontWeight.w800,
                     fontFamily: 'Cairo',
                   ),
-                  tabs: const [
-                    Tab(text: 'السور'),
-                    Tab(text: 'الأجزاء'),
+                  tabs: [
+                    Tab(text: l10n.quran_surahs_tab),
+                    Tab(text: l10n.quran_juz_tab),
                   ],
                 ),
               ),
@@ -233,15 +236,17 @@ class _SelectSurahPageState extends ConsumerState<SelectSurahPage> {
             children: [
               _buildInfoChip(
                 Icons.menu_book_rounded,
-                surah.verseCount >= 10
-                    ? "${surah.verseCount} آية"
-                    : "${surah.verseCount} آيات",
+                AppLocalizations.of(
+                  context,
+                )!.quran_ayah_count(surah.verseCount),
                 context,
               ),
               SizedBox(width: 12.w),
               _buildInfoChip(
                 Icons.grid_view_rounded,
-                "الجزء ${surah.juzzNumber}",
+                AppLocalizations.of(
+                  context,
+                )!.quran_juz_number(surah.juzzNumber),
                 context,
               ),
             ],
@@ -368,13 +373,13 @@ class _SelectSurahPageState extends ConsumerState<SelectSurahPage> {
             children: [
               _buildInfoChip(
                 Icons.auto_stories_outlined,
-                "سورة $surahName",
+                AppLocalizations.of(context)!.quran_surah_label(surahName),
                 context,
               ),
               SizedBox(width: 12.w),
               _buildInfoChip(
                 Icons.tag_rounded,
-                "صفحة رقم $pageNumber",
+                AppLocalizations.of(context)!.quran_page_number(pageNumber),
                 context,
               ),
             ],
@@ -398,7 +403,7 @@ class _SelectSurahPageState extends ConsumerState<SelectSurahPage> {
       children: [
         if (juzzNumber != null)
           Text(
-            "الجزء $juzzNumber",
+            AppLocalizations.of(context)!.quran_juz_number(juzzNumber),
             style: TextStyle(
               fontSize: 17.sp,
               fontFamily: "Cairo",

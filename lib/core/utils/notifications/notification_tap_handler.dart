@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:isar_community/isar.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
-import 'package:zad_al_muslim/features/quran/data/models/mark.dart';
-import 'package:zad_al_muslim/main.dart';
-import 'package:zad_al_muslim/core/database/isar_db.dart';
-import 'package:zad_al_muslim/features/quran/presentation/pages/quran_pages.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/features/quran/data/models/mark.dart';
+import 'package:shirahsoft_muslim/main.dart';
+import 'package:shirahsoft_muslim/core/database/isar_db.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/pages/quran_pages.dart';
 
 class NotificationTapHandler {
   static Future<void> handle(String? payload) async {

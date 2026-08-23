@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:isar_community/isar.dart';
-import 'package:zad_al_muslim/core/di/injection_container.dart';
-import 'package:zad_al_muslim/features/pray_time/data/models/prayer_adjustments_model.dart';
-import 'package:zad_al_muslim/domain/usecases/schedule_notifications_usecase.dart';
-import 'package:zad_al_muslim/core/common/providers/user_position_provider.dart';
+import 'package:shirahsoft_muslim/core/di/injection_container.dart';
+import 'package:shirahsoft_muslim/features/pray_time/data/models/prayer_adjustments_model.dart';
+import 'package:shirahsoft_muslim/domain/usecases/schedule_notifications_usecase.dart';
+import 'package:shirahsoft_muslim/core/common/providers/user_position_provider.dart';
 
 /// موفر StateNotifier للتحكم في تعديلات دقائق أوقات الصلاة
 class PrayerAdjustmentsNotifier

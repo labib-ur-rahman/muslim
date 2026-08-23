@@ -1,4 +1,4 @@
-import 'package:zad_al_muslim/features/quran/domain/entities/surah_meta_entity.dart';
+import 'package:shirahsoft_muslim/features/quran/domain/entities/surah_meta_entity.dart';
 
 class SurahMetaModel extends SurahMetaEntity {
   SurahMetaModel({
@@ -21,7 +21,14 @@ class SurahMetaModel extends SurahMetaEntity {
     );
   }
 
-  factory SurahMetaModel.fromString(int surahNumber, int pageNumber, String name, String englishName, int juzzNumber, int verseCount) {
+  factory SurahMetaModel.fromString(
+    int surahNumber,
+    int pageNumber,
+    String name,
+    String englishName,
+    int juzzNumber,
+    int verseCount,
+  ) {
     return SurahMetaModel(
       surahNumber: surahNumber,
       pageNumber: pageNumber,

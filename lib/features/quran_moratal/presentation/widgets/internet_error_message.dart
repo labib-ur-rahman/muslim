@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
 
 class InternetErrorMessage {
   static void showMessage({required BuildContext context}) {
@@ -21,7 +22,7 @@ class InternetErrorMessage {
             SizedBox(width: 8.w),
             Expanded(
               child: Text(
-                'يرجى التحقق من إتصالك بالإنترنت.',
+                AppLocalizations.of(context)!.quran_check_internet,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontWeight: FontWeight.bold,

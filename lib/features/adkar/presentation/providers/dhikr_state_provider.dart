@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:isar_community/isar.dart';
-import 'package:zad_al_muslim/core/database/isar_db.dart';
-import 'package:zad_al_muslim/features/adkar/data/models/dhikr_state_model.dart';
+import 'package:shirahsoft_muslim/core/database/isar_db.dart';
+import 'package:shirahsoft_muslim/features/adkar/data/models/dhikr_state_model.dart';
 
 class DhikrStateParams {
   final String dhikrId;

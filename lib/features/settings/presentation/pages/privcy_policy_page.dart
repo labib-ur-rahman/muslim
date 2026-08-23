@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zad_al_muslim/core/common/widgets/page_header.dart';
-import 'package:zad_al_muslim/core/constants/env.dart';
+import 'package:shirahsoft_muslim/core/common/widgets/page_header.dart';
+import 'package:shirahsoft_muslim/core/constants/env.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:zad_al_muslim/core/utils/log/app_logger.dart';
-import 'package:zad_al_muslim/core/utils/url_launcher_handler.dart';
+import 'package:shirahsoft_muslim/core/utils/log/app_logger.dart';
+import 'package:shirahsoft_muslim/core/utils/url_launcher_handler.dart';
 
 class PrivcyPolicyPage extends StatefulWidget {
   const PrivcyPolicyPage({super.key});

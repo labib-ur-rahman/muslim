@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zad_al_muslim/core/extensions/color_ext.dart';
-import 'package:zad_al_muslim/core/extensions/sizes_ext.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/extensions/sizes_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
 
 class AdahnDialog extends StatefulWidget {
   const AdahnDialog({super.key});
@@ -11,20 +12,22 @@ class AdahnDialog extends StatefulWidget {
 }
 
 class _AdahnDialogState extends State<AdahnDialog> {
-  List<String> options = [
-    "أذان الحرم المكي (الشيخ علي ملا)",
-    "أذان المسجد النبوي (الشيخ عصام بخاري)",
-    "أذان المسجد الأقصى (القدس)",
-    "أذان مصري (الشيخ محمد رفعت)",
-    "أذان مصري (الشيخ عبد الباسط عبد الصمد)",
-    "الأذان الجماعي (الجامع الأموي بدمشق)",
-    "أذان على مقام الحجاز (النمط المدني)",
-    "أذان على مقام الرست (النمط التركي)",
-    "أذان على مقام الصبا (أذان حزين)",
-    "أذان المغرب العربي (النمط القيرواني)",
-  ]; // temp
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final options = [
+      l10n.settings_adhan_makkah,
+      l10n.settings_adhan_madinah,
+      l10n.settings_adhan_aqsa,
+      l10n.settings_adhan_egypt_refaat,
+      l10n.settings_adhan_egypt_abdul_basit,
+      l10n.settings_adhan_umayyad,
+      l10n.settings_adhan_hijaz,
+      l10n.settings_adhan_rast,
+      l10n.settings_adhan_saba,
+      l10n.settings_adhan_maghribi,
+    ];
+
     return Dialog(
       child: Padding(
         padding: EdgeInsetsGeometry.all(16.w),
@@ -38,19 +41,19 @@ class _AdahnDialogState extends State<AdahnDialog> {
                   color: context.color.onSurface,
                 ),
                 SizedBox(width: 8.w),
-                const Text(
-                  "صوت الأذان",
+                Text(
+                  l10n.settings_adhan_sound,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "Cairo",
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBox(width: 8.w),
-                const Text(
-                  "(قيد العمل)",
+                Text(
+                  l10n.settings_in_progress,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "Cairo",
                     fontWeight: FontWeight.bold,
                   ),
@@ -94,9 +97,9 @@ class _AdahnDialogState extends State<AdahnDialog> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                "إلغاء",
-                style: TextStyle(
+              child: Text(
+                l10n.settings_cancel,
+                style: const TextStyle(
                   fontFamily: "Cairo",
                   fontWeight: FontWeight.bold,
                 ),
