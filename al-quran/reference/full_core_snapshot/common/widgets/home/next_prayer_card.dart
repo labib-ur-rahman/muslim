@@ -1,0 +1,834 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart' as intl;
+import 'package:skeletonizer/skeletonizer.dart';
+import 'package:shirahsoft_muslim/core/common/providers/theme_provider.dart';
+import 'package:shirahsoft_muslim/core/constants/routes.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/pray_time/presentation/providers/next_prayer_provider.dart';
+import 'package:shirahsoft_muslim/features/pray_time/presentation/providers/pray_times_provider.dart';
+import 'package:shirahsoft_muslim/features/settings/presentation/providers/app_settings_provider.dart';
+
+class NextPrayerCard extends ConsumerStatefulWidget {
+  const NextPrayerCard({super.key});
+
+  @override
+  ConsumerState<NextPrayerCard> createState() => _NextPrayerCardState();
+}
+
+class _NextPrayerCardState extends ConsumerState<NextPrayerCard> {
+  final bool _isCalculatingPrayerTimes = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final nextPrayerAsync = ref.watch(nextPrayerProvider);
+    final l10n = AppLocalizations.of(context)!;
+
+    /// يقوم بعرض طلب موقع المستخدم ويقوم بإعادة حساب اوقات الصلاة
+
+    if (_isCalculatingPrayerTimes) {
+      return const _PrayerCardLoadingView();
+    }
+
+    return nextPrayerAsync.when(
+      data: (nextPrayer) {
+        if (nextPrayer == null) {
+          return _PrayerCardError(
+            message: l10n.home_prayer_location_not_allowed,
+            onTap: () {
+              Navigator.of(context).pushNamed(Routes.prayTimePage);
+            },
+            ref: ref,
+          );
+        }
+
+        return _PrayerCardContent(nextPrayer: nextPrayer);
+      },
+      loading: () => const _PrayerCardLoadingView(),
+      error: (_, _) {
+        return _PrayerCardError(
+          message: l10n.home_prayer_load_error,
+          onTap: () {
+            Navigator.of(context).pushNamed(Routes.prayTimePage);
+          },
+          ref: ref,
+        );
+      },
+    );
+  }
+}
+
+class _PrayerCardContent extends ConsumerStatefulWidget {
+  const _PrayerCardContent({required this.nextPrayer});
+
+  final NextPrayerInfo nextPrayer;
+
+  @override
+  ConsumerState<_PrayerCardContent> createState() => _PrayerCardContentState();
+}
+
+class _PrayerCardContentState extends ConsumerState<_PrayerCardContent> {
+  bool _isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final nextPrayer = widget.nextPrayer;
+    final settingsProvider = ref.watch(appSettingsProvider);
+    final l10n = AppLocalizations.of(context)!;
+
+    final accentColor = nextPrayer.isVeryClose
+        ? colorScheme.tertiary
+        : colorScheme.primary;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
+      child: AnimatedScale(
+        scale: _isPressed ? 0.985 : 1,
+        duration: const Duration(milliseconds: 130),
+        curve: Curves.easeOut,
+        child: Material(
+          color: colorScheme.surface,
+          elevation: isDark ? 0 : 3,
+          shadowColor: Colors.black.withValues(alpha: .18),
+          borderRadius: BorderRadius.circular(24.r),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: () async {
+              final selectedDateTiem = await Navigator.of(
+                context,
+              ).pushNamed("/pray_time_page");
+              await Future.delayed(const Duration(milliseconds: 250));
+              if (selectedDateTiem != DateTime.now()) {
+                ref.read(selectedDateProvider.notifier).state = DateTime.now();
+              }
+            },
+            onHighlightChanged: (value) {
+              if (_isPressed == value) return;
+
+              setState(() {
+                _isPressed = value;
+              });
+            },
+            borderRadius: BorderRadius.circular(24.r),
+            splashColor: accentColor.withValues(alpha: 0.08),
+            highlightColor: accentColor.withValues(alpha: 0.04),
+            child: Ink(
+              padding: EdgeInsets.all(17.r),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24.r),
+                border: Border.all(
+                  color: nextPrayer.isVeryClose
+                      ? accentColor.withValues(alpha: 0.28)
+                      : isDark
+                      ? colorScheme.outlineVariant.withValues(alpha: 0.48)
+                      : colorScheme.outline.withValues(alpha: 0.34),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _PrayerCardHeader(
+                    accentColor: accentColor,
+                    isVeryClose: nextPrayer.isVeryClose,
+                  ),
+
+                  SizedBox(height: 18.h),
+
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _PrayerIcon(
+                        icon: nextPrayer.icon,
+                        accentColor: accentColor,
+                      ),
+
+                      SizedBox(width: 13.w),
+
+                      Expanded(
+                        child: _PrayerMainInformation(
+                          nextPrayer: nextPrayer,
+                          accentColor: accentColor,
+                        ),
+                      ),
+
+                      SizedBox(width: 10.w),
+
+                      _PrayerTime(
+                        time: _formatPrayerTime(
+                          l10n,
+                          nextPrayer,
+                          settingsProvider.use24HourFormat,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 17.h),
+
+                  _CountdownSection(
+                    nextPrayer: nextPrayer,
+                    accentColor: accentColor,
+                  ),
+
+                  SizedBox(height: 14.h),
+
+                  _OpenPrayerTimesAction(accentColor: accentColor),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PrayerCardHeader extends StatelessWidget {
+  const _PrayerCardHeader({
+    required this.accentColor,
+    required this.isVeryClose,
+  });
+
+  final Color accentColor;
+  final bool isVeryClose;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Row(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 5.h),
+          decoration: BoxDecoration(
+            color: accentColor.withValues(alpha: 0.10),
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.mosque_rounded, size: 14.sp, color: accentColor),
+              SizedBox(width: 5.w),
+              Text(
+                AppLocalizations.of(context)!.home_next_prayer,
+                style: TextStyle(
+                  fontFamily: 'Cairo',
+                  fontSize: 9.5.sp,
+                  fontWeight: FontWeight.w700,
+                  color: accentColor,
+                  height: 1.3,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        const Spacer(),
+
+        if (isVeryClose)
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+            decoration: BoxDecoration(
+              color: colorScheme.tertiaryContainer.withValues(alpha: 0.65),
+              borderRadius: BorderRadius.circular(20.r),
+            ),
+            child: Text(
+              AppLocalizations.of(context)!.home_prayer_time_close,
+              style: TextStyle(
+                fontFamily: 'Cairo',
+                fontSize: 8.5.sp,
+                fontWeight: FontWeight.w700,
+                color: colorScheme.onTertiaryContainer,
+              ),
+            ),
+          )
+        else
+          Text(
+            AppLocalizations.of(context)!.home_today_prayer_times,
+            style: TextStyle(
+              fontFamily: 'Cairo',
+              fontSize: 9.5.sp,
+              fontWeight: FontWeight.w600,
+              color: colorScheme.onSurfaceVariant,
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class _PrayerIcon extends StatelessWidget {
+  const _PrayerIcon({required this.icon, required this.accentColor});
+
+  final IconData icon;
+  final Color accentColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 54.r,
+      height: 54.r,
+      decoration: BoxDecoration(
+        color: accentColor.withValues(alpha: 0.11),
+        borderRadius: BorderRadius.circular(18.r),
+      ),
+      child: Icon(icon, size: 28.sp, color: accentColor),
+    );
+  }
+}
+
+class _PrayerMainInformation extends StatelessWidget {
+  const _PrayerMainInformation({
+    required this.nextPrayer,
+    required this.accentColor,
+  });
+
+  final NextPrayerInfo nextPrayer;
+  final Color accentColor;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          _localizedPrayerName(l10n, nextPrayer.name),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontFamily: 'Cairo',
+            fontSize: 21.sp,
+            fontWeight: FontWeight.w900,
+            color: colorScheme.onSurface,
+            height: 1.25,
+          ),
+        ),
+
+        SizedBox(height: 3.h),
+
+        Text(
+          _localizedPrayerStatus(l10n, nextPrayer),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontFamily: 'Tajawal',
+            fontSize: 11.sp,
+            fontWeight: FontWeight.w600,
+            color: nextPrayer.isVeryClose
+                ? accentColor
+                : colorScheme.onSurfaceVariant,
+            height: 1.4,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _PrayerTime extends StatelessWidget {
+  const _PrayerTime({required this.time});
+
+  final String time;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(
+          AppLocalizations.of(context)!.home_prayer_time_label,
+          style: TextStyle(
+            fontFamily: 'Cairo',
+            fontSize: 8.5.sp,
+            fontWeight: FontWeight.w600,
+            color: colorScheme.onSurfaceVariant,
+          ),
+        ),
+
+        SizedBox(height: 2.h),
+
+        Text(
+          time,
+          textDirection: TextDirection.ltr,
+          style: TextStyle(
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w900,
+            color: colorScheme.onSurface,
+            letterSpacing: 0.4,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _CountdownSection extends StatelessWidget {
+  const _CountdownSection({
+    required this.nextPrayer,
+    required this.accentColor,
+  });
+
+  final NextPrayerInfo nextPrayer;
+  final Color accentColor;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
+
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 12.h),
+      decoration: BoxDecoration(
+        color: accentColor.withValues(alpha: 0.07),
+        borderRadius: BorderRadius.circular(17.r),
+        border: Border.all(color: accentColor.withValues(alpha: 0.10)),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 34.r,
+            height: 34.r,
+            decoration: BoxDecoration(
+              color: accentColor.withValues(alpha: 0.11),
+              borderRadius: BorderRadius.circular(11.r),
+            ),
+            child: Icon(
+              nextPrayer.isImminent
+                  ? Icons.notifications_active_rounded
+                  : Icons.timer_outlined,
+              size: 18.sp,
+              color: accentColor,
+            ),
+          ),
+
+          SizedBox(width: 10.w),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  nextPrayer.isImminent
+                      ? l10n.home_prayer_due_now_label
+                      : l10n.home_prayer_remaining_label,
+                  style: TextStyle(
+                    fontFamily: 'Cairo',
+                    fontSize: 9.sp,
+                    fontWeight: FontWeight.w600,
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ),
+
+                SizedBox(height: 2.h),
+
+                Text(
+                  _localizedCompactRemaining(l10n, nextPrayer.safeRemaining),
+                  style: TextStyle(
+                    fontFamily: 'Cairo',
+                    fontSize: 11.sp,
+                    fontWeight: FontWeight.w700,
+                    color: accentColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Text(
+            nextPrayer.digitalRemaining,
+            textDirection: TextDirection.ltr,
+            style: TextStyle(
+              fontSize: 17.sp,
+              fontWeight: FontWeight.w900,
+              color: accentColor,
+              letterSpacing: 0.7,
+              height: 1.2,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _OpenPrayerTimesAction extends StatelessWidget {
+  const _OpenPrayerTimesAction({required this.accentColor});
+
+  final Color accentColor;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Row(
+      children: [
+        Icon(
+          Icons.calendar_month_outlined,
+          size: 17.sp,
+          color: colorScheme.onSurfaceVariant,
+        ),
+
+        SizedBox(width: 7.w),
+
+        Text(
+          AppLocalizations.of(context)!.home_show_all_prayer_times,
+          style: TextStyle(
+            fontFamily: 'Cairo',
+            fontSize: 10.5.sp,
+            fontWeight: FontWeight.w700,
+            color: colorScheme.onSurfaceVariant,
+          ),
+        ),
+
+        const Spacer(),
+
+        Container(
+          width: 30.r,
+          height: 30.r,
+          decoration: BoxDecoration(
+            color: accentColor.withValues(alpha: 0.09),
+            borderRadius: BorderRadius.circular(10.r),
+          ),
+          child: Icon(
+            Icons.arrow_forward_rounded,
+            size: 17.sp,
+            color: accentColor,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _PrayerCardLoadingView extends StatelessWidget {
+  const _PrayerCardLoadingView();
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        const _PrayerCardLoading(),
+        Semantics(
+          liveRegion: true,
+          label: l10n.home_prayer_calculating,
+          child: Card(
+            elevation: 2,
+            color: colorScheme.surface,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox.square(
+                    dimension: 18.r,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.4,
+                      color: colorScheme.primary,
+                    ),
+                  ),
+                  SizedBox(width: 10.w),
+                  Text(
+                    l10n.home_prayer_calculating,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _PrayerCardLoading extends StatelessWidget {
+  const _PrayerCardLoading();
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Skeletonizer(
+      effect: ShimmerEffect(
+        baseColor: colorScheme.surfaceContainerHighest,
+        highlightColor: colorScheme.surfaceContainerLow,
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(17.r),
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: BorderRadius.circular(24.r),
+            border: Border.all(
+              color: colorScheme.outlineVariant.withValues(alpha: 0.40),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _LoadingBox(width: 95.w, height: 23.h, radius: 20.r),
+
+              SizedBox(height: 18.h),
+
+              Row(
+                children: [
+                  _LoadingBox(width: 54.r, height: 54.r, radius: 18.r),
+
+                  SizedBox(width: 13.w),
+
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _LoadingBox(width: 60.w, height: 19.h),
+                        SizedBox(height: 8.h),
+                        _LoadingBox(width: 105.w, height: 10.h),
+                      ],
+                    ),
+                  ),
+
+                  _LoadingBox(width: 48.w, height: 20.h),
+                ],
+              ),
+
+              SizedBox(height: 17.h),
+
+              _LoadingBox(width: double.infinity, height: 58.h, radius: 17.r),
+
+              SizedBox(height: 14.h),
+
+              _LoadingBox(width: double.infinity, height: 30.h, radius: 10.r),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _LoadingBox extends StatelessWidget {
+  const _LoadingBox({required this.width, required this.height, this.radius});
+
+  final double width;
+  final double height;
+  final double? radius;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(radius ?? 20.r),
+      ),
+    );
+  }
+}
+
+class _PrayerCardError extends StatelessWidget {
+  const _PrayerCardError({
+    required this.message,
+    required this.onTap,
+    required this.ref,
+  });
+
+  final String message;
+  final void Function()? onTap;
+  final WidgetRef ref;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = ref.read(themeProvider).isDark;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
+      child: Material(
+        elevation: isDark ? 0 : 3,
+        shadowColor: Colors.black.withValues(alpha: .18),
+        borderRadius: BorderRadius.circular(22.r),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: Ink(
+            width: double.infinity,
+            padding: EdgeInsets.all(15.r),
+            decoration: BoxDecoration(
+              color: colorScheme.surface,
+              borderRadius: BorderRadius.circular(20.r),
+              border: Border.all(
+                color: colorScheme.primary.withValues(alpha: 0.15),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.pray_times,
+                  style: TextStyle(
+                    fontSize: 17.sp,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: 'Cairo',
+                  ),
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  AppLocalizations.of(context)!.home_prayer_card_subtitle,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontFamily: 'Cairo',
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w600,
+                    color: context.color.onSurfaceVariant,
+                    height: 1.5,
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                Row(
+                  children: [
+                    Container(
+                      width: 40.r,
+                      height: 40.r,
+                      decoration: BoxDecoration(
+                        color: colorScheme.primary.withValues(alpha: 0.09),
+                        borderRadius: BorderRadius.circular(13.r),
+                      ),
+                      child: Icon(
+                        Icons.location_off_outlined,
+                        size: 21.sp,
+                        color: colorScheme.primary,
+                      ),
+                    ),
+
+                    SizedBox(width: 11.w),
+
+                    Expanded(
+                      child: Text(
+                        message,
+                        style: TextStyle(
+                          fontFamily: 'Cairo',
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                          color: context.color.error,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 14.h),
+                const _ActivationButton(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ActivationButton extends StatelessWidget {
+  const _ActivationButton();
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
+    return Row(
+      children: [
+        Text(
+          l10n.home_go_to_prayer_times,
+          style: TextStyle(
+            fontFamily: 'Cairo',
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w800,
+            color: scheme.primary,
+          ),
+        ),
+        SizedBox(width: 5.w),
+        Icon(Icons.arrow_forward, size: 18.sp, color: scheme.primary),
+      ],
+    );
+  }
+}
+
+String _formatPrayerTime(
+  AppLocalizations l10n,
+  NextPrayerInfo nextPrayer,
+  bool use24HourFormat,
+) {
+  if (use24HourFormat) return nextPrayer.formattedTime24;
+  return intl.DateFormat.jm(l10n.localeName).format(nextPrayer.time);
+}
+
+String _localizedPrayerName(AppLocalizations l10n, String name) {
+  return switch (name) {
+    'الفجر' => l10n.fajer,
+    'الظهر' => l10n.duhur,
+    'العصر' => l10n.asr,
+    'المغرب' => l10n.magrib,
+    'العشاء' => l10n.esha,
+    _ => name,
+  };
+}
+
+String _localizedPrayerStatus(AppLocalizations l10n, NextPrayerInfo prayer) {
+  final duration = prayer.safeRemaining;
+
+  if (duration < const Duration(minutes: 1)) {
+    return l10n.home_prayer_status_due;
+  }
+
+  if (duration <= const Duration(minutes: 10)) {
+    return l10n.home_prayer_status_close;
+  }
+
+  if (duration <= const Duration(hours: 1)) {
+    return l10n.home_prayer_status_soon;
+  }
+
+  return l10n.home_prayer_status_prepare;
+}
+
+String _localizedCompactRemaining(AppLocalizations l10n, Duration duration) {
+  if (duration.inSeconds < 60) {
+    return l10n.home_remaining_less_than_minute;
+  }
+
+  final hours = duration.inHours;
+  final minutes = duration.inMinutes.remainder(60);
+
+  if (hours > 0 && minutes > 0) {
+    return l10n.home_remaining_hours_minutes(hours, minutes);
+  }
+
+  if (hours > 0) {
+    return hours == 1
+        ? l10n.home_remaining_one_hour
+        : l10n.home_remaining_hours(hours);
+  }
+
+  return l10n.home_remaining_minutes(minutes);
+}

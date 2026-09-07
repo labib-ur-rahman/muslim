@@ -71,7 +71,7 @@ class _AdhanSettingsDialogState extends State<AdhanSettingsDialog> {
             if (_mode == PrayerNotificationAudioMode.adhan) ...[
               const SizedBox(height: 8),
               DropdownButtonFormField<String>(
-                value: _reciterId,
+                initialValue: _reciterId,
                 decoration: InputDecoration(labelText: l10n.settings_muezzin),
                 items: AdhanReciterCatalog.reciters
                     .map(

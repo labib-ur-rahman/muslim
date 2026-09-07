@@ -1,0 +1,17 @@
+[
+  {
+    "surah_number": 1,
+    "name_arabic": "الفَاتِحة",
+    "name_english": "Al-Fatihah",
+    "name_bangla": "আল-ফাতিহা",
+    "meaning_english": "The Opening",
+    "meaning_bangla": "সূচনা",
+    "revelation_place_english": "Mecca",
+    "revelation_place_bangla": "মক্কা",
+    "total_ayah": 7,
+    "total_ruku": 1,
+    "sajdah": false,
+    "para": 1,
+    "revelation_order": 5
+  }
+]

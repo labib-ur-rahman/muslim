@@ -1,0 +1,194 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shirahsoft_muslim/core/constants/routes.dart';
+import 'package:shirahsoft_muslim/core/extensions/color_ext.dart';
+import 'package:shirahsoft_muslim/core/extensions/screen_util_sizes.dart';
+import 'package:shirahsoft_muslim/core/extensions/sizes_ext.dart';
+import 'package:shirahsoft_muslim/core/l10n/app_localizations.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/widgets/marks_modal_bottom_sheet.dart';
+import 'package:shirahsoft_muslim/features/quran/presentation/widgets/quran_search_sheet.dart';
+
+class QurahPageBottomNavigationBar extends ConsumerStatefulWidget {
+  final VoidCallback? onIndexPressed;
+
+  const QurahPageBottomNavigationBar({super.key, this.onIndexPressed});
+
+  @override
+  ConsumerState<QurahPageBottomNavigationBar> createState() =>
+      _QurahPageBottomNavigationBarState();
+}
+
+class _QurahPageBottomNavigationBarState
+    extends ConsumerState<QurahPageBottomNavigationBar>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<Offset> _offsetAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
+
+    _offsetAnimation =
+        Tween<Offset>(
+          begin: const Offset(0, 1.2),
+          end: const Offset(0, 0),
+        ).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: Curves.decelerate,
+          ),
+        );
+
+    _animationController.forward();
+  }
+
+  @override
+  dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return SlideTransition(
+      position: _offsetAnimation,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 16.h, left: 18.w, right: 18.w),
+        child: Container(
+          height: 65.h,
+          decoration: BoxDecoration(
+            color: context.color.surface.withValues(alpha: .97),
+            borderRadius: BorderRadius.circular(22.r),
+            border: Border.all(color: context.color.outlineVariant),
+            boxShadow: [
+              BoxShadow(
+                color: context.color.shadow.withValues(alpha: .12),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildNavItem(
+                context,
+                Icons.auto_stories_rounded,
+                l10n.quran_nav_index,
+                () {
+                  if (widget.onIndexPressed != null) {
+                    widget.onIndexPressed!();
+                  }
+                },
+              ),
+              _buildDivider(context),
+              _buildNavItem(
+                context,
+                Icons.search_rounded,
+                l10n.quran_nav_search,
+                () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    showDragHandle: false,
+                    barrierColor: context.color.brightness == Brightness.dark
+                        ? Colors.white.withValues(alpha: .2)
+                        : Colors.black54,
+                    sheetAnimationStyle: const AnimationStyle(
+                      duration: Duration(milliseconds: 800),
+                      curve: Curves.decelerate,
+                    ),
+                    constraints: BoxConstraints(
+                      maxHeight: context.mediaQueryHeight - 100.h,
+                    ),
+                    context: context,
+                    builder: (context) {
+                      return const QuranSearchSheet();
+                    },
+                  );
+                },
+              ),
+              _buildDivider(context),
+              _buildNavItem(
+                context,
+                Icons.bookmarks_rounded,
+                l10n.quran_nav_bookmarks,
+                () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    showDragHandle: false,
+                    barrierColor: context.color.brightness == Brightness.dark
+                        ? Colors.white.withValues(alpha: .2)
+                        : Colors.black54,
+                    backgroundColor: Colors.transparent,
+                    sheetAnimationStyle: const AnimationStyle(
+                      duration: Duration(milliseconds: 600),
+                      curve: Curves.decelerate,
+                    ),
+                    builder: (context) {
+                      return const MarksModalBottomSheet();
+                    },
+                  );
+                },
+              ),
+              _buildDivider(context),
+              _buildNavItem(context, Icons.settings_rounded, l10n.settings, () {
+                Navigator.of(context).pushNamed(Routes.quranSettingsPage);
+              }),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ويدجت لبناء العناصر بشكل موحد
+  Widget _buildNavItem(
+    BuildContext context,
+    IconData icon,
+    String label,
+    VoidCallback onTap,
+  ) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(15.r),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, color: context.color.primary, size: 24.sp),
+              SizedBox(height: 2.h),
+              Text(
+                label,
+                style: TextStyle(
+                  color: context.color.onSurfaceVariant,
+                  fontSize: context.tiny ? 10.2.sp : 12.sp,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Cairo",
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // فاصل أنيق بين الأزرار
+  Widget _buildDivider(BuildContext context) {
+    return Container(
+      height: 25.h,
+      width: 1,
+      color: context.color.outlineVariant,
+    );
+  }
+}

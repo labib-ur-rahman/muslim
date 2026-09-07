@@ -1,4 +1,11 @@
 
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - al-quran/reference/**
+    - reference/**
 include: package:flutter_lints/flutter.yaml
 
 linter:

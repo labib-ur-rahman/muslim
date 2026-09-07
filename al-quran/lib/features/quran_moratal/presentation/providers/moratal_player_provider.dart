@@ -1,0 +1,4 @@
+export 'package:shirahsoft_muslim/features/quran/presentation/providers/audio_player_provider.dart'
+    show playMoratalSurahActionProvider;
+export 'package:shirahsoft_muslim/features/quran/presentation/providers/player_state_provider.dart'
+    show CurrentMoratalSurah, currentMoratalSurahProvider;
